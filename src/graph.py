@@ -207,8 +207,31 @@ def convert_times(graph: dict) -> dict:
 			if isinstance(edge.get("arr_time"), str):
 				edge["arr_time"] = time_to_seconds(edge["arr_time"])
 	return graph    
+
+def add_locations_to_graph(graph: dict, stops_df: pd.DataFrame) -> dict:
+	stop_location_by_id = (
+		stops_df[["stop_id", "stop_lat", "stop_lon"]]
+		.dropna(subset=["stop_id"])
+		.drop_duplicates(subset=["stop_id"])
+		.assign(stop_id=lambda df: df["stop_id"].astype(str))
+		.set_index("stop_id")[["stop_lat", "stop_lon"]]
+		.to_dict(orient="index")
+	)
+
+	for from_stop_id, edges in graph.items():
+		from_location = stop_location_by_id.get(str(from_stop_id))
+		for edge in edges:
+			to_location = stop_location_by_id.get(str(edge["to"]))
+			if from_location:
+				edge["from_lat"] = from_location["stop_lat"]
+				edge["from_lon"] = from_location["stop_lon"]
+			if to_location:
+				edge["to_lat"] = to_location["stop_lat"]
+				edge["to_lon"] = to_location["stop_lon"]
+
+	return graph
  
-def build_graph(date):
+def build_graph(date, with_locations=False):
 	calendar_data = load_calendar_data()
 	filtered_calendar = filter_calendar_by_date(calendar_data, date)
 	day_services = get_day_services(filtered_calendar)
@@ -239,5 +262,10 @@ def build_graph(date):
  
 	final_graph = convert_times(sorted_graph)	
  
-	return final_graph
+	if not with_locations:
+		return final_graph
+
+	final_graph_with_locations = add_locations_to_graph(final_graph, stops_df)
+ 
+	return final_graph_with_locations
     

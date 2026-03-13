@@ -1,11 +1,6 @@
 import heapq
 
 try:
-    from .utils import seconds_to_time
-except ImportError:
-    from src.utils import seconds_to_time
-
-try:
     from .graph import build_graph
 except ImportError:
     from src.graph import build_graph
@@ -22,7 +17,7 @@ def dijkstra(start, finish, _, time):
     
     p_values = {node: None for node in graph}
     
-    # (time, node)
+    # (duration, arrival time, node)
     Q = [(0, start_time_seconds, start)]
     
     while Q:
