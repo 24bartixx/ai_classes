@@ -358,14 +358,19 @@ class Graph:
 		self.graph = get_graph_for_date(date, with_locations=with_locations)
 		self.next_days_loaded = 0
   
+	def has_next_dat(self):
+		return pd.Timestamp(self.date) < pd.Timestamp("2026-12-12")
+  
 	def load_next_day(self):
+		if not self.has_next_dat():
+			return False
+
 		next_date = pd.Timestamp(self.date) + pd.Timedelta(days=1)
 		self.date = next_date
 		to_add = get_graph_for_date(next_date, with_locations=self.with_locations)
   
 		self.next_days_loaded += 1
   
-		# to_add 'dep_time' and 'arr_time' add 86400 seconds
 		for edges in to_add.values():
 			for edge in edges:
 				edge["dep_time"] += 86400 * self.next_days_loaded
@@ -376,6 +381,8 @@ class Graph:
 				self.graph[stop_id] = []
 			self.graph[stop_id].extend(edges)
 			self.graph[stop_id].sort(key=lambda edge: (edge["to"], edge["dep_time"]))
+
+		return True
 
 # CLI function to save graphs: python -m src.graph
 if __name__ == "__main__":

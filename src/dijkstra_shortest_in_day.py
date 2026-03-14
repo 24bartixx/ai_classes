@@ -1,16 +1,16 @@
 import heapq
 
 try:
-    from .graph import build_graph
+    from .graph import get_graph_for_date
 except ImportError:
-    from src.graph import build_graph
+    from src.graph import get_graph_for_date
 
 
 def dijkstra(start, finish, _, time):
     
     date = time.date()
     start_time_seconds = time.hour * 3600 + time.minute * 60 + time.second
-    graph = build_graph(date)
+    graph = get_graph_for_date(date)
     
     d_durations = {node: float('inf') for node in graph}
     d_durations[start] = 0
@@ -50,5 +50,5 @@ def dijkstra(start, finish, _, time):
         current = prev_node
     path.reverse()
 
-    return path
+    return date, path
     
