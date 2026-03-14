@@ -23,3 +23,17 @@ def print_path(result):
 		print(f'Dates:\t\t{date + pd.Timedelta(days=(step["dep_time"] // 86400))} - {date + pd.Timedelta(days=(step["arr_time"] // 86400))}')
 		print(f'Times:\t\t{seconds_to_time(step["dep_time"])} - {seconds_to_time(step["arr_time"])}')
 		print()
+  
+def reconstruct_path(come_from, finish):
+    path = []
+    current = finish
+    while current is not None:
+        entry = come_from[current]
+        if entry is None:
+            break
+        prev_node, edge = entry
+        path.append(edge)
+        current = prev_node
+    path.reverse()
+
+    return path

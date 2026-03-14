@@ -2,9 +2,9 @@ import heapq
 import math
 
 try:
-    from .graph import build_graph
+    from .graph import Graph
 except ImportError:
-    from src.graph import build_graph
+    from src.graph import Graph
     
 def get_h(stop_id, finish_id, graph):
     node = graph[stop_id][0]
@@ -28,17 +28,17 @@ def a_star(start, finish, _, time):
     
     date = time.date()
     start_time_seconds = time.hour * 3600 + time.minute * 60 + time.second
-    graph = build_graph(date, with_locations=True)
+    graph = Graph(date, with_locations=True)
     
     # (f cost, duration, arrival time, node)
-    start_f = get_h(start, finish, graph)
+    start_f = get_h(start, finish, graph.graph)
     opened = [(start_f, 0, start_time_seconds, start)]
     closed = set()
 
-    g_costs = {node: float('inf') for node in graph}
+    g_costs = {node: float('inf') for node in graph.graph}
     g_costs[start] = 0
     
-    came_from = {node: None for node in graph}
+    came_from = {node: None for node in graph.graph}
     
     while len(opened) > 0:
         f_score, g_score, arrival_time, node  = heapq.heappop(opened)
@@ -51,7 +51,7 @@ def a_star(start, finish, _, time):
         
         closed.add(node)
         
-        for edge in graph.get(node, []):
+        for edge in graph.graph.get(node, []):
             v = edge['to']
             
             if edge['dep_time'] >= arrival_time:
@@ -61,13 +61,11 @@ def a_star(start, finish, _, time):
                 
                 if new_g_score < g_costs[v]:
                         g_costs[v] = new_g_score
-                        h_score = get_h(v, finish, graph)
+                        h_score = get_h(v, finish, graph.graph)
                         f_score = new_g_score + h_score
                         
                         came_from[v] = (node, edge)
                         heapq.heappush(opened, (f_score, new_g_score, edge['arr_time'], v))
-               
-    print("FINISHED")
                    
     path = []
     current = finish
@@ -80,6 +78,6 @@ def a_star(start, finish, _, time):
         current = prev_node
     path.reverse()
 
-    return path
+    return date, path
             
     

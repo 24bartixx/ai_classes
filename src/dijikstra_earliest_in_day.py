@@ -5,21 +5,11 @@ try:
 except ImportError:
     from src.graph import Graph
     
-
-def reconstruct_path(p_values, finish):
-    path = []
-    current = finish
-    while current is not None:
-        entry = p_values[current]
-        if entry is None:
-            break
-        prev_node, edge = entry
-        path.append(edge)
-        current = prev_node
-    path.reverse()
-
-    return path
-
+try:
+    from .utils import reconstruct_path
+except ImportError:
+    from src.utils import reconstruct_path
+    
 
 def dijkstra(start, finish, _, time):
     
