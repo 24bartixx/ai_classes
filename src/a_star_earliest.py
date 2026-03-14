@@ -83,3 +83,57 @@ def a_star(start, finish, _, time):
         
     return (date, [])
         
+        
+def a_star_transfer(start, finish, date, start_time_seconds):
+    graph = Graph(date, with_locations=True)
+    
+    g_values = {start: start_time_seconds}
+    h_values = {start: get_h(start, finish, graph.graph)}
+    f_values = {start: g_values[start] + h_values[start]}
+    
+    opened = [start]
+    closed = []
+    
+    came_from = {start: None}
+    
+    while True:
+        while len(opened) > 0:
+            node = min(opened, key=lambda x: f_values.get(x, float('inf')))
+            
+            if node == finish:
+                return (date, reconstruct_path(came_from, finish))
+            
+            opened.remove(node)
+            closed.append(node)
+            
+            for edge in graph.graph.get(node, []):
+                if edge['dep_time'] >= g_values[node]:
+                    next_node = edge['to']
+
+                    if next_node not in opened and next_node not in closed:
+                        opened.append(next_node)
+                        g_values[next_node] = edge['arr_time']
+                        h_values[next_node] = get_h(next_node, finish, graph.graph)
+                        f_values[next_node] = g_values[next_node] + h_values[next_node]
+                        came_from[next_node] = (node, edge)
+
+                    else:
+                        if g_values[next_node] > edge['arr_time']:
+                            g_values[next_node] = edge['arr_time']
+                            f_values[next_node] = g_values[next_node] + h_values[next_node]
+                            came_from[next_node] = (node, edge)
+
+                            if next_node in closed:
+                                closed.remove(next_node)
+                                opened.append(next_node)
+                                
+        if graph.load_next_day():
+            opened = closed
+            closed = []
+        else:
+            break
+        
+    return (date, [])
+    
+    
+    

@@ -24,6 +24,20 @@ def print_path(result):
 		print(f'Times:\t\t{seconds_to_time(step["dep_time"])} - {seconds_to_time(step["arr_time"])}')
 		print()
   
+  
+def print_lines(result):
+	_, path = result
+
+	print(f"Optimal path: {seconds_to_time(path[0]['dep_time'])} - {seconds_to_time(path[-1]['arr_time'])}\n")
+
+	lines = []
+
+	for step in path:
+		if step['line_name'] not in lines:
+			lines.append(step['line_name'])
+   
+	print("Lines used: " + ", ".join(lines))
+  
 def reconstruct_path(come_from, finish):
     path = []
     current = finish
