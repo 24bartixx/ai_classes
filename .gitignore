@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Generated graph data
+data/json/
+
+# Jupyter
+.ipynb_checkpoints/

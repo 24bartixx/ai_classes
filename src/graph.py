@@ -1,5 +1,22 @@
+from datetime import date
 from pathlib import Path
 import pandas as pd
+import json
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+
+def resolve_data_path(file_path: str | Path) -> Path:
+	path = Path(file_path)
+	if path.is_absolute():
+		return path
+
+	# First respect caller's CWD, then fall back to project-root-relative paths.
+	cwd_path = Path.cwd() / path
+	if cwd_path.exists():
+		return cwd_path
+
+	return PROJECT_ROOT / path
 
 try:
     from .utils import time_to_seconds
@@ -7,9 +24,11 @@ except ImportError:
     from src.utils import time_to_seconds
 
 
-def load_calendar_data(file_path: str | Path = "../data/calendar.txt") -> pd.DataFrame:
+# ===== DATA LOADING FUNCTIONS =====
 
-	path = Path(file_path)
+def load_calendar_data(file_path: str | Path = "data/calendar.txt") -> pd.DataFrame:
+
+	path = resolve_data_path(file_path)
 	if not path.exists():
 		raise FileNotFoundError(f"Calendar file not found: {path}")
 
@@ -21,6 +40,80 @@ def load_calendar_data(file_path: str | Path = "../data/calendar.txt") -> pd.Dat
 		calendar_df["end_date"], format="%Y%m%d", errors="coerce"
 	)
 	return calendar_df
+
+def load_calendar_exceptions_data(file_path: str | Path = "data/calendar_dates.txt") -> pd.DataFrame:
+	path = resolve_data_path(file_path)
+	if not path.exists():
+		raise FileNotFoundError(f"Calendar file not found: {path}")
+
+	calendar_exceptions_df = pd.read_csv(path)
+ 
+	calendar_exceptions_df["date"] = pd.to_datetime(
+		calendar_exceptions_df["date"], format="%Y%m%d", errors="coerce"
+	)
+ 
+	return calendar_exceptions_df
+
+def load_trips_data(file_path: str | Path = "data/trips.txt") -> pd.DataFrame:
+
+	path = resolve_data_path(file_path)
+	if not path.exists():
+		raise FileNotFoundError(f"Trips file not found: {path}")
+
+	trips_df = pd.read_csv(path)
+ 
+	return trips_df
+
+def load_stop_times_data(file_path: str | Path = "data/stop_times.txt") -> pd.DataFrame:
+
+	path = resolve_data_path(file_path)
+	if not path.exists():
+		raise FileNotFoundError(f"Stop times file not found: {path}")
+
+	stop_times_df = pd.read_csv(path)
+ 
+	return stop_times_df
+
+def load_stop_data(file_path: str | Path = "data/stops.txt") -> pd.DataFrame:
+
+	path = resolve_data_path(file_path)
+	if not path.exists():
+		raise FileNotFoundError(f"Stops file not found: {path}")
+
+	stops_df = pd.read_csv(path)
+ 
+	return stops_df
+
+def load_routes_data(file_path: str | Path = "data/routes.txt") -> pd.DataFrame:
+
+	path = resolve_data_path(file_path)
+	if not path.exists():
+		raise FileNotFoundError(f"Routes file not found: {path}")
+
+	routes_df = pd.read_csv(path)
+ 
+	return routes_df
+
+def build_parent_station_map(stops_df: pd.DataFrame) -> dict:
+	parent_map = {}
+	if "stop_id" not in stops_df.columns or "parent_station" not in stops_df.columns:
+		return parent_map
+
+	for _, row in stops_df[["stop_id", "parent_station"]].iterrows():
+		stop_id = row["stop_id"]
+		parent_station = row["parent_station"]
+		if pd.isna(stop_id) or pd.isna(parent_station):
+			continue
+		parent_map[int(stop_id)] = int(parent_station)
+
+	return parent_map
+
+def build_line_ids_map(trips_df: pd.DataFrame, routes_df: pd.DataFrame) -> dict:
+	trip_to_route = trips_df.set_index("trip_id")["route_id"].to_dict()
+	route_to_line = routes_df.set_index("route_id")["route_short_name"].to_dict()
+	return {trip_id: route_to_line.get(route_id) for trip_id, route_id in trip_to_route.items()}
+
+# ===== GRAPH BUILDING FUNCTIONS =====
 
 def filter_calendar_by_date(calendar_df: pd.DataFrame, date: pd.Timestamp) -> pd.DataFrame:
 	date = pd.Timestamp(date)
@@ -36,19 +129,6 @@ def filter_calendar_by_date(calendar_df: pd.DataFrame, date: pd.Timestamp) -> pd
 
 def get_day_services(calendar_df: pd.DataFrame) -> pd.DataFrame:
 	return calendar_df["service_id"].tolist()
-
-def load_calendar_exceptions_data(file_path: str | Path = "../data/calendar_dates.txt") -> pd.DataFrame:
-	path = Path(file_path)
-	if not path.exists():
-		raise FileNotFoundError(f"Calendar file not found: {path}")
-
-	calendar_exceptions_df = pd.read_csv(path)
- 
-	calendar_exceptions_df["date"] = pd.to_datetime(
-		calendar_exceptions_df["date"], format="%Y%m%d", errors="coerce"
-	)
- 
-	return calendar_exceptions_df
 
 def filter_calendar_exceptions_by_date(calendar_exceptions_df: pd.DataFrame, date: pd.Timestamp) -> pd.DataFrame:
 	date = pd.Timestamp(date)
@@ -67,28 +147,8 @@ def get_active_services_for_date(day_services, exception_services):
 
 	# return [service for service in day_services if service not in exception_services]
 
-def load_trips_data(file_path: str | Path = "../data/trips.txt") -> pd.DataFrame:
-
-	path = Path(file_path)
-	if not path.exists():
-		raise FileNotFoundError(f"Trips file not found: {path}")
-
-	trips_df = pd.read_csv(path)
- 
-	return trips_df
-
 def filter_trips_by_service_id(trips_df: pd.DataFrame, service_ids: list) -> pd.DataFrame:
 	return trips_df[trips_df["service_id"].isin(service_ids)].copy()
-
-def load_stop_times_data(file_path: str | Path = "../data/stop_times.txt") -> pd.DataFrame:
-
-	path = Path(file_path)
-	if not path.exists():
-		raise FileNotFoundError(f"Stop times file not found: {path}")
-
-	stop_times_df = pd.read_csv(path)
- 
-	return stop_times_df
 
 def filter_stop_times_by_trip_id(stop_times_df: pd.DataFrame, filtered_trips_df: pd.DataFrame) -> pd.DataFrame:
 	trip_ids = filtered_trips_df["trip_id"].tolist()
@@ -103,30 +163,6 @@ def get_stop_times_dict_by_trip_id(stop_times_df: pd.DataFrame, filtered_trips_d
 		trip_id: group.reset_index(drop=True)
 		for trip_id, group in filtered_stop_times.groupby("trip_id", sort=False)
 	}
-
-def load_stop_data(file_path: str | Path = "../data/stops.txt") -> pd.DataFrame:
-
-	path = Path(file_path)
-	if not path.exists():
-		raise FileNotFoundError(f"Stops file not found: {path}")
-
-	stops_df = pd.read_csv(path)
- 
-	return stops_df
-
-def build_parent_station_map(stops_df: pd.DataFrame) -> dict:
-	parent_map = {}
-	if "stop_id" not in stops_df.columns or "parent_station" not in stops_df.columns:
-		return parent_map
-
-	for _, row in stops_df[["stop_id", "parent_station"]].iterrows():
-		stop_id = row["stop_id"]
-		parent_station = row["parent_station"]
-		if pd.isna(stop_id) or pd.isna(parent_station):
-			continue
-		parent_map[int(stop_id)] = int(parent_station)
-
-	return parent_map
  
 def get_graph(trips_dict, parent_station_map: dict[int, int] | None = None):
 	parent_station_map = parent_station_map or {}
@@ -169,23 +205,6 @@ def add_stop_names_to_graph(graph: dict, stops_df: pd.DataFrame) -> dict:
 			edge["to_stop_name"] = stop_name_by_id.get(str(edge["to"]))
 
 	return graph
-
-
-def load_routes_data(file_path: str | Path = "../data/routes.txt") -> pd.DataFrame:
-
-	path = Path(file_path)
-	if not path.exists():
-		raise FileNotFoundError(f"Routes file not found: {path}")
-
-	routes_df = pd.read_csv(path)
- 
-	return routes_df
-
-
-def build_line_ids_map(trips_df: pd.DataFrame, routes_df: pd.DataFrame) -> dict:
-	trip_to_route = trips_df.set_index("trip_id")["route_id"].to_dict()
-	route_to_line = routes_df.set_index("route_id")["route_short_name"].to_dict()
-	return {trip_id: route_to_line.get(route_id) for trip_id, route_id in trip_to_route.items()}
 
 def add_line_names_to_graph(graph: dict, lines_map: dict) -> dict:
     for _, edges in graph.items():
@@ -231,41 +250,133 @@ def add_locations_to_graph(graph: dict, stops_df: pd.DataFrame) -> dict:
 
 	return graph
  
-def build_graph(date, with_locations=False):
+# ===== MODULE FUNCTION ===== 
+
+def get_graph_for_date(date, with_locations=False):
+	if isinstance(date, pd.Timestamp):
+		date_str = date.strftime("%Y%m%d")
+	elif isinstance(date, str):
+		date_str = pd.Timestamp(date).strftime("%Y%m%d")
+	else:
+		date_str = pd.Timestamp(date).strftime("%Y%m%d")
+
+	output_dir = PROJECT_ROOT / "data" / "json"
+	location_suffix = "_with_locations" if with_locations else ""
+	primary_path = output_dir / f"graph_{date_str}{location_suffix}.json"
+	fallback_path = output_dir / f"graph_{date_str}.json"
+
+	if primary_path.exists():
+		file_path = primary_path
+	elif fallback_path.exists():
+		file_path = fallback_path
+	else:
+		raise FileNotFoundError(
+			f"Graph JSON not found for {date_str}: checked {primary_path} and {fallback_path}"
+		)
+
+	with open(file_path, "r") as f:
+		graph = json.load(f)
+  
+	converted_graph = {}
+	for stop_id, edges in graph.items():
+		try:
+			converted_graph[int(stop_id)] = edges
+		except (ValueError, TypeError):
+			converted_graph[stop_id] = edges
+
+	return converted_graph
+
+def save_graph_json(graph, dat):
+	if isinstance(dat, pd.Timestamp):
+		date_str = dat.strftime("%Y%m%d")
+	elif isinstance(dat, date):
+		date_str = dat.strftime("%Y%m%d")
+	elif isinstance(dat, str):
+		date_str = pd.Timestamp(dat).strftime("%Y%m%d")
+	else:
+		raise TypeError("dat must be a pandas.Timestamp, datetime.date, or date string")
+
+	output_dir = PROJECT_ROOT / "data" / "json"
+	output_dir.mkdir(parents=True, exist_ok=True)
+	filename = output_dir / f"graph_{date_str}.json"
+	with open(filename, "w") as f:
+		json.dump(graph, f, indent=2)
+	print(f"Saved in {filename}")
+  
+def save_graphs(with_locations=True):
 	calendar_data = load_calendar_data()
-	filtered_calendar = filter_calendar_by_date(calendar_data, date)
-	day_services = get_day_services(filtered_calendar)
-
 	calendar_exceptions_data = load_calendar_exceptions_data()
-	filtered_calendar_exceptions = filter_calendar_exceptions_by_date(calendar_exceptions_data, date)
-
-	active_services = get_active_services_for_date(day_services, filtered_calendar_exceptions)
-
 	trips_data = load_trips_data()
-	filtered_trips = filter_trips_by_service_id(trips_data, active_services)
-
 	stop_times_data = load_stop_times_data()
-	filtered_stop_times = filter_stop_times_by_trip_id(stop_times_data, filtered_trips)
-	trips_dict = get_stop_times_dict_by_trip_id(filtered_stop_times, filtered_trips)
- 
 	stops_df = load_stop_data()
-	parent_station_map = build_parent_station_map(stops_df)
-	graph = get_graph(trips_dict, parent_station_map)
- 
-	graph_with_names = add_stop_names_to_graph(graph, stops_df)
- 
 	routes_df = load_routes_data()
-	lines_map = build_line_ids_map(filtered_trips, routes_df)
-	add_line_names_to_graph(graph_with_names, lines_map)
- 
-	sorted_graph = sort_graph_by_stop_dep(graph_with_names)
- 
-	final_graph = convert_times(sorted_graph)	
- 
-	if not with_locations:
-		return final_graph
+	parent_station_map = build_parent_station_map(stops_df)
 
-	final_graph_with_locations = add_locations_to_graph(final_graph, stops_df)
- 
-	return final_graph_with_locations
-    
+	start_date = pd.Timestamp("2026-03-03")
+	end_date = pd.Timestamp("2026-12-12")
+	all_dates = pd.date_range(start=start_date, end=end_date, freq="D")
+
+	for current_date in all_dates:
+		filtered_calendar = filter_calendar_by_date(calendar_data, current_date)
+		day_services = get_day_services(filtered_calendar)
+
+		filtered_calendar_exceptions = filter_calendar_exceptions_by_date(
+			calendar_exceptions_data,
+			current_date,
+		)
+		active_services = get_active_services_for_date(day_services, filtered_calendar_exceptions)
+
+		if not active_services:
+			continue
+
+		filtered_trips = filter_trips_by_service_id(trips_data, active_services)
+		if filtered_trips.empty:
+			continue
+
+		filtered_stop_times = filter_stop_times_by_trip_id(stop_times_data, filtered_trips)
+		trips_dict = get_stop_times_dict_by_trip_id(filtered_stop_times, filtered_trips)
+
+		graph = get_graph(trips_dict, parent_station_map)
+		graph_with_names = add_stop_names_to_graph(graph, stops_df)
+
+		lines_map = build_line_ids_map(filtered_trips, routes_df)
+		add_line_names_to_graph(graph_with_names, lines_map)
+
+		sorted_graph = sort_graph_by_stop_dep(graph_with_names)
+		final_graph = convert_times(sorted_graph)
+
+		if with_locations:
+			final_graph = add_locations_to_graph(final_graph, stops_df)
+
+		save_graph_json(final_graph, current_date)
+		print(f"Saved graph for {current_date.strftime('%Y-%m-%d')}")
+  
+class Graph:
+	def __init__(self, date, with_locations=False):
+		self.date = date
+		self.with_locations = with_locations
+		self.graph = get_graph_for_date(date, with_locations=with_locations)
+		self.next_days_loaded = 0
+  
+	def load_next_day(self):
+		next_date = pd.Timestamp(self.date) + pd.Timedelta(days=1)
+		self.date = next_date
+		to_add = get_graph_for_date(next_date, with_locations=self.with_locations)
+  
+		self.next_days_loaded += 1
+  
+		# to_add 'dep_time' and 'arr_time' add 86400 seconds
+		for edges in to_add.values():
+			for edge in edges:
+				edge["dep_time"] += 86400 * self.next_days_loaded
+				edge["arr_time"] += 86400 * self.next_days_loaded
+
+		for stop_id, edges in to_add.items():
+			if stop_id not in self.graph:
+				self.graph[stop_id] = []
+			self.graph[stop_id].extend(edges)
+			self.graph[stop_id].sort(key=lambda edge: (edge["to"], edge["dep_time"]))
+
+# CLI function to save graphs: python -m src.graph
+if __name__ == "__main__":
+    save_graphs()
