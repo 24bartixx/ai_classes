@@ -1,4 +1,5 @@
 from importlib.resources import path
+from unittest import result
 
 import pandas as pd
 
@@ -13,7 +14,15 @@ def seconds_to_time(seconds: int) -> str:
 	return f"{hours%24:02}:{minutes:02}:{secs:02}"
 
 def print_path(result):
+	if not result:
+		print("No connection found")
+		return
+
 	date, path = result
+
+	if not path:
+		print(f"No available connections for given time")
+		return
 
 	print(f"Optimal path: {seconds_to_time(path[0]['dep_time'])} - {seconds_to_time(path[-1]['arr_time'])}\n")
 
@@ -26,7 +35,15 @@ def print_path(result):
   
   
 def print_lines(result):
+	if not result:
+		print("No connection found")
+		return
+
 	_, path = result
+
+	if not path:
+		print(f"No available connections for given time")
+		return
 
 	print(f"Optimal path: {seconds_to_time(path[0]['dep_time'])} - {seconds_to_time(path[-1]['arr_time'])}\n")
 

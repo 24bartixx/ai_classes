@@ -45,8 +45,11 @@ def a_star_arr_time(start, finish, date, start_time_seconds):
         # 160 km/h - max KD spped
         return (km_distance / 160) * 3600
     
-    graph = Graph(date, with_locations=True)
-    
+    try:
+        graph = Graph(date, with_locations=True)
+    except FileNotFoundError:
+        return (date, [])
+
     g_values = {start: start_time_seconds}
     h_values = {start: get_h(start, finish, graph.graph)}
     f_values = {start: g_values[start] + h_values[start]}
@@ -122,8 +125,11 @@ def a_star_transfer(start, finish, date, start_time_seconds):
             
         return (transfer_h, time)
     
-    graph = Graph(date, with_locations=True, include_stops_lines_dict=True)
-    
+    try:
+        graph = Graph(date, with_locations=True, include_stops_lines_dict=True)
+    except FileNotFoundError:
+        return (date, [])
+
     start_state = (start, None, None, start_time_seconds)
     
     g_values = {start_state: (0, start_time_seconds)}

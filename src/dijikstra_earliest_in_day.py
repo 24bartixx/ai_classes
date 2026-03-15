@@ -14,8 +14,12 @@ except ImportError:
 def dijkstra(start, finish, mode, time):
     date = time.date()
     start_time_seconds = time.hour * 3600 + time.minute * 60 + time.second
-    graph = Graph(date)
     
+    try:
+        graph = Graph(date)
+    except FileNotFoundError:
+        return (date, [])
+
     if mode == 'p':
         return dijkstra_transfer(start, finish, date, start_time_seconds, graph)
     elif mode == 't':
