@@ -164,6 +164,43 @@ def get_stop_times_dict_by_trip_id(stop_times_df: pd.DataFrame, filtered_trips_d
 		for trip_id, group in filtered_stop_times.groupby("trip_id", sort=False)
 	}
  
+def get_stops_lines_dict() -> dict:
+	stops_df = load_stop_data()
+	stop_times_df = load_stop_times_data()
+	trips_df = load_trips_data()
+	routes_df = load_routes_data()
+	parent_station_map = build_parent_station_map(stops_df)
+
+	def normalize_stop_id(stop_id):
+		if pd.isna(stop_id):
+			return None
+		stop_id = int(stop_id)
+		return parent_station_map.get(stop_id, stop_id)
+
+	valid_stop_ids = {
+		normalize_stop_id(stop_id)
+		for stop_id in stops_df["stop_id"].dropna().tolist()
+	}
+	valid_stop_ids.discard(None)
+	result = {stop_id: [] for stop_id in valid_stop_ids}
+	lines_map = build_line_ids_map(trips_df, routes_df)
+
+	pairs = stop_times_df[["stop_id", "trip_id"]].drop_duplicates().copy()
+	pairs["stop_id"] = pairs["stop_id"].map(normalize_stop_id)
+	pairs = pairs[
+		pairs["stop_id"].isin(result)
+	].assign(
+		line_name=pairs["trip_id"].map(lines_map),
+	).dropna(subset=["line_name"])
+
+	lines_by_stop = {
+		stop_id: sorted(group.unique().tolist())
+		for stop_id, group in pairs.groupby("stop_id")["line_name"]
+	}
+
+	result.update(lines_by_stop)
+	return result
+ 
 def get_graph(trips_dict, parent_station_map: dict[int, int] | None = None):
 	parent_station_map = parent_station_map or {}
 	graph = {}
@@ -286,19 +323,33 @@ def get_graph_for_date(date, with_locations=False):
 
 	return converted_graph
 
-def save_graph_json(graph, dat):
+def get_stops_lines_dict_from_json() -> dict:
+	with open(PROJECT_ROOT / "data" / "json" / "stops_lines.json", "r") as f:
+		stops_lines_dict = json.load(f)
+
+	converted_stops_lines_dict = {}
+	for stop_id, lines in stops_lines_dict.items():
+		try:
+			converted_stops_lines_dict[int(stop_id)] = lines
+		except (ValueError, TypeError):
+			converted_stops_lines_dict[stop_id] = lines
+
+	return converted_stops_lines_dict
+
+def save_json(graph, dat=None, prefix="graph"):
+	date_str = None
 	if isinstance(dat, pd.Timestamp):
 		date_str = dat.strftime("%Y%m%d")
 	elif isinstance(dat, date):
 		date_str = dat.strftime("%Y%m%d")
 	elif isinstance(dat, str):
 		date_str = pd.Timestamp(dat).strftime("%Y%m%d")
-	else:
-		raise TypeError("dat must be a pandas.Timestamp, datetime.date, or date string")
+	elif dat is not None:
+		raise TypeError("dat must be None, a pandas.Timestamp, datetime.date, or date string")
 
 	output_dir = PROJECT_ROOT / "data" / "json"
 	output_dir.mkdir(parents=True, exist_ok=True)
-	filename = output_dir / f"graph_{date_str}.json"
+	filename = output_dir / f"{prefix}.json" if date_str is None else output_dir / f"{prefix}_{date_str}.json"
 	with open(filename, "w") as f:
 		json.dump(graph, f, indent=2)
 	print(f"Saved in {filename}")
@@ -348,15 +399,23 @@ def save_graphs(with_locations=True):
 		if with_locations:
 			final_graph = add_locations_to_graph(final_graph, stops_df)
 
-		save_graph_json(final_graph, current_date)
+		save_json(final_graph, current_date, prefix="graph")
 		print(f"Saved graph for {current_date.strftime('%Y-%m-%d')}")
   
+
+def save_stops_lines_dict():
+	stops_lines_dict = get_stops_lines_dict()
+	save_json(stops_lines_dict, prefix="stops_lines")
+	print("Saved global stops_lines dict")
+	
+
 class Graph:
-	def __init__(self, date, with_locations=False):
+	def __init__(self, date, with_locations=False, include_stops_lines_dict=False):
 		self.date = date
 		self.with_locations = with_locations
-		self.graph = get_graph_for_date(date, with_locations=with_locations)
 		self.next_days_loaded = 0
+		self.graph = get_graph_for_date(date, with_locations=with_locations)
+		self.stops_lines_dict = get_stops_lines_dict_from_json() if include_stops_lines_dict else None
   
 	def has_next_dat(self):
 		return pd.Timestamp(self.date) < pd.Timestamp("2026-12-12")
@@ -386,4 +445,6 @@ class Graph:
 
 # CLI function to save graphs: python -m src.graph
 if __name__ == "__main__":
-    save_graphs()
+    save_stops_lines_dict()
+    # save_graphs()
+    
