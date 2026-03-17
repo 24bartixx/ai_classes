@@ -12,7 +12,7 @@ try:
 except ImportError:
     from src.a_star_earliest import a_star
     
-def evaluate_solution(solution, graph, time, should_log=False):
+def evaluate_solution_arr_time(solution, graph, time, should_log=False):
     
     start_seconds = time.hour * 3600 + time.minute * 60 + time.second
     last_arr_time = start_seconds
@@ -39,26 +39,84 @@ def evaluate_solution(solution, graph, time, should_log=False):
     return time + pd.Timedelta(seconds=last_arr_time - (time.hour * 3600 + time.minute * 60 + time.second))
 
 
-def tabu_a(start, stops, _, time):
+def get_neighbors(solution):
+    neighbors = {}
+    for i in range(1, len(solution) - 2):
+        for j in range(i + 1, len(solution) - 1):
+            new_solution = solution[:]
+            new_solution[i], new_solution[j] = new_solution[j], new_solution[i]
+            neighbors[(i, j)] = new_solution
+    return neighbors
+
+def tabu_a(start, stops, mode, time):
+    if start not in stops:
+        print("Start stop is not in the list of stops.")
+        return
+        
+    # move start to the beginning
+    stops[stops.index(start)], stops[0] = stops[0], stops[stops.index(start)]
     
-    date = time.date()
-    start_time_seconds = time.hour * 3600 + time.minute * 60 + time.second
+    # ensure the last stop is the same as the start
+    if stops[-1] != start:
+        stops.append(start)
+    
+    # initialize graph
     try:
-        graph = Graph(date, with_locations=True)
+        graph = Graph(time, with_locations=True)
     except FileNotFoundError:
-        ... # handle error, e.g. return no solution
+        print("Graph file not found. Returning no solution.")
+        return None, None
     
     best_solution = stops
+    best_score = evaluate_solution_arr_time(best_solution, graph, time, should_log=False)
+    
+    tabu = []
+    tabu_tabu_size = len(stops) * 2
     
     no_change_count = 0
     
-    while no_change_count < 100:
+    while no_change_count < 10:
         
-        # swap
-        new_solution = best_solution[:]
-        i, j = random.sample(range(len(stops)), 2)
-        new_solution[i], new_solution[j] = new_solution[j], new_solution[i]
+        print(f"{no_change_count} | Current best score: {best_score}, solution: {best_solution}")
         
-        # evaluate
+        locally_best_score = evaluate_solution_arr_time(best_solution, graph, time, should_log=False)
+        locally_best_solution = best_solution
+            
+        i = 0
+        while i < 10:
     
-    
+            neightbors = get_neighbors(best_solution)
+            
+            to_tabu = None
+            best_neighbor = None
+            best_neighbor_score = pd.Timestamp("2300-12-12")
+            
+            for changed_indexes, neighbor in neightbors.items():
+                
+                neighbor_score = evaluate_solution_arr_time(neighbor, graph, time, should_log=False)
+                
+                if neighbor_score < best_neighbor_score:
+                    if changed_indexes not in tabu or neighbor_score < best_score:
+                        best_neighbor = neighbor
+                        best_neighbor_score = neighbor_score
+                        to_tabu = changed_indexes                   
+                  
+            if to_tabu is not None:  
+                tabu.append(to_tabu)
+                if len(tabu) > tabu_tabu_size:
+                    tabu.pop(0)
+                
+            if best_neighbor_score < locally_best_score:
+                locally_best_score = best_neighbor_score
+                locally_best_solution = best_neighbor
+                
+            i += 1
+                
+        no_change_count += 1
+        
+        if locally_best_score < best_score:
+            best_score = locally_best_score
+            best_solution = locally_best_solution
+            no_change_count = 0
+                
+    return best_solution, best_score
