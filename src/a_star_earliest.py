@@ -1,6 +1,8 @@
 import heapq
 import math
 
+import pandas as pd
+
 try:
     from .graph import Graph
 except ImportError:
@@ -13,20 +15,24 @@ except ImportError:
     
 
 
-def a_star(start, finish, mode, time):
+def a_star(start, finish, mode, time, graph=None, start_time_seconds=None):
     
     date = time.date()
-    start_time_seconds = time.hour * 3600 + time.minute * 60 + time.second
+    if start_time_seconds is None:
+        start_time_seconds = time.hour * 3600 + time.minute * 60 + time.second
+    
+    if time >= pd.Timestamp('2026-12-13'):
+        return (date, [])
     
     if mode == 't':
-        return a_star_arr_time(start, finish, date, start_time_seconds)
+        return a_star_arr_time(start, finish, date, start_time_seconds, graph)
     elif mode == 'p':
-        return a_star_transfer(start, finish, date, start_time_seconds)
+        return a_star_transfer(start, finish, date, start_time_seconds, graph)
     
-    return a_star_arr_time(start, finish, date, start_time_seconds)
+    return a_star_arr_time(start, finish, date, start_time_seconds, graph)
 
     
-def a_star_arr_time(start, finish, date, start_time_seconds):
+def a_star_arr_time(start, finish, date, start_time_seconds, graph = None):
     
     def get_h(stop_id, finish_id, graph):
         node = graph[stop_id][0]
@@ -45,10 +51,11 @@ def a_star_arr_time(start, finish, date, start_time_seconds):
         # 160 km/h - max KD spped
         return (km_distance / 160) * 3600
     
-    try:
-        graph = Graph(date, with_locations=True)
-    except FileNotFoundError:
-        return (date, [])
+    if graph is None:
+        try:
+            graph = Graph(date, with_locations=True)
+        except FileNotFoundError:
+            return (date, [])
 
     g_values = {start: start_time_seconds}
     h_values = {start: get_h(start, finish, graph.graph)}
@@ -89,7 +96,7 @@ def a_star_arr_time(start, finish, date, start_time_seconds):
                             if next_node in closed:
                                 closed.remove(next_node)
                                 opened.append(next_node)
-                                
+                                                   
         if graph.load_next_day():
             opened = closed
             closed = []
@@ -99,7 +106,7 @@ def a_star_arr_time(start, finish, date, start_time_seconds):
     return (date, [])
         
         
-def a_star_transfer(start, finish, date, start_time_seconds):
+def a_star_transfer(start, finish, date, start_time_seconds, graph = None):
     
     def get_h(stop_id, finish_id, graph, stops_lines_dict):
         
@@ -125,10 +132,11 @@ def a_star_transfer(start, finish, date, start_time_seconds):
             
         return (transfer_h, time)
     
-    try:
-        graph = Graph(date, with_locations=True, include_stops_lines_dict=True)
-    except FileNotFoundError:
-        return (date, [])
+    if graph is None:
+        try:
+            graph = Graph(date, with_locations=True, include_stops_lines_dict=True)
+        except FileNotFoundError:
+            return (date, [])
 
     start_state = (start, None, None, start_time_seconds)
     

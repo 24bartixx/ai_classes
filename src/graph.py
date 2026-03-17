@@ -410,11 +410,11 @@ def save_stops_lines_dict():
 	
 
 class Graph:
-	def __init__(self, date, with_locations=False, include_stops_lines_dict=False):
-		self.date = date
+	def __init__(self, time, with_locations=False, include_stops_lines_dict=False):
+		self.date = time.date()
 		self.with_locations = with_locations
 		self.next_days_loaded = 0
-		self.graph = get_graph_for_date(date, with_locations=with_locations)
+		self.graph = get_graph_for_date(self.date, with_locations=with_locations)
 		self.stops_lines_dict = get_stops_lines_dict_from_json() if include_stops_lines_dict else None
   
 	def has_next_dat(self):
@@ -422,6 +422,7 @@ class Graph:
   
 	def load_next_day(self):
 		if not self.has_next_dat():
+			next_date = pd.Timestamp(self.date) + pd.Timedelta(days=2)
 			return False
 
 		next_date = pd.Timestamp(self.date) + pd.Timedelta(days=1)
