@@ -200,6 +200,21 @@ def get_stops_lines_dict() -> dict:
 
 	result.update(lines_by_stop)
 	return result
+
+def get_stops_names_dict() -> dict:
+	stops_df = load_stop_data()
+ 
+	parent_stops = stops_df.dropna(subset=["parent_station"])
+	parent_stop_ids = parent_stops["parent_station"].astype(int).unique()
+
+	parent_stop_name_map = {}
+	for parent_id in parent_stop_ids:
+		match = stops_df[stops_df["stop_id"] == parent_id]
+		if not match.empty:
+			parent_stop_name_map[match.iloc[0]["stop_name"]] = int(parent_id)
+
+	return parent_stop_name_map
+ 
  
 def get_graph(trips_dict, parent_station_map: dict[int, int] | None = None):
 	parent_station_map = parent_station_map or {}
@@ -336,6 +351,19 @@ def get_stops_lines_dict_from_json() -> dict:
 
 	return converted_stops_lines_dict
 
+def get_stops_names_dict() -> dict:
+	with open(PROJECT_ROOT / "data" / "json" / "stops_names.json", "r") as f:
+		stops_names_dict = json.load(f)
+
+	converted_stops_names_dict = {}
+	for stop_id, name in stops_names_dict.items():
+		try:
+			converted_stops_names_dict[int(stop_id)] = name
+		except (ValueError, TypeError):
+			converted_stops_names_dict[stop_id] = name
+
+	return converted_stops_names_dict
+
 def save_json(graph, dat=None, prefix="graph"):
 	date_str = None
 	if isinstance(dat, pd.Timestamp):
@@ -350,8 +378,8 @@ def save_json(graph, dat=None, prefix="graph"):
 	output_dir = PROJECT_ROOT / "data" / "json"
 	output_dir.mkdir(parents=True, exist_ok=True)
 	filename = output_dir / f"{prefix}.json" if date_str is None else output_dir / f"{prefix}_{date_str}.json"
-	with open(filename, "w") as f:
-		json.dump(graph, f, indent=2)
+	with open(filename, "w", encoding="utf-8") as f:
+		json.dump(graph, f, indent=2, ensure_ascii=False)
 	print(f"Saved in {filename}")
   
 def save_graphs(with_locations=True):
@@ -399,6 +427,12 @@ def save_graphs(with_locations=True):
 		if with_locations:
 			final_graph = add_locations_to_graph(final_graph, stops_df)
 
+		# ensure all parent stops are keys
+		# parent_stop_ids = set(parent_station_map.values())
+		# for parent_id in parent_stop_ids:
+		# 	if parent_id not in final_graph:
+		# 		final_graph[parent_id] = []
+
 		save_json(final_graph, current_date, prefix="graph")
 		print(f"Saved graph for {current_date.strftime('%Y-%m-%d')}")
   
@@ -407,14 +441,20 @@ def save_stops_lines_dict():
 	stops_lines_dict = get_stops_lines_dict()
 	save_json(stops_lines_dict, prefix="stops_lines")
 	print("Saved global stops_lines dict")
+ 
+def save_names_stops_dict():
+	names_stops_dict = get_stops_names_dict()
+	save_json(names_stops_dict, prefix="stops_names")
+	print("Saved global stops_names dict")
 	
 
 class Graph:
-	def __init__(self, time, with_locations=False, include_stops_lines_dict=False):
-		self.date = time.date()
+	def __init__(self, date, with_locations=False, include_stops_lines_dict=False):
+		self.date = date
 		self.with_locations = with_locations
 		self.next_days_loaded = 0
 		self.graph = get_graph_for_date(self.date, with_locations=with_locations)
+		self.stop_names_dict = get_stops_names_dict()
 		self.stops_lines_dict = get_stops_lines_dict_from_json() if include_stops_lines_dict else None
   
 	def has_next_dat(self):
@@ -447,5 +487,6 @@ class Graph:
 # CLI function to save graphs: python -m src.graph
 if __name__ == "__main__":
     save_stops_lines_dict()
+    save_names_stops_dict()
     # save_graphs()
     

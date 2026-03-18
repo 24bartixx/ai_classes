@@ -1,3 +1,4 @@
+from itertools import combinations
 import random
 import pandas as pd
 
@@ -40,12 +41,22 @@ def evaluate_solution_arr_time(solution, graph, time, should_log=False):
 
 
 def get_neighbors(solution):
+    
+    n = len(solution)
+    valid_indices = range(1, n - 1)
+    all_pairs = list(combinations(valid_indices, 2))
+    
+    total_possible = len(all_pairs)
+    neighbors_count = max(1, int(total_possible * 0.2))
+    
+    selected_pairs = random.sample(all_pairs, neighbors_count)
+    
     neighbors = {}
-    for i in range(1, len(solution) - 2):
-        for j in range(i + 1, len(solution) - 1):
-            new_solution = solution[:]
-            new_solution[i], new_solution[j] = new_solution[j], new_solution[i]
-            neighbors[(i, j)] = new_solution
+    for i, j in selected_pairs:
+        new_solution = solution[:]
+        new_solution[i], new_solution[j] = new_solution[j], new_solution[i]
+        neighbors[(i, j)] = new_solution
+        
     return neighbors
 
 def tabu_a(start, stops, mode, time):
@@ -70,28 +81,29 @@ def tabu_a(start, stops, mode, time):
     best_solution = stops
     best_score = evaluate_solution_arr_time(best_solution, graph, time, should_log=False)
     
+    if(best_score > pd.Timestamp("2026-12-13")):
+        print(best_score)
+        print("dupka")
+        return None, None
+    
     tabu = []
     tabu_tabu_size = len(stops) * 2
     
     no_change_count = 0
     
     while no_change_count < 10:
-        
-        print(f"{no_change_count} | Current best score: {best_score}, solution: {best_solution}")
-        
         locally_best_score = evaluate_solution_arr_time(best_solution, graph, time, should_log=False)
         locally_best_solution = best_solution
             
         i = 0
         while i < 10:
-    
-            neightbors = get_neighbors(best_solution)
+            neighbors = get_neighbors(best_solution)
             
             to_tabu = None
             best_neighbor = None
             best_neighbor_score = pd.Timestamp("2300-12-12")
             
-            for changed_indexes, neighbor in neightbors.items():
+            for changed_indexes, neighbor in neighbors.items():
                 
                 neighbor_score = evaluate_solution_arr_time(neighbor, graph, time, should_log=False)
                 

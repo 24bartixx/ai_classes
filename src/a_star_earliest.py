@@ -15,28 +15,38 @@ except ImportError:
     
 
 
-def a_star(start, finish, mode, time, graph=None, start_time_seconds=None):
-    
+def a_star(start, finish, mode, time, graph=None, start_time_seconds=None, names_passed=False):    
     date = time.date()
     if start_time_seconds is None:
         start_time_seconds = time.hour * 3600 + time.minute * 60 + time.second
+        
+    if start == finish:
+        return (
+            date, 
+            [{
+                'from_stop_name': start, 
+                'to_stop_name':start, 
+                'arr_time': start_time_seconds, 
+                'dep_time': start_time_seconds, 
+                'line_name': '---'
+            }])
     
     if time >= pd.Timestamp('2026-12-13'):
         return (date, [])
     
     if mode == 't':
-        return a_star_arr_time(start, finish, date, start_time_seconds, graph)
+        return a_star_arr_time(start, finish, date, start_time_seconds, graph, names_passed)
     elif mode == 'p':
         return a_star_transfer(start, finish, date, start_time_seconds, graph)
     
-    return a_star_arr_time(start, finish, date, start_time_seconds, graph)
+    return a_star_arr_time(start, finish, date, start_time_seconds, graph, names_passed)
 
     
-def a_star_arr_time(start, finish, date, start_time_seconds, graph = None):
+def a_star_arr_time(start, finish, date, start_time_seconds, graph = None, names_passed=False):
     
-    def get_h(stop_id, finish_id, graph):
-        node = graph[stop_id][0]
-        finish = graph[finish_id][0]
+    def get_h(stop_id, finish_id, graph):    
+        node = graph.graph[stop_id][0]
+        finish = graph.graph[finish_id][0]
         
         lat1, lon1 = node['from_lat'], node['from_lon']
         lat2, lon2 = finish['from_lat'], finish['from_lon']
@@ -56,34 +66,69 @@ def a_star_arr_time(start, finish, date, start_time_seconds, graph = None):
             graph = Graph(date, with_locations=True)
         except FileNotFoundError:
             return (date, [])
+        
+    if names_passed:
+        start_id = graph.stop_names_dict.get(start)
+        finish_id = graph.stop_names_dict.get(finish)
+    else:
+        start_id = start
+        finish_id = finish
+    
+    # print(f"Finding path from {start} (id: {start_id}) to {finish} (id: {finish_id}) on {date} starting at {pd.Timedelta(seconds=start_time_seconds)}")
+        
+    added_counter = 0
+    while start_id not in graph.graph or finish_id not in graph.graph:
+        if added_counter > 3:
+            return (date, [])
+        graph.load_next_day()
+        added_counter += 1
 
-    g_values = {start: start_time_seconds}
-    h_values = {start: get_h(start, finish, graph.graph)}
-    f_values = {start: g_values[start] + h_values[start]}
+    g_values = {start_id: start_time_seconds}
+    h_values = {start_id: get_h(start_id, finish_id, graph)}
+    f_values = {start_id: g_values[start_id] + h_values[start_id]}
     
-    opened = [start]
-    closed = []
-    
-    came_from = {start: None}
+    opened = [start_id]
+    closed = set()
+    came_from = {start_id: None}
     
     while True:
         while len(opened) > 0:
             node = min(opened, key=lambda x: f_values.get(x, float('inf')))
-            
-            if node == finish:
-                return (date, reconstruct_path(came_from, finish))
+
+            if node == finish_id:
+                return (date, reconstruct_path(came_from, finish_id))
+
+            if node in closed:
+                continue
             
             opened.remove(node)
-            closed.append(node)
-            
+            closed.add(node)
+
             for edge in graph.graph.get(node, []):
                 if edge['dep_time'] >= g_values[node]:
                     next_node = edge['to']
+                    
+                    # added_counter = 0
+                    # while next_node not in graph.graph:
+                    #     if added_counter > 3:
+                    #         return (date, [])
+                    #     graph.load_next_day()
+                    #     added_counter += 1
 
+                    # old_g = g_values.get(next_node, float('inf'))
+                    # new_g = edge['arr_time']
+                    
                     if next_node not in opened and next_node not in closed:
+                        # added_counter = 0
+                        # while next_node not in graph.graph:
+                        #     if added_counter > 3:
+                        #         return (date, [])
+                        #     graph.load_next_day()
+                        #     added_counter += 1
+                        
                         opened.append(next_node)
                         g_values[next_node] = edge['arr_time']
-                        h_values[next_node] = get_h(next_node, finish, graph.graph)
+                        h_values[next_node] = get_h(next_node, finish_id, graph)
                         f_values[next_node] = g_values[next_node] + h_values[next_node]
                         came_from[next_node] = (node, edge)
 
@@ -96,10 +141,12 @@ def a_star_arr_time(start, finish, date, start_time_seconds, graph = None):
                             if next_node in closed:
                                 closed.remove(next_node)
                                 opened.append(next_node)
+                                  
                                                    
         if graph.load_next_day():
-            opened = closed
-            closed = []
+            for node in closed:
+                opened.append(node)
+            closed.clear()
         else:
             break
         
@@ -108,8 +155,7 @@ def a_star_arr_time(start, finish, date, start_time_seconds, graph = None):
         
 def a_star_transfer(start, finish, date, start_time_seconds, graph = None):
     
-    def get_h(stop_id, finish_id, graph, stops_lines_dict):
-        
+    def get_h(stop_id, finish_id, graph, stops_lines_dict):    
         node = graph[stop_id][0]
         finish = graph[finish_id][0]
         
