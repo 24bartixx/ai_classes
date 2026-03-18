@@ -74,82 +74,70 @@ def a_star_arr_time(start, finish, date, start_time_seconds, graph = None, names
         start_id = start
         finish_id = finish
     
-    # print(f"Finding path from {start} (id: {start_id}) to {finish} (id: {finish_id}) on {date} starting at {pd.Timedelta(seconds=start_time_seconds)}")
-        
     added_counter = 0
     while start_id not in graph.graph or finish_id not in graph.graph:
         if added_counter > 3:
             return (date, [])
         graph.load_next_day()
         added_counter += 1
+        
+    h_values = {}
+    for node_id in graph.graph:
+        h_values[node_id] = get_h(node_id, finish_id, graph)
 
     g_values = {start_id: start_time_seconds}
-    h_values = {start_id: get_h(start_id, finish_id, graph)}
     f_values = {start_id: g_values[start_id] + h_values[start_id]}
-    
-    opened = [start_id]
+    # Use heapq for opened as a priority queue: (f_value, node)
+    opened = [(f_values[start_id], start_id)]
     closed = set()
     came_from = {start_id: None}
     
     while True:
         while len(opened) > 0:
-            node = min(opened, key=lambda x: f_values.get(x, float('inf')))
+            # Pop the node with the lowest f_value
+            current_f, node = heapq.heappop(opened)
 
             if node == finish_id:
                 return (date, reconstruct_path(came_from, finish_id))
 
             if node in closed:
                 continue
-            
-            opened.remove(node)
+
             closed.add(node)
 
             for edge in graph.graph.get(node, []):
                 if edge['dep_time'] >= g_values[node]:
                     next_node = edge['to']
-                    
-                    # added_counter = 0
-                    # while next_node not in graph.graph:
-                    #     if added_counter > 3:
-                    #         return (date, [])
-                    #     graph.load_next_day()
-                    #     added_counter += 1
 
-                    # old_g = g_values.get(next_node, float('inf'))
-                    # new_g = edge['arr_time']
-                    
-                    if next_node not in opened and next_node not in closed:
-                        # added_counter = 0
-                        # while next_node not in graph.graph:
-                        #     if added_counter > 3:
-                        #         return (date, [])
-                        #     graph.load_next_day()
-                        #     added_counter += 1
-                        
-                        opened.append(next_node)
-                        g_values[next_node] = edge['arr_time']
+                    added_counter = 0
+                    while next_node not in graph.graph:
+                        if added_counter > 3:
+                            return (date, [])
+                        graph.load_next_day()
+                        added_counter += 1
+
+                    if next_node not in h_values:
                         h_values[next_node] = get_h(next_node, finish_id, graph)
+
+                    # If next_node is not in g_values or found a better path
+                    if next_node not in g_values or g_values[next_node] > edge['arr_time']:
+                        g_values[next_node] = edge['arr_time']
                         f_values[next_node] = g_values[next_node] + h_values[next_node]
                         came_from[next_node] = (node, edge)
+                        if next_node not in closed:
+                            heapq.heappush(opened, (f_values[next_node], next_node))
+                        else:
+                            closed.remove(next_node)
+                            heapq.heappush(opened, (f_values[next_node], next_node))
 
-                    else:
-                        if g_values[next_node] > edge['arr_time']:
-                            g_values[next_node] = edge['arr_time']
-                            f_values[next_node] = g_values[next_node] + h_values[next_node]
-                            came_from[next_node] = (node, edge)
-
-                            if next_node in closed:
-                                closed.remove(next_node)
-                                opened.append(next_node)
-                                  
-                                                   
         if graph.load_next_day():
+            # Re-add all closed nodes to the heap
             for node in closed:
-                opened.append(node)
+                heapq.heappush(opened, (f_values[node], node))
             closed.clear()
         else:
             break
-        
+
     return (date, [])
         
         
