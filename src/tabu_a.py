@@ -1,7 +1,6 @@
-from math import comb
+from time import perf_counter
 import random
 import pandas as pd
-
 
 try:
     from .graph import Graph
@@ -37,7 +36,7 @@ def evaluate_solution_arr_time(solution, graph, time, should_log=False, names_pa
         if not result or not result[1]:
             return pd.Timestamp("2300-12-12")
 
-        date, path = result
+        date, path, _, _, _ = result
         last_arr_time = path[-1]['arr_time']
 
         if should_log:
@@ -84,83 +83,92 @@ def get_neighbors(solution, sample_ratio=0.2, min_neighbors=10):
 
     return neighbors
 
-def tabu_a(start, stops, mode, time, names_passed=False):
+def tabu_a(start, stops, mode, time, names_passed=False, should_log=False):
+    start_perf = perf_counter()
+
     if start not in stops:
         print("Start stop is not in the list of stops.")
-        return
-        
+        exec_time = perf_counter() - start_perf
+        return None, None, None, None, None, exec_time
+
     # move start to the beginning
     stops[stops.index(start)], stops[0] = stops[0], stops[stops.index(start)]
-    
+
     # ensure the last stop is the same as the start
     if stops[-1] != start:
         stops.append(start)
-    
+
     # initialize graph
     try:
         graph = Graph(time, with_locations=True)
     except FileNotFoundError:
         print("Graph file not found. Returning no solution.")
-        return None, None
-    
+        exec_time = perf_counter() - start_perf
+        return None, None, None, None, None, exec_time
+
     best_solution = stops[:]
     best_score = evaluate_solution_arr_time(best_solution, graph, time, should_log=False, names_passed=names_passed)
 
     if(best_score > pd.Timestamp("2026-12-13")):
         print(best_score)
-        return None, None
-    
+        exec_time = perf_counter() - start_perf
+        return None, None, None, None, None, exec_time
+
     tabu = []
-    tabu_tabu_size = len(stops) * 2
+    tabu_tabu_size = len(stops) * 3
     
     no_change_count = 0
-    
-    while no_change_count < 200:
+
+    if should_log:
+        print("\nTRACKING PROGRESS:")
+
+    while no_change_count < 300:
         locally_best_score = evaluate_solution_arr_time(best_solution, graph, time, should_log=False, names_passed=names_passed)
         locally_best_solution = best_solution
-            
+
         neighbors = get_neighbors(best_solution)
-        
+
         to_tabu = None
         best_neighbor = None
         best_neighbor_score = pd.Timestamp("2300-12-12")
-        
-        # for changed_indexes, neighbor in neighbors.items():
-        #     neighbor_score = evaluate_solution_arr_time(neighbor, graph, time, should_log=False, names_passed=names_passed)
-        #     if (changed_indexes not in tabu or neighbor_score < best_score) and neighbor_score < best_neighbor_score:
-        #         best_neighbor = neighbor
-        #         best_neighbor_score = neighbor_score
-        #         to_tabu = changed_indexes
-        
+
         for to_tabu_candidate, neighbor in neighbors:
             neighbor_score = evaluate_solution_arr_time(neighbor, graph, time, should_log=False, names_passed=names_passed)
             if (to_tabu_candidate not in tabu or neighbor_score < best_score) and neighbor_score < best_neighbor_score:
                 best_neighbor = neighbor
                 best_neighbor_score = neighbor_score
                 to_tabu = to_tabu_candidate
-        
+
         if to_tabu is not None:
             tabu.append(to_tabu)
             if len(tabu) > tabu_tabu_size:
                 tabu.pop(0)
-        
+
         if best_neighbor is not None and best_neighbor_score < locally_best_score:
             locally_best_score = best_neighbor_score
             locally_best_solution = best_neighbor
-        
+
         no_change_count += 1
-        
+
         if locally_best_score < best_score:
             best_score = locally_best_score
             best_solution = locally_best_solution
-            
-            print(f"{no_change_count} --> Best score: {best_score}")
-            
+
+            if should_log:
+                print(f"\tBest score: {best_score}")
+
             no_change_count = 0
             
+    if should_log:
+        print()
+
     paths = []
     for i in range(len(best_solution) - 1):
         a_star_result = a_star(best_solution[i], best_solution[i + 1], 't', time, graph, names_passed=names_passed)
         paths.append(a_star_result)
-                
-    return best_solution, best_score, paths
+
+    minimized_value = best_score
+    minimized_unit = 'seconds'
+    exec_time = perf_counter() - start_perf
+    
+    return best_solution, best_score, paths, minimized_value, minimized_unit, exec_time

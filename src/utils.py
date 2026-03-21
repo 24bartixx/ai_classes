@@ -42,7 +42,10 @@ def print_path(result, should_print_optimal_time=True):
   
 def print_paths(result, should_print_path=False):
     
-	best_solution, best_score, paths = result
+	best_solution, best_score, paths, minimized_value, minimized_unit, exec_time = result
+ 
+	print(colored(f'\nExecution time:\t\t{exec_time:.6f} seconds', 'red'), file=sys.stderr)
+	print(colored(f'Minimized value:\t{minimized_value} {minimized_unit}', 'blue'), file=sys.stderr)
  
 	print("Fastest arrival: " + str(best_score))
  
