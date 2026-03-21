@@ -1,4 +1,5 @@
 from time import perf_counter
+from collections import deque
 import random
 import pandas as pd
 
@@ -51,7 +52,7 @@ def normalize_edge(a, b):
     return (a, b) if a < b else (b, a)
 
 
-def get_neighbors(solution, sample_ratio=0.2, min_neighbors=10):
+def get_neighbors(solution, sample=True, sample_ratio=0.2, min_neighbors=10):
     n = len(solution)
     if n < 4:
         return []
@@ -63,27 +64,37 @@ def get_neighbors(solution, sample_ratio=0.2, min_neighbors=10):
     ]
 
     total_moves = len(valid_moves)
-    neighbors_count = max(min_neighbors, int(total_moves * sample_ratio))
-    neighbors_count = min(neighbors_count, total_moves)
-
-    sampled_moves = random.sample(valid_moves, neighbors_count)
+    if sample:
+        neighbors_count = max(min_neighbors, int(total_moves * sample_ratio))
+        neighbors_count = min(neighbors_count, total_moves)
+        moves = random.sample(valid_moves, neighbors_count)
+    else:
+        moves = valid_moves
 
     neighbors = list()
-    for i, j in sampled_moves:
+    for i, j in moves:
         new_solution = solution[:]
         new_solution[i:j + 1] = reversed(new_solution[i:j + 1])
-        
         to_tabu = (
             normalize_edge(solution[i - 1], solution[i]),
             normalize_edge(solution[j], solution[j + 1])
         )
-        
         neighbors.append((to_tabu, new_solution))
-
 
     return neighbors
 
-def tabu_a(start, stops, mode, time, names_passed=False, should_log=False):
+def tabu_a(
+        start, stops, 
+        mode, 
+        time, 
+        names_passed=False, 
+        should_log=False, 
+        limited_tabu_size=False, 
+        should_aspiration=False, 
+        sample_neighbors=False, 
+        sample_ratio=0.2
+    ):
+    
     start_perf = perf_counter()
 
     if start not in stops:
@@ -105,28 +116,29 @@ def tabu_a(start, stops, mode, time, names_passed=False, should_log=False):
         print("Graph file not found. Returning no solution.")
         exec_time = perf_counter() - start_perf
         return None, None, None, None, None, exec_time
+    
+    start_epoch = time.timestamp()
 
     best_solution = stops[:]
     best_score = evaluate_solution_arr_time(best_solution, graph, time, should_log=False, names_passed=names_passed)
-
+    
     if(best_score > pd.Timestamp("2026-12-13")):
         print(best_score)
         exec_time = perf_counter() - start_perf
         return None, None, None, None, None, exec_time
 
     tabu = []
-    tabu_tabu_size = len(stops) * 3
+    tabu_tabu_size = len(stops) * 5
     
-    no_change_count = 0
-
     if should_log:
         print("\nTRACKING PROGRESS:")
-
+        
+    no_change_count = 0
     while no_change_count < 300:
         locally_best_score = evaluate_solution_arr_time(best_solution, graph, time, should_log=False, names_passed=names_passed)
         locally_best_solution = best_solution
 
-        neighbors = get_neighbors(best_solution)
+        neighbors = get_neighbors(best_solution, sample=sample_neighbors, sample_ratio=sample_ratio)
 
         to_tabu = None
         best_neighbor = None
@@ -134,14 +146,18 @@ def tabu_a(start, stops, mode, time, names_passed=False, should_log=False):
 
         for to_tabu_candidate, neighbor in neighbors:
             neighbor_score = evaluate_solution_arr_time(neighbor, graph, time, should_log=False, names_passed=names_passed)
-            if (to_tabu_candidate not in tabu or neighbor_score < best_score) and neighbor_score < best_neighbor_score:
+            
+            not_in_tabu = to_tabu_candidate not in tabu
+            allowed_by_aspiration = neighbor_score < best_score if should_aspiration else False
+            
+            if (not_in_tabu or allowed_by_aspiration) and neighbor_score < best_neighbor_score:
                 best_neighbor = neighbor
                 best_neighbor_score = neighbor_score
                 to_tabu = to_tabu_candidate
 
         if to_tabu is not None:
             tabu.append(to_tabu)
-            if len(tabu) > tabu_tabu_size:
+            if limited_tabu_size and len(tabu) > tabu_tabu_size:
                 tabu.pop(0)
 
         if best_neighbor is not None and best_neighbor_score < locally_best_score:
