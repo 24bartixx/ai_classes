@@ -1,4 +1,5 @@
 import heapq
+from time import perf_counter
 
 try:
     from .graph import Graph
@@ -12,66 +13,73 @@ except ImportError:
     
     
 def dijkstra(start, finish, mode, time):
+    
+    start_time = perf_counter()
+    
     date = time.date()
     start_time_seconds = time.hour * 3600 + time.minute * 60 + time.second
     
     try:
         graph = Graph(date)
     except FileNotFoundError:
-        return (date, [])
+        return (date, [], float('inf'), 'seconds', perf_counter() - start_time)
 
     if mode == 'p':
-        return dijkstra_transfer(start, finish, date, start_time_seconds, graph)
+        date, path, minimized_value = dijkstra_transfer(start, finish, date, start_time_seconds, graph)
+        minimized_unit = 'transfers'
     elif mode == 't':
-        return dijkstra_arr_time(start, finish, date, start_time_seconds, graph)
-    
-    return dijkstra_arr_time(start, finish, date, start_time_seconds, graph)
-    
+        date, path, minimized_value = dijkstra_arr_time(start, finish, date, start_time_seconds, graph)
+        minimized_unit = 'seconds'
+    else:
+        date, path, minimized_value = dijkstra_arr_time(start, finish, date, start_time_seconds, graph)
+        minimized_unit = 'seconds'
 
+    return date, path, minimized_value, minimized_unit, perf_counter() - start_time
+    
 def dijkstra_arr_time(start, finish, date, start_time_seconds, graph):
     d_arr_times = {node: float('inf') for node in graph.graph}
     d_arr_times[start] = start_time_seconds
-    
+
     p_values = {node: None for node in graph.graph}
-    
+
     # (arrival time, node)
     Q = [(start_time_seconds, start)]
-    
+
     visited_nodes = {start}
-    
+
     while True:
         while Q:
             arrival_time, stop = heapq.heappop(Q)
-            
+
             if arrival_time > d_arr_times.get(stop, float('inf')):
                 continue
-            
+
             if stop == finish:
-                return (date, reconstruct_path(p_values, finish))
+                return (date, reconstruct_path(p_values, finish), d_arr_times[finish])
 
             for edge in graph.graph.get(stop, []):
                 if edge['dep_time'] >= arrival_time:
                     next_stop = edge['to']
-                    
+
                     if d_arr_times[next_stop] > edge['arr_time']:
                         d_arr_times[next_stop] = edge['arr_time']
                         p_values[next_stop] = (stop, edge)
                         heapq.heappush(Q, (edge['arr_time'], next_stop))
                         visited_nodes.add(next_stop)
-                        
+
         if not graph.load_next_day():
             break
-        
+
         for node in visited_nodes:
             heapq.heappush(Q, (d_arr_times[node], node))
-            
-    return (date, [])
+
+    return (date, [], float('inf'))
             
 
 def dijkstra_transfer(start, finish, date, start_time_seconds, graph):
     start_state = (start, None)
     d_states = {start_state: (0, start_time_seconds)}
-    
+
     came_from = {start_state: None}
 
     Q = [(0, start_time_seconds, start, None)]
@@ -87,7 +95,7 @@ def dijkstra_transfer(start, finish, date, start_time_seconds, graph):
                 continue
 
             if stop == finish:
-                return (date, reconstruct_path(came_from, state))
+                return (date, reconstruct_path(came_from, state), transfers)
 
             for edge in graph.graph.get(stop, []):
                 if edge['dep_time'] < arrival_time:
@@ -113,5 +121,5 @@ def dijkstra_transfer(start, finish, date, start_time_seconds, graph):
             if stop in visited_stops:
                 heapq.heappush(Q, (transfers, arr_time, stop, line))
 
-    return (date, [])
+    return (date, [], float('inf'))
         

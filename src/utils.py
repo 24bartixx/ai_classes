@@ -1,5 +1,7 @@
 from importlib.resources import path
+import sys
 from unittest import result
+from termcolor import colored
 
 import pandas as pd
 
@@ -18,7 +20,11 @@ def print_path(result, should_print_optimal_time=True):
 		print("No connection found")
 		return
 
-	date, path = result
+	date, path, minimized_value, minimized_unit, execution_time = result
+ 
+	print(colored(f'\nMinimized value:\t{minimized_value} {minimized_unit}', 'blue'), file=sys.stderr)
+	print(colored(f'Execution time:\t\t{execution_time:.6f} seconds', 'red'), file=sys.stderr)
+	
 
 	if not path:
 		print(f"No available connections for given time")
@@ -52,11 +58,15 @@ def print_paths(result, should_print_path=False):
   
   
 def print_lines(result):
+    
 	if not result:
 		print("No connection found")
 		return
 
-	_, path = result
+	_, path, minimized_value, minimized_unit, execution_time = result
+ 
+	print(colored(f'\nMinimized value:\t{minimized_value} {minimized_unit}', 'blue'), file=sys.stderr)
+	print(colored(f'Execution time:\t\t{execution_time:.6f} seconds', 'red'), file=sys.stderr)
 
 	if not path:
 		print(f"No available connections for given time")
@@ -64,13 +74,14 @@ def print_lines(result):
 
 	print(f"Optimal path: {seconds_to_time(path[0]['dep_time'])} - {seconds_to_time(path[-1]['arr_time'])}\n")
 
-	lines = []
+	lines  = []
 
 	for step in path:
 		if step['line_name'] not in lines:
 			lines.append(step['line_name'])
    
 	print("Lines used: " + ", ".join(lines))
+	
   
 def reconstruct_path(come_from, finish):
     path = []

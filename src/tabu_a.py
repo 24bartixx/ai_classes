@@ -48,29 +48,40 @@ def evaluate_solution_arr_time(solution, graph, time, should_log=False, names_pa
     return time + pd.Timedelta(seconds=last_arr_time - (time.hour * 3600 + time.minute * 60 + time.second))
 
 
-def get_neighbors(solution):
+def normalize_edge(a, b):
+    return (a, b) if a < b else (b, a)
+
+
+def get_neighbors(solution, sample_ratio=0.2, min_neighbors=10):
     n = len(solution)
-    if n < 3:
-        return {}
+    if n < 4:
+        return []
 
-    valid_indices = list(range(1, n - 1))
-    num_to_mix = max(2, int(len(valid_indices) * random.uniform(0.05, 0.25)))
-    neighbors_count = max(1, int(comb(len(valid_indices), num_to_mix) * 0.2))
+    valid_moves = [
+        (i, j)
+        for i in range(1, n - 2)
+        for j in range(i + 1, n - 1)
+    ]
 
-    selected_sets = set()
-    while len(selected_sets) < neighbors_count:
-        indices = tuple(sorted(random.sample(valid_indices, num_to_mix)))
-        selected_sets.add(indices)
+    total_moves = len(valid_moves)
+    neighbors_count = max(min_neighbors, int(total_moves * sample_ratio))
+    neighbors_count = min(neighbors_count, total_moves)
 
-    neighbors = {}
-    for indices in selected_sets:
+    sampled_moves = random.sample(valid_moves, neighbors_count)
+
+    neighbors = list()
+    for i, j in sampled_moves:
         new_solution = solution[:]
-        shuffled = indices[:]
-        shuffled = list(shuffled)
-        random.shuffle(shuffled)
-        for orig, new in zip(indices, shuffled):
-            new_solution[orig] = solution[new]
-        neighbors[indices] = new_solution
+        new_solution[i:j + 1] = reversed(new_solution[i:j + 1])
+        
+        to_tabu = (
+            normalize_edge(solution[i - 1], solution[i]),
+            normalize_edge(solution[j], solution[j + 1])
+        )
+        
+        neighbors.append((to_tabu, new_solution))
+
+
     return neighbors
 
 def tabu_a(start, stops, mode, time, names_passed=False):
@@ -104,7 +115,7 @@ def tabu_a(start, stops, mode, time, names_passed=False):
     
     no_change_count = 0
     
-    while no_change_count < 100:
+    while no_change_count < 200:
         locally_best_score = evaluate_solution_arr_time(best_solution, graph, time, should_log=False, names_passed=names_passed)
         locally_best_solution = best_solution
             
@@ -114,12 +125,19 @@ def tabu_a(start, stops, mode, time, names_passed=False):
         best_neighbor = None
         best_neighbor_score = pd.Timestamp("2300-12-12")
         
-        for changed_indexes, neighbor in neighbors.items():
+        # for changed_indexes, neighbor in neighbors.items():
+        #     neighbor_score = evaluate_solution_arr_time(neighbor, graph, time, should_log=False, names_passed=names_passed)
+        #     if (changed_indexes not in tabu or neighbor_score < best_score) and neighbor_score < best_neighbor_score:
+        #         best_neighbor = neighbor
+        #         best_neighbor_score = neighbor_score
+        #         to_tabu = changed_indexes
+        
+        for to_tabu_candidate, neighbor in neighbors:
             neighbor_score = evaluate_solution_arr_time(neighbor, graph, time, should_log=False, names_passed=names_passed)
-            if (changed_indexes not in tabu or neighbor_score < best_score) and neighbor_score < best_neighbor_score:
+            if (to_tabu_candidate not in tabu or neighbor_score < best_score) and neighbor_score < best_neighbor_score:
                 best_neighbor = neighbor
                 best_neighbor_score = neighbor_score
-                to_tabu = changed_indexes
+                to_tabu = to_tabu_candidate
         
         if to_tabu is not None:
             tabu.append(to_tabu)
@@ -135,9 +153,10 @@ def tabu_a(start, stops, mode, time, names_passed=False):
         if locally_best_score < best_score:
             best_score = locally_best_score
             best_solution = locally_best_solution
-            no_change_count = 0
             
-            print(f"Best score: {best_score}")
+            print(f"{no_change_count} --> Best score: {best_score}")
+            
+            no_change_count = 0
             
     paths = []
     for i in range(len(best_solution) - 1):
