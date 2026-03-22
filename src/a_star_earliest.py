@@ -46,7 +46,7 @@ def a_star(start, finish, mode, time, graph=None, start_time_seconds=None, names
         date, path, minimized_value = a_star_arr_time(start, finish, date, start_time_seconds, graph, names_passed)
         minimized_unit = 'seconds'
     elif mode == 'p':
-        date, path, minimized_value = a_star_transfer(start, finish, date, start_time_seconds, graph)
+        date, path, minimized_value = a_star_transfer(start, finish, date, start_time_seconds, graph, names_passed)
         minimized_unit = 'transfers'
     else:
         date, path, minimized_value = a_star_arr_time(start, finish, date, start_time_seconds, graph, names_passed)
@@ -101,15 +101,14 @@ def a_star_arr_time(start, finish, date, start_time_seconds, graph = None, names
 
     g_values = {start_id: start_time_seconds}
     f_values = {start_id: g_values[start_id] + h_values[start_id]}
-    # Use heapq for opened as a priority queue: (f_value, node)
+    # (f_value, node)
     opened = [(f_values[start_id], start_id)]
     closed = set()
     came_from = {start_id: None}
     
     while True:
         while len(opened) > 0:
-            # Pop the node with the lowest f_value
-            current_f, node = heapq.heappop(opened)
+            _, node = heapq.heappop(opened)
 
             if node == finish_id:
                 path = reconstruct_path(came_from, finish_id)
@@ -135,7 +134,6 @@ def a_star_arr_time(start, finish, date, start_time_seconds, graph = None, names
                     if next_node not in h_values:
                         h_values[next_node] = get_h(next_node, finish_id, graph)
 
-                    # If next_node is not in g_values or found a better path
                     if next_node not in g_values or g_values[next_node] > edge['arr_time']:
                         g_values[next_node] = edge['arr_time']
                         f_values[next_node] = g_values[next_node] + h_values[next_node]
@@ -147,7 +145,7 @@ def a_star_arr_time(start, finish, date, start_time_seconds, graph = None, names
                             heapq.heappush(opened, (f_values[next_node], next_node))
 
         if graph.load_next_day():
-            # Re-add all closed nodes to the heap
+            # readd all closed nodes to the heap
             for node in closed:
                 heapq.heappush(opened, (f_values[node], node))
             closed.clear()
@@ -157,7 +155,7 @@ def a_star_arr_time(start, finish, date, start_time_seconds, graph = None, names
     return (date, [], float('inf'))
         
         
-def a_star_transfer(start, finish, date, start_time_seconds, graph = None):
+def a_star_transfer(start, finish, date, start_time_seconds, graph = None, names_passed=False):
     
     def get_h(stop_id, finish_id, graph, stops_lines_dict):    
         node = graph[stop_id][0]
@@ -187,24 +185,33 @@ def a_star_transfer(start, finish, date, start_time_seconds, graph = None):
             graph = Graph(date, with_locations=True, include_stops_lines_dict=True)
         except FileNotFoundError:
             return (date, [], float('inf'))
+        
+    if names_passed:
+        start_id = graph.stop_names_dict.get(start)
+        finish_id = graph.stop_names_dict.get(finish)
+    else:
+        start_id = start
+        finish_id = finish
 
-    start_state = (start, None, None, start_time_seconds)
+    start_state = (start_id, None, None, start_time_seconds)
     
     g_values = {start_state: (0, start_time_seconds)}
-    h_values = {start_state: (get_h(start, finish, graph.graph, graph.stops_lines_dict))}
+    h_values = {start_state: (get_h(start_id, finish_id, graph.graph, graph.stops_lines_dict))}
     f_values = {start_state: (g_values[start_state][0] + h_values[start_state][0], g_values[start_state][1] + h_values[start_state][1])}
     
-    opened = [(f_values[start_state], start_state)]
+    tie_breaker = 0
+    opened = [(f_values[start_state], tie_breaker, start_state)]
     closed = set()
     
     came_from = {start_state: None}
     
     while True:
         while len(opened) > 0:
-            _, current_state = heapq.heappop(opened)
+            _, _, current_state = heapq.heappop(opened)
+                
             node_id, last_line, last_trip_id, current_time = current_state
 
-            if node_id == finish:
+            if node_id == finish_id:
                 path = reconstruct_path(came_from, current_state)
                 minimized_value = g_values[current_state][0] if current_state in g_values else float('inf')
                 return (date, path, minimized_value)
@@ -232,24 +239,24 @@ def a_star_transfer(start, finish, date, start_time_seconds, graph = None):
                     new_g = (new_g_transfers, new_g_time)
 
                     if next_state not in opened or new_g < g_values.get(next_state, (float('inf'), float('inf'))):
+                        
                         g_values[next_state] = new_g
-                        h = get_h(next_node, finish, graph.graph, graph.stops_lines_dict)
+                        h = get_h(next_node, finish_id, graph.graph, graph.stops_lines_dict)
                         h_values[next_state] = h
                         f_values[next_state] = (new_g[0] + h[0], new_g[1] + h[1])
                         came_from[next_state] = (current_state, edge)
-                        heapq.heappush(opened, (f_values[next_state], next_state))
+                        tie_breaker += 1
+                        heapq.heappush(opened, (f_values[next_state], tie_breaker, next_state))
                         if next_state in closed:
                             closed.remove(next_state)
 
         if graph.load_next_day():
             for state in list(closed):
-                opened.append((f_values[state], state))
+                tie_breaker += 1
+                heapq.heappush(opened, (f_values[state], tie_breaker, state))
             heapq.heapify(opened)
             closed.clear()
         else:
             break
 
     return (date, [], float('inf'))
-    
-    
-    

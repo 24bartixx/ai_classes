@@ -1,5 +1,4 @@
 from time import perf_counter
-from collections import deque
 import random
 import pandas as pd
 
@@ -13,7 +12,7 @@ try:
 except ImportError:
     from src.a_star_earliest import a_star
     
-def evaluate_solution_arr_time(solution, graph, time, should_log=False, names_passed=False):
+def evaluate_solution_arr_time(solution, mode, graph, time, should_log=False, names_passed=False):
     
     start_seconds = time.hour * 3600 + time.minute * 60 + time.second
     last_arr_time = start_seconds
@@ -31,7 +30,7 @@ def evaluate_solution_arr_time(solution, graph, time, should_log=False, names_pa
         if cache_key in a_star_cache:
             result = a_star_cache[cache_key]
         else:
-            result = a_star(start_id, finish_id, 't', time, graph, last_arr_time, names_passed=names_passed)
+            result = a_star(start_id, finish_id, mode, time, graph, last_arr_time, names_passed=names_passed)
             a_star_cache[cache_key] = result
 
         if not result or not result[1]:
@@ -52,7 +51,7 @@ def normalize_edge(a, b):
     return (a, b) if a < b else (b, a)
 
 
-def get_neighbors(solution, sample=True, sample_ratio=0.2, min_neighbors=10):
+def get_neighbors(solution, sample=True, sample_ratio=0.45, min_neighbors=10):
     n = len(solution)
     if n < 4:
         return []
@@ -84,7 +83,8 @@ def get_neighbors(solution, sample=True, sample_ratio=0.2, min_neighbors=10):
     return neighbors
 
 def tabu_a(
-        start, stops, 
+        start, 
+        stops, 
         mode, 
         time, 
         names_passed=False, 
@@ -92,7 +92,8 @@ def tabu_a(
         limited_tabu_size=False, 
         should_aspiration=False, 
         sample_neighbors=False, 
-        sample_ratio=0.2
+        sample_ratio=0.2,
+        graph=None
     ):
     
     start_perf = perf_counter()
@@ -103,24 +104,29 @@ def tabu_a(
         return None, None, None, None, None, exec_time
 
     # move start to the beginning
+    stops = stops[:]
     stops[stops.index(start)], stops[0] = stops[0], stops[stops.index(start)]
 
     # ensure the last stop is the same as the start
     if stops[-1] != start:
         stops.append(start)
-
-    # initialize graph
-    try:
-        graph = Graph(time, with_locations=True)
-    except FileNotFoundError:
-        print("Graph file not found. Returning no solution.")
-        exec_time = perf_counter() - start_perf
-        return None, None, None, None, None, exec_time
     
-    start_epoch = time.timestamp()
-
+    if graph is None:
+        try:
+            if mode == 'p':
+                graph = Graph(time, with_locations=False, include_stops_lines_dict=True)
+            else:
+                graph = Graph(time, with_locations=True)
+        except FileNotFoundError:
+            print("Graph file not found. Returning no solution.")
+            exec_time = perf_counter() - start_perf
+            return None, None, None, None, None, exec_time
+    
     best_solution = stops[:]
-    best_score = evaluate_solution_arr_time(best_solution, graph, time, should_log=False, names_passed=names_passed)
+    best_score = evaluate_solution_arr_time(best_solution, mode, graph, time, should_log=False, names_passed=names_passed)
+    
+    current_solution = stops[:]
+    current_score = best_score
     
     if(best_score > pd.Timestamp("2026-12-13")):
         print(best_score)
@@ -128,50 +134,67 @@ def tabu_a(
         return None, None, None, None, None, exec_time
 
     tabu = []
-    tabu_tabu_size = len(stops) * 5
-    
-    if should_log:
-        print("\nTRACKING PROGRESS:")
+    max_tabu_size = len(stops) * 5
         
     no_change_count = 0
-    while no_change_count < 300:
-        locally_best_score = evaluate_solution_arr_time(best_solution, graph, time, should_log=False, names_passed=names_passed)
-        locally_best_solution = best_solution
-
-        neighbors = get_neighbors(best_solution, sample=sample_neighbors, sample_ratio=sample_ratio)
-
-        to_tabu = None
-        best_neighbor = None
-        best_neighbor_score = pd.Timestamp("2300-12-12")
-
-        for to_tabu_candidate, neighbor in neighbors:
-            neighbor_score = evaluate_solution_arr_time(neighbor, graph, time, should_log=False, names_passed=names_passed)
+    while no_change_count < 80:
+        locally_best_score = current_score
+        locally_best_solution = current_solution[:]
+        
+        neighbors_iter_count = 0
+        while neighbors_iter_count < 10:
             
-            not_in_tabu = to_tabu_candidate not in tabu
-            allowed_by_aspiration = neighbor_score < best_score if should_aspiration else False
+            best_neighbor = None
+            best_neighbor_score = pd.Timestamp("2300-12-12")
             
-            if (not_in_tabu or allowed_by_aspiration) and neighbor_score < best_neighbor_score:
-                best_neighbor = neighbor
-                best_neighbor_score = neighbor_score
-                to_tabu = to_tabu_candidate
-
-        if to_tabu is not None:
-            tabu.append(to_tabu)
-            if limited_tabu_size and len(tabu) > tabu_tabu_size:
-                tabu.pop(0)
-
-        if best_neighbor is not None and best_neighbor_score < locally_best_score:
-            locally_best_score = best_neighbor_score
-            locally_best_solution = best_neighbor
-
+            neighbors = get_neighbors(locally_best_solution, sample=sample_neighbors, sample_ratio=sample_ratio)
+            to_tabu = None
+            
+            for to_tabu_candidate, neighbor in neighbors:
+                neighbor_score = evaluate_solution_arr_time(neighbor, mode, graph, time, should_log=False, names_passed=names_passed)
+                
+                not_in_tabu = to_tabu_candidate not in tabu
+                allowed_by_aspiration = should_aspiration and neighbor_score < best_score
+                
+                if (not_in_tabu or allowed_by_aspiration) and neighbor_score < best_neighbor_score:
+                    best_neighbor = neighbor
+                    best_neighbor_score = neighbor_score
+                    
+            
+            to_tabu = to_tabu_candidate
+                    
+            if to_tabu is not None:
+                tabu.append(to_tabu)
+                if limited_tabu_size and len(tabu) > max_tabu_size:
+                    tabu.pop(0)
+                    
+            if best_neighbor is not None:
+                locally_best_score = best_neighbor_score
+                locally_best_solution = best_neighbor[:]
+            
+            neighbors_iter_count += 1
+            
+        current_solution = locally_best_solution[:]
+        current_score = locally_best_score
+        
+        # mixup if no progress
+        if no_change_count % 25 == 0:
+            for i in range(3):
+                i = random.randint(1, len(current_solution) - 3)
+                j = random.randint(i + 1, len(current_solution) - 2)
+                
+                while(i == j):
+                    j = random.randint(i + 1, len(current_solution) - 2)
+                    
+                current_solution[i:j + 1] = reversed(current_solution[i:j + 1])
+                current_score = evaluate_solution_arr_time(current_solution, mode, graph, time, should_log=False, names_passed=names_passed)
+        
         no_change_count += 1
 
-        if locally_best_score < best_score:
-            best_score = locally_best_score
-            best_solution = locally_best_solution
-
-            if should_log:
-                print(f"\tBest score: {best_score}")
+        if current_score < best_score:
+            print(f"New best score: {current_score} at iteration with no change count: {no_change_count}")
+            best_score = current_score
+            best_solution = current_solution[:]
 
             no_change_count = 0
             
@@ -180,7 +203,7 @@ def tabu_a(
 
     paths = []
     for i in range(len(best_solution) - 1):
-        a_star_result = a_star(best_solution[i], best_solution[i + 1], 't', time, graph, names_passed=names_passed)
+        a_star_result = a_star(best_solution[i], best_solution[i + 1], mode, time, graph, names_passed=names_passed)
         paths.append(a_star_result)
 
     minimized_value = best_score
