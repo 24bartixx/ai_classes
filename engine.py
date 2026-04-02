@@ -7,12 +7,10 @@ class Game:
         self.board = []
         
         lines = [line.strip() for line in board_string.strip().split('\n') if line.strip()]
-        print(lines)
         
         expected_length = None
         for idx, line in enumerate(lines):
             row = line.split()
-            print(f"Row {idx+1}: {row}")
             
             if expected_length is None:
                 expected_length = len(row)
@@ -28,13 +26,6 @@ class Game:
         self.col_count = expected_length if self.board else 0
         if self.rows_count == 0 or self.col_count == 0:
             raise ValueError("Board must have at least one row and one column.")
-        
-    def display(self):
-        for row in self.board:
-            print(' '.join(row))
-
-    def __repr__(self):
-        return '\n'.join(' '.join(row) for row in self.board)
 
     def get_legal_moves(self, player_color):
         if player_color not in {'B', 'W'}:
@@ -69,3 +60,25 @@ class Game:
                             if self.board[to_row][to_col_right] in {enemy, '_'}:
                                 moves.append((from_pos, (to_row, to_col_right)))
         return moves
+    
+    def make_move(self, move):
+            (from_row, from_col), (to_row, to_col) = move
+            
+            if not (0 <= from_row < self.rows_count and 0 <= from_col < self.col_count):
+                raise ValueError("Invalid from position.")
+            if not (0 <= to_row < self.rows_count and 0 <= to_col < self.col_count):
+                raise ValueError("Invalid to position.")
+            
+            piece = self.board[from_row][from_col]
+            if piece not in {'B', 'W'}:
+                raise ValueError("No movable piece at from position.")
+            
+            self.board[to_row][to_col] = piece
+            self.board[from_row][from_col] = '_'
+            
+    def display(self):
+        for row in self.board:
+            print(' '.join(row))
+
+    def __repr__(self):
+        return '\n'.join(' '.join(row) for row in self.board)
