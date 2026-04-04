@@ -1,3 +1,11 @@
+HEURISTIC_NAMES = {
+    'SIDES_PROXIMITY': 'sides_proximity',
+    'MOBILITY': 'mobility',
+    'LINE_COMPLETION': 'line_completion',
+}
+
+
+
 def evalute_heuristic(board, player):
     score = 0
     

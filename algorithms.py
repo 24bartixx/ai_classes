@@ -23,13 +23,13 @@ def get_best_move(board, depth, heuristic_mode, player_color):
 def minmax(board, depth, is_maximizing_player, heuristic_mode, maximizing_for):
     
     if depth == 0 or is_over(board):
-        match heuristic_mode:
-            case 'sides_proximity':
-                return evaluate_sides_proximity(board, maximizing_for)
-            case 'mobility':
-                return evaluate_mobility(board, maximizing_for)
-            case 'line_completion':
-                return evaluate_line_completion(board, maximizing_for)
+        if heuristic_mode == HEURISTIC_NAMES['SIDES_PROXIMITY']:
+            return evaluate_sides_proximity(board, maximizing_for)
+        elif heuristic_mode == HEURISTIC_NAMES['MOBILITY']:
+            return evaluate_mobility(board, maximizing_for)
+        elif heuristic_mode == HEURISTIC_NAMES['LINE_COMPLETION']:
+            return evaluate_line_completion(board, maximizing_for)
+        return 0
     
     if is_maximizing_player:
         max_eval = float('-inf')

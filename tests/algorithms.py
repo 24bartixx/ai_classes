@@ -14,8 +14,9 @@ def main():
 	W W W W W W W W
 	'''
 	search_depth = 3
-	game = Game(initial_board, 'sides_proximity', search_depth)
-	print("Initial board:")
+	game = Game(initial_board, search_depth, HEURISTIC_NAMES['SIDES_PROXIMITY'], HEURISTIC_NAMES['SIDES_PROXIMITY'])
+ 
+	print("\nInitial board:\n")
 	game.display()
 
 	print("\nLegal moves for W (White):")
@@ -29,15 +30,13 @@ def main():
 	for move in moves_b:
 		print(f"From {move[0]} to {move[1]}")
 
-	print("\n--- Making a few moves ---")
+	print("\n--- Making a few moves ---\n")
  
 	for _ in range(10):
-		moves_w = get_legal_moves(game.board, 'W')
-		next_white = get_best_move(game.board, game.search_depth, game.heuristic_mode, 'W')
+		next_white = get_best_move(game.board, game.search_depth, game.player_heuristic_mode, 'W')
 		make_move(game.board, next_white)
 	
-		moves_b = get_legal_moves(game.board, 'B')
-		next_black = get_best_move(game.board, game.search_depth, game.heuristic_mode, 'B')
+		next_black = get_best_move(game.board, game.search_depth, game.opponent_heuristic_mode, 'B')
 		make_move(game.board, next_black)
 
 		game.display()

@@ -1,7 +1,11 @@
+from algorithms import *
+
+
 class Game:
-    def __init__(self, board_string, heuristic_mode, search_depth):
+    def __init__(self, board_string, search_depth, opponent_heuristic_mode, player_heuristic_mode):
         
-        self.heuristic_mode = heuristic_mode
+        self.opponent_heuristic_mode = opponent_heuristic_mode
+        self.player_heuristic_mode = player_heuristic_mode
         self.search_depth = search_depth
         
         self.board = []
@@ -33,5 +37,37 @@ class Game:
 
     def __repr__(self):
         return '\n'.join(' '.join(row) for row in self.board)
+    
+    
+    def play(self, iterations = None, is_simulation = False, should_log = False):
+        
+        current_player = 'W'
+        
+        i = 0
+        
+        while not is_over(self.board) and (iterations is None or i < iterations):
+            
+            if current_player == 'W':
+        
+                if is_simulation:
+                    next_move = get_best_move(self.board, self.search_depth, self.player_heuristic_mode, 'W')
+                    make_move(self.board, next_move)
+                
+                else:
+                    # TODO: get move from user input
+                    raise NotImplementedError("User input move is not implemented yet.")
+                    
+            else:
+                next_move = get_best_move(self.board, self.search_depth, self.opponent_heuristic_mode, 'B')
+                make_move(self.board, next_move)
+                
+            current_player = 'B' if current_player == 'W' else 'W'
+            i += 1
+            
+            if should_log:
+                print(f"\nAfter move {i} ({'White' if current_player == 'B' else 'Black'}):\n")
+                self.display()
+            
+        
     
  
