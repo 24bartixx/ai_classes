@@ -32,7 +32,13 @@ class Game:
             raise ValueError("Board must have at least one row and one column.")
         
     def display(self):
-        for row in self.board:
+        col_labels = [str(i) for i in range(self.col_count)]
+        
+        print('\n    ', end='')
+        print(' '.join(col_labels))
+
+        for idx, row in enumerate(self.board):
+            print(f"{idx:2}  ", end='')
             print(' '.join(row))
 
     def __repr__(self):
@@ -54,8 +60,22 @@ class Game:
                     make_move(self.board, next_move)
                 
                 else:
-                    # TODO: get move from user input
-                    raise NotImplementedError("User input move is not implemented yet.")
+                    legal_moves = get_legal_moves(self.board, 'W')
+                    print("\nAvailable moves:\n")
+                    for idx, move in enumerate(legal_moves):
+                        (from_pos, to_pos) = move
+                        print(f"\t{idx + 1}:\t{from_pos} -> {to_pos}")
+                    while True:
+                        try:
+                            choice = int(input(f"\nSelect your move (1-{len(legal_moves)}): "))
+                            if 1 <= choice <= len(legal_moves):
+                                next_move = legal_moves[choice - 1]
+                                break
+                            else:
+                                print("Invalid choice. Please select a valid move number.")
+                        except ValueError:
+                            print("Invalid input. Please enter a number.")
+                    make_move(self.board, next_move)
                     
             else:
                 next_move = get_best_move(self.board, self.search_depth, self.opponent_heuristic_mode, 'B')
