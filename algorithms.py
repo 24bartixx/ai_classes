@@ -11,7 +11,7 @@ def get_best_move(board, depth, heuristic_mode, player_color):
         new_board = [row[:] for row in board]
         make_move(new_board, move)
         
-        current_eval = minmax(new_board, depth - 1, False, heuristic_mode, player_color)
+        current_eval = minimax(new_board, depth - 1, False, heuristic_mode, player_color)
         
         if current_eval > max_eval:
             max_eval = current_eval
@@ -20,7 +20,7 @@ def get_best_move(board, depth, heuristic_mode, player_color):
     return best_move
 
 
-def minmax(board, depth, is_maximizing_player, heuristic_mode, maximizing_for):
+def minimax(board, depth, is_maximizing_player, heuristic_mode, maximizing_for, alpha = float('-inf'), beta = float('inf')):
     
     if depth == 0 or is_over(board):
         if heuristic_mode == HEURISTIC_NAMES['SIDES_PROXIMITY']:
@@ -40,9 +40,12 @@ def minmax(board, depth, is_maximizing_player, heuristic_mode, maximizing_for):
             new_board = [row[:] for row in board]
             make_move(new_board, legal_move)
             
-            eval = minmax(new_board, depth - 1, False, heuristic_mode, maximizing_for)
-            
+            eval = minimax(new_board, depth - 1, False, heuristic_mode, maximizing_for, alpha, beta)
             max_eval = max(max_eval, eval)
+            
+            alpha = max(alpha, eval)
+            if beta <= alpha:
+                break
             
         return max_eval
     
@@ -56,9 +59,12 @@ def minmax(board, depth, is_maximizing_player, heuristic_mode, maximizing_for):
             new_board = [row[:] for row in board]
             make_move(new_board, legal_move)
             
-            eval = minmax(new_board, depth - 1, True, heuristic_mode, maximizing_for)
-            
+            eval = minimax(new_board, depth - 1, True, heuristic_mode, maximizing_for, alpha, beta)
             min_eval = min(min_eval, eval)
+            
+            beta = min(beta, eval)
+            if beta <= alpha:
+                break
             
         return min_eval
         
