@@ -1,6 +1,8 @@
 from engine import Game
 from heuristics import HEURISTIC_NAMES
 
+SEARCH_DEPTH = 4
+
 
 def main():
 
@@ -14,8 +16,8 @@ def main():
 	W W W W W W W W
 	W W W W W W W W
 	'''
-    search_depth = 3
-    game = Game(initial_board, search_depth, HEURISTIC_NAMES['SIDES_PROXIMITY'], HEURISTIC_NAMES['SIDES_PROXIMITY'])
+    
+    game = Game(initial_board, SEARCH_DEPTH, HEURISTIC_NAMES['SIDES_PROXIMITY'], HEURISTIC_NAMES['SIDES_PROXIMITY'])
  
     print("\nInitial board:\n")
     game.display()
