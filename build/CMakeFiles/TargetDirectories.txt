@@ -1,0 +1,4 @@
+S:/Studia/6sem/AI/Laby/2/cpp/build/CMakeFiles/main.dir
+S:/Studia/6sem/AI/Laby/2/cpp/build/CMakeFiles/sides_prox_sim.dir
+S:/Studia/6sem/AI/Laby/2/cpp/build/CMakeFiles/edit_cache.dir
+S:/Studia/6sem/AI/Laby/2/cpp/build/CMakeFiles/rebuild_cache.dir
