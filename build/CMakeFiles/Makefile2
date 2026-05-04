@@ -72,6 +72,7 @@ all: CMakeFiles/good2.dir/all
 all: CMakeFiles/line_completion_sim.dir/all
 all: CMakeFiles/mobility_sim.dir/all
 all: CMakeFiles/sides_prox_sim.dir/all
+all: CMakeFiles/strategy_tournament.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
@@ -85,6 +86,7 @@ codegen: CMakeFiles/good2.dir/codegen
 codegen: CMakeFiles/line_completion_sim.dir/codegen
 codegen: CMakeFiles/mobility_sim.dir/codegen
 codegen: CMakeFiles/sides_prox_sim.dir/codegen
+codegen: CMakeFiles/strategy_tournament.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -102,6 +104,7 @@ clean: CMakeFiles/good2.dir/clean
 clean: CMakeFiles/line_completion_sim.dir/clean
 clean: CMakeFiles/mobility_sim.dir/clean
 clean: CMakeFiles/sides_prox_sim.dir/clean
+clean: CMakeFiles/strategy_tournament.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -423,6 +426,38 @@ CMakeFiles/sides_prox_sim.dir/codegen:
 CMakeFiles/sides_prox_sim.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/clean
 .PHONY : CMakeFiles/sides_prox_sim.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/strategy_tournament.dir
+
+# All Build rule for target.
+CMakeFiles/strategy_tournament.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=41,42,43,44 "Built target strategy_tournament"
+.PHONY : CMakeFiles/strategy_tournament.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/strategy_tournament.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/strategy_tournament.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles 0
+.PHONY : CMakeFiles/strategy_tournament.dir/rule
+
+# Convenience name for target.
+strategy_tournament: CMakeFiles/strategy_tournament.dir/rule
+.PHONY : strategy_tournament
+
+# codegen rule for target.
+CMakeFiles/strategy_tournament.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=41,42,43,44 "Finished codegen for target strategy_tournament"
+.PHONY : CMakeFiles/strategy_tournament.dir/codegen
+
+# clean rule for target.
+CMakeFiles/strategy_tournament.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/clean
+.PHONY : CMakeFiles/strategy_tournament.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

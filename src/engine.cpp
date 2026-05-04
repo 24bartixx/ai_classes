@@ -66,7 +66,7 @@ void Game::display() const {
     }
 }
 
-void Game::play(bool isSimulation, bool shouldLog, int iterations) {
+GameResult Game::play(bool isSimulation, bool shouldLog, int iterations) {
     auto startTime = chrono::steady_clock::now();
 
     std::cout << "\n===== PLAYING GAME =====" << std::endl;
@@ -193,9 +193,17 @@ void Game::play(bool isSimulation, bool shouldLog, int iterations) {
 
     auto endTime = chrono::steady_clock::now();
     chrono::duration<double> elapsedTime = endTime - startTime;
+    GameResult result{
+        winner.has_value() ? winner.value() : '_',
+        i,
+        visitedNodes,
+        elapsedTime.count()
+    };
 
     cerr << "\033[31m" << fixed << setprecision(3);
     cerr << (isSimulation ? "\nSimulation time: " : "\nGame time: ")
          << elapsedTime.count() << " seconds\n";
     cerr << "Total visited nodes: " << visitedNodes << "\033[0m\n\n";
+
+    return result;
 }

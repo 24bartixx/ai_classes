@@ -40,6 +40,7 @@ set(OLD_GLOB
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/simulation/line_completion_sim.cpp"
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/simulation/mobility_sim.cpp"
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/simulation/sides_prox_sim.cpp"
+  "S:/Studia/6sem/AI/Laby/2/cpp/tests/simulation/strategy_tournament.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

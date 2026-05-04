@@ -22,13 +22,13 @@ static void clearLastMoveMarkers(Board& board) {
 }
 
 optional<Move> getBestMove(Board& board, int depth, const HeuristicWeights& heuristicWeights, char player_color, int& visitedNodes) {
-    Move bestMove;
-    int maxEval = INT_MIN;
-
     vector<Move> legalMoves = getLegalMoves(board, player_color);
     if(legalMoves.empty()) {
         return nullopt;
     }
+
+    Move bestMove = legalMoves[0];
+    int maxEval = INT_MIN;
 
     for(const Move& move : legalMoves) {
         Board tempBoard = board;
@@ -56,6 +56,9 @@ int minimax(Board& board, int depth, const HeuristicWeights& heuristicWeights, c
     if(isMaximizingPlayer) {
         int maxEval = INT_MIN;
         vector<Move> legalMoves = getLegalMoves(board, maximizing_for);
+        if(legalMoves.empty()) {
+            return INT_MIN + 1;
+        }
         
         for(const Move& move : legalMoves) {
             Board tempBoard = board;
@@ -76,6 +79,10 @@ int minimax(Board& board, int depth, const HeuristicWeights& heuristicWeights, c
         char minimizing_for = (maximizing_for == 'B') ? 'W' : 'B';
 
         vector<Move> legalMoves = getLegalMoves(board, minimizing_for);
+        if(legalMoves.empty()) {
+            return INT_MAX - 1;
+        }
+
         for(const Move& move : legalMoves) {
             Board tempBoard = board; 
             clearLastMoveMarkers(tempBoard);

@@ -11,7 +11,7 @@ class Game {
 public:
     Game(const std::string& board_string, int depth, const HeuristicWeights& playerHeuristicWeights, const HeuristicWeights& opponentHeuristicWeights);
     void display() const;
-    void play(bool isSimulation = false, bool shouldLog = false, int iterations = -1);
+    GameResult play(bool isSimulation = false, bool shouldLog = false, int iterations = -1);
 
     Board& getBoard() { return board; }
     const Board& getBoard() const { return board; }    

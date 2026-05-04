@@ -246,6 +246,19 @@ sides_prox_sim/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/build
 .PHONY : sides_prox_sim/fast
 
+#=============================================================================
+# Target rules for targets named strategy_tournament
+
+# Build rule for target.
+strategy_tournament: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 strategy_tournament
+.PHONY : strategy_tournament
+
+# fast build rule for target.
+strategy_tournament/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/build
+.PHONY : strategy_tournament/fast
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -285,6 +298,7 @@ src/algorithms.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/src/algorithms.cpp.obj
 .PHONY : src/algorithms.cpp.obj
 
 src/algorithms.i: src/algorithms.cpp.i
@@ -302,6 +316,7 @@ src/algorithms.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/src/algorithms.cpp.i
 .PHONY : src/algorithms.cpp.i
 
 src/algorithms.s: src/algorithms.cpp.s
@@ -319,6 +334,7 @@ src/algorithms.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/src/algorithms.cpp.s
 .PHONY : src/algorithms.cpp.s
 
 src/engine.obj: src/engine.cpp.obj
@@ -336,6 +352,7 @@ src/engine.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/engine.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/src/engine.cpp.obj
 .PHONY : src/engine.cpp.obj
 
 src/engine.i: src/engine.cpp.i
@@ -353,6 +370,7 @@ src/engine.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/engine.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/src/engine.cpp.i
 .PHONY : src/engine.cpp.i
 
 src/engine.s: src/engine.cpp.s
@@ -370,6 +388,7 @@ src/engine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/engine.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/src/engine.cpp.s
 .PHONY : src/engine.cpp.s
 
 tests/algorithms/methods.obj: tests/algorithms/methods.cpp.obj
@@ -588,6 +607,30 @@ tests/simulation/sides_prox_sim.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/tests/simulation/sides_prox_sim.cpp.s
 .PHONY : tests/simulation/sides_prox_sim.cpp.s
 
+tests/simulation/strategy_tournament.obj: tests/simulation/strategy_tournament.cpp.obj
+.PHONY : tests/simulation/strategy_tournament.obj
+
+# target to build an object file
+tests/simulation/strategy_tournament.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/tests/simulation/strategy_tournament.cpp.obj
+.PHONY : tests/simulation/strategy_tournament.cpp.obj
+
+tests/simulation/strategy_tournament.i: tests/simulation/strategy_tournament.cpp.i
+.PHONY : tests/simulation/strategy_tournament.i
+
+# target to preprocess a source file
+tests/simulation/strategy_tournament.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/tests/simulation/strategy_tournament.cpp.i
+.PHONY : tests/simulation/strategy_tournament.cpp.i
+
+tests/simulation/strategy_tournament.s: tests/simulation/strategy_tournament.cpp.s
+.PHONY : tests/simulation/strategy_tournament.s
+
+# target to generate assembly for a file
+tests/simulation/strategy_tournament.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/tests/simulation/strategy_tournament.cpp.s
+.PHONY : tests/simulation/strategy_tournament.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -606,6 +649,7 @@ help:
 	@echo ... mobility_sim
 	@echo ... sides_prox_manual
 	@echo ... sides_prox_sim
+	@echo ... strategy_tournament
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
@@ -642,6 +686,9 @@ help:
 	@echo ... tests/simulation/sides_prox_sim.obj
 	@echo ... tests/simulation/sides_prox_sim.i
 	@echo ... tests/simulation/sides_prox_sim.s
+	@echo ... tests/simulation/strategy_tournament.obj
+	@echo ... tests/simulation/strategy_tournament.i
+	@echo ... tests/simulation/strategy_tournament.s
 .PHONY : help
 
 

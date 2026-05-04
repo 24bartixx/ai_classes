@@ -71,4 +71,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/line_completion_sim.dir/DependInfo.cmake"
   "CMakeFiles/mobility_sim.dir/DependInfo.cmake"
   "CMakeFiles/sides_prox_sim.dir/DependInfo.cmake"
+  "CMakeFiles/strategy_tournament.dir/DependInfo.cmake"
   )

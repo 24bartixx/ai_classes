@@ -34,12 +34,20 @@ private:
     double prioritizeCaptureWeight;
 };
 
+
+// sides proximity = 1
+// mobility = 2
+// line completion = 3
+// center proximity = 4
+// finish proximity = 5
+// prioritize capture = 6
+
 namespace HeuristicStrategies {
-    inline const HeuristicWeights Defensive{5, 1, 2, 0, 0, 5};
+    inline const HeuristicWeights Defensive{5, 1, 2, 0, 1, 5};
     inline const HeuristicWeights Aggressive{0, 2, 1, 0, 5, 10};
     inline const HeuristicWeights Balanced{2, 2, 2, 2, 2, 6};
     inline const HeuristicWeights CenterControl{0, 1, 0, 5, 1, 5};
-    inline const HeuristicWeights MobilityRush{0, 5, 0, 0, 0, 7};
+    inline const HeuristicWeights MobilityRush{0, 5, 0, 0, 2, 7};
     inline const HeuristicWeights LineBuilder{1, 0, 5, 0, 1, 6};
     inline const HeuristicWeights CaptureFocused{0, 1, 0, 0, 2, 12};
 }
