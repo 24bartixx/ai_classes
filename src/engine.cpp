@@ -1,5 +1,7 @@
 #include "../include/engine.h"
 #include <algorithm>
+#include <chrono>
+#include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <optional>
@@ -65,29 +67,52 @@ void Game::display() const {
 }
 
 void Game::play(bool isSimulation, bool shouldLog, int iterations) {
+    auto startTime = chrono::steady_clock::now();
+
     std::cout << "\n===== PLAYING GAME =====" << std::endl;
     
     char currentPlayer = 'W';
+    optional<char> winner;
+    optional<Position> lastMoveOrigin;
+    int visitedNodes = 0;
     int i = 0;
+
+    auto clearLastMoveOrigin = [&]() {
+        if(lastMoveOrigin.has_value()) {
+            Position origin = lastMoveOrigin.value();
+            board[origin.first][origin.second] = '_';
+            lastMoveOrigin.reset();
+        }
+    };
+
+    auto printVisitedNodes = [&](int visitedNodesThisRound) {
+        cerr << "\n\033[31mVisited nodes in round " << i << ": "
+             << visitedNodesThisRound << "\033[0m\n";
+    };
     
     while(!isOver(board) && (iterations == -1 || i < iterations)) {
+        int visitedNodesBeforeRound = visitedNodes;
+
         if(currentPlayer == 'W') {
 
             optional<Move> nextMove;
             if(isSimulation) {
-                nextMove = getBestMove(board, depth, playerHeuristicWeights, currentPlayer);
+                nextMove = getBestMove(board, depth, playerHeuristicWeights, currentPlayer, visitedNodes);
 
                 if(!nextMove.has_value())  {
                     std::cout << "\nNo legal moves available for White.\nGame over!";
+                    winner = 'B';
                     break;
                 }
 
-                makeMove(board, nextMove.value());
+                clearLastMoveOrigin();
+                lastMoveOrigin = makeMove(board, nextMove.value());
             } else {
                 vector<Move> legalMoves = getLegalMoves(board, currentPlayer);
 
                 if(legalMoves.empty()) {
                     std::cout << "\nNo legal moves available for White.\nGame over!\n";
+                    winner = 'B';
                     break;
                 }
 
@@ -112,21 +137,24 @@ void Game::play(bool isSimulation, bool shouldLog, int iterations) {
                     }
                 }
 
-                makeMove(board, nextMove.value());
+                clearLastMoveOrigin();
+                lastMoveOrigin = makeMove(board, nextMove.value());
             }
         } else {
             if(!isSimulation) {
                 cout << "\nWaiting for AI to make its move...\n";
             }
 
-            optional<Move> nextMove = getBestMove(board, depth, opponentHeuristicWeights, 'B');
+            optional<Move> nextMove = getBestMove(board, depth, opponentHeuristicWeights, 'B', visitedNodes);
 
             if(!nextMove.has_value()) {
                 cout << "\nNo legal moves available for Black.\nGame over!\n";
+                winner = 'W';
                 break;
             }
 
-            makeMove(board, nextMove.value());
+            clearLastMoveOrigin();
+            lastMoveOrigin = makeMove(board, nextMove.value());
         }
 
         currentPlayer = (currentPlayer == 'W') ? 'B' : 'W';
@@ -138,13 +166,36 @@ void Game::play(bool isSimulation, bool shouldLog, int iterations) {
             display();
         }
 
+        printVisitedNodes(visitedNodes - visitedNodesBeforeRound);
+
     }
 
-    if(!isSimulation && isOver(board)) {
+    if(!winner.has_value() && isOver(board)) {
         if(count(board[0].begin(), board[0].end(), 'W') > 0) {
-            cout << "\nYou win! White reached the opposite side.\n";
+            winner = 'W';
         } else if(count(board[board.size() - 1].begin(), board[board.size() - 1].end(), 'B') > 0) {
-            cout << "\nAI wins! Black reached the opposite side.\n";
+            winner = 'B';
         }
     }
+
+    cout << "\n===== GAME OVER =====\n";
+    cout << "\nRounds played: " << i << "\n";
+
+    if(winner.has_value()) {
+        if(isSimulation) {
+            cout << "Winner: " << (winner.value() == 'W' ? "White" : "Black") << "\n";
+        } else {
+            cout << "Winner: " << (winner.value() == 'W' ? "You (White)" : "AI (Black)") << "\n";
+        }
+    } else {
+        cout << "Winner: none\n";
+    }
+
+    auto endTime = chrono::steady_clock::now();
+    chrono::duration<double> elapsedTime = endTime - startTime;
+
+    cerr << "\033[31m" << fixed << setprecision(3);
+    cerr << (isSimulation ? "\nSimulation time: " : "\nGame time: ")
+         << elapsedTime.count() << " seconds\n";
+    cerr << "Total visited nodes: " << visitedNodes << "\033[0m\n\n";
 }

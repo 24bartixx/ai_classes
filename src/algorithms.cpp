@@ -10,7 +10,17 @@
 
 using namespace std;
 
-optional<Move> getBestMove(Board& board, int depth, const HeuristicWeights& heuristicWeights, char player_color) {
+static void clearLastMoveMarkers(Board& board) {
+    for(vector<char>& row : board) {
+        for(char& cell : row) {
+            if(cell == 'o') {
+                cell = '_';
+            }
+        }
+    }
+}
+
+optional<Move> getBestMove(Board& board, int depth, const HeuristicWeights& heuristicWeights, char player_color, int& visitedNodes) {
     Move bestMove;
     int maxEval = INT_MIN;
 
@@ -21,9 +31,10 @@ optional<Move> getBestMove(Board& board, int depth, const HeuristicWeights& heur
 
     for(const Move& move : legalMoves) {
         Board tempBoard = board;
+        clearLastMoveMarkers(tempBoard);
         makeMove(tempBoard, move);
 
-        int eval = minimax(tempBoard, depth - 1, heuristicWeights, player_color, false);
+        int eval = minimax(tempBoard, depth - 1, heuristicWeights, player_color, false, visitedNodes);
         if(eval > maxEval) {
             maxEval = eval;
             bestMove = move;
@@ -34,7 +45,8 @@ optional<Move> getBestMove(Board& board, int depth, const HeuristicWeights& heur
     return bestMove;
 }
 
-int minimax(Board& board, int depth, const HeuristicWeights& heuristicWeights, char maximizing_for, bool isMaximizingPlayer, int alpha, int beta) {
+int minimax(Board& board, int depth, const HeuristicWeights& heuristicWeights, char maximizing_for, bool isMaximizingPlayer, int& visitedNodes, int alpha, int beta) {
+    visitedNodes++;
     
     if(isOver(board) || depth == 0) {
         return evaluate(board, heuristicWeights);
@@ -46,9 +58,10 @@ int minimax(Board& board, int depth, const HeuristicWeights& heuristicWeights, c
         
         for(const Move& move : legalMoves) {
             Board tempBoard = board;
+            clearLastMoveMarkers(tempBoard);
             makeMove(tempBoard, move);
 
-            int eval = minimax(tempBoard, depth - 1, heuristicWeights, maximizing_for, false, alpha, beta);
+            int eval = minimax(tempBoard, depth - 1, heuristicWeights, maximizing_for, false, visitedNodes, alpha, beta);
             maxEval = max(maxEval, eval);
 
             alpha = max(alpha, eval);
@@ -64,9 +77,10 @@ int minimax(Board& board, int depth, const HeuristicWeights& heuristicWeights, c
         vector<Move> legalMoves = getLegalMoves(board, minimizing_for);
         for(const Move& move : legalMoves) {
             Board tempBoard = board; 
+            clearLastMoveMarkers(tempBoard);
             makeMove(tempBoard, move);
 
-            int eval = minimax(tempBoard, depth - 1, heuristicWeights, maximizing_for, true, alpha, beta);
+            int eval = minimax(tempBoard, depth - 1, heuristicWeights, maximizing_for, true, visitedNodes, alpha, beta);
             minEval = min(minEval, eval);
 
             beta = min(beta, eval);
@@ -295,7 +309,7 @@ vector<Move> getLegalMoves(const Board& board, char playerColor) {
     return legalMoves;
 }
 
-void makeMove(Board& board, const Move& move) {
+Position makeMove(Board& board, const Move& move) {
     const int fromRow = move.first.first;
     const int fromCol = move.first.second;
     const int toRow = move.second.first;
@@ -317,5 +331,7 @@ void makeMove(Board& board, const Move& move) {
     }
 
     board[toRow][toCol] = piece;
-    board[fromRow][fromCol] = '_';
+    board[fromRow][fromCol] = 'o';
+
+    return {fromRow, fromCol};
 }

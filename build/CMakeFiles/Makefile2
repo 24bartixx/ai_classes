@@ -67,6 +67,7 @@ all: CMakeFiles/methods.dir/all
 all: CMakeFiles/line_completion_manual.dir/all
 all: CMakeFiles/mobility_manual.dir/all
 all: CMakeFiles/sides_prox_manual.dir/all
+all: CMakeFiles/good1.dir/all
 all: CMakeFiles/line_completion_sim.dir/all
 all: CMakeFiles/mobility_sim.dir/all
 all: CMakeFiles/sides_prox_sim.dir/all
@@ -78,6 +79,7 @@ codegen: CMakeFiles/methods.dir/codegen
 codegen: CMakeFiles/line_completion_manual.dir/codegen
 codegen: CMakeFiles/mobility_manual.dir/codegen
 codegen: CMakeFiles/sides_prox_manual.dir/codegen
+codegen: CMakeFiles/good1.dir/codegen
 codegen: CMakeFiles/line_completion_sim.dir/codegen
 codegen: CMakeFiles/mobility_sim.dir/codegen
 codegen: CMakeFiles/sides_prox_sim.dir/codegen
@@ -93,6 +95,7 @@ clean: CMakeFiles/methods.dir/clean
 clean: CMakeFiles/line_completion_manual.dir/clean
 clean: CMakeFiles/mobility_manual.dir/clean
 clean: CMakeFiles/sides_prox_manual.dir/clean
+clean: CMakeFiles/good1.dir/clean
 clean: CMakeFiles/line_completion_sim.dir/clean
 clean: CMakeFiles/mobility_sim.dir/clean
 clean: CMakeFiles/sides_prox_sim.dir/clean
@@ -105,7 +108,7 @@ clean: CMakeFiles/sides_prox_sim.dir/clean
 CMakeFiles/main.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=9,10,11,12 "Built target main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=13,14,15,16 "Built target main"
 .PHONY : CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -122,7 +125,7 @@ main: CMakeFiles/main.dir/rule
 # codegen rule for target.
 CMakeFiles/main.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=9,10,11,12 "Finished codegen for target main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=13,14,15,16 "Finished codegen for target main"
 .PHONY : CMakeFiles/main.dir/codegen
 
 # clean rule for target.
@@ -137,7 +140,7 @@ CMakeFiles/main.dir/clean:
 CMakeFiles/methods.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=13,14,15,16 "Built target methods"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=17,18,19,20 "Built target methods"
 .PHONY : CMakeFiles/methods.dir/all
 
 # Build rule for subdir invocation for target.
@@ -154,7 +157,7 @@ methods: CMakeFiles/methods.dir/rule
 # codegen rule for target.
 CMakeFiles/methods.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=13,14,15,16 "Finished codegen for target methods"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=17,18,19,20 "Finished codegen for target methods"
 .PHONY : CMakeFiles/methods.dir/codegen
 
 # clean rule for target.
@@ -169,7 +172,7 @@ CMakeFiles/methods.dir/clean:
 CMakeFiles/line_completion_manual.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=1,2,3,4 "Built target line_completion_manual"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=5,6,7,8 "Built target line_completion_manual"
 .PHONY : CMakeFiles/line_completion_manual.dir/all
 
 # Build rule for subdir invocation for target.
@@ -186,7 +189,7 @@ line_completion_manual: CMakeFiles/line_completion_manual.dir/rule
 # codegen rule for target.
 CMakeFiles/line_completion_manual.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target line_completion_manual"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=5,6,7,8 "Finished codegen for target line_completion_manual"
 .PHONY : CMakeFiles/line_completion_manual.dir/codegen
 
 # clean rule for target.
@@ -201,7 +204,7 @@ CMakeFiles/line_completion_manual.dir/clean:
 CMakeFiles/mobility_manual.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=17,18,19,20 "Built target mobility_manual"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=21,22,23,24 "Built target mobility_manual"
 .PHONY : CMakeFiles/mobility_manual.dir/all
 
 # Build rule for subdir invocation for target.
@@ -218,7 +221,7 @@ mobility_manual: CMakeFiles/mobility_manual.dir/rule
 # codegen rule for target.
 CMakeFiles/mobility_manual.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=17,18,19,20 "Finished codegen for target mobility_manual"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=21,22,23,24 "Finished codegen for target mobility_manual"
 .PHONY : CMakeFiles/mobility_manual.dir/codegen
 
 # clean rule for target.
@@ -233,7 +236,7 @@ CMakeFiles/mobility_manual.dir/clean:
 CMakeFiles/sides_prox_manual.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=25,26,27,28 "Built target sides_prox_manual"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=29,30,31,32 "Built target sides_prox_manual"
 .PHONY : CMakeFiles/sides_prox_manual.dir/all
 
 # Build rule for subdir invocation for target.
@@ -250,7 +253,7 @@ sides_prox_manual: CMakeFiles/sides_prox_manual.dir/rule
 # codegen rule for target.
 CMakeFiles/sides_prox_manual.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=25,26,27,28 "Finished codegen for target sides_prox_manual"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=29,30,31,32 "Finished codegen for target sides_prox_manual"
 .PHONY : CMakeFiles/sides_prox_manual.dir/codegen
 
 # clean rule for target.
@@ -259,13 +262,45 @@ CMakeFiles/sides_prox_manual.dir/clean:
 .PHONY : CMakeFiles/sides_prox_manual.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/good1.dir
+
+# All Build rule for target.
+CMakeFiles/good1.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1.dir\build.make CMakeFiles/good1.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1.dir\build.make CMakeFiles/good1.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=1,2,3,4 "Built target good1"
+.PHONY : CMakeFiles/good1.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/good1.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/good1.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles 0
+.PHONY : CMakeFiles/good1.dir/rule
+
+# Convenience name for target.
+good1: CMakeFiles/good1.dir/rule
+.PHONY : good1
+
+# codegen rule for target.
+CMakeFiles/good1.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1.dir\build.make CMakeFiles/good1.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target good1"
+.PHONY : CMakeFiles/good1.dir/codegen
+
+# clean rule for target.
+CMakeFiles/good1.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1.dir\build.make CMakeFiles/good1.dir/clean
+.PHONY : CMakeFiles/good1.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/line_completion_sim.dir
 
 # All Build rule for target.
 CMakeFiles/line_completion_sim.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=5,6,7,8 "Built target line_completion_sim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=9,10,11,12 "Built target line_completion_sim"
 .PHONY : CMakeFiles/line_completion_sim.dir/all
 
 # Build rule for subdir invocation for target.
@@ -282,7 +317,7 @@ line_completion_sim: CMakeFiles/line_completion_sim.dir/rule
 # codegen rule for target.
 CMakeFiles/line_completion_sim.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=5,6,7,8 "Finished codegen for target line_completion_sim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=9,10,11,12 "Finished codegen for target line_completion_sim"
 .PHONY : CMakeFiles/line_completion_sim.dir/codegen
 
 # clean rule for target.
@@ -297,7 +332,7 @@ CMakeFiles/line_completion_sim.dir/clean:
 CMakeFiles/mobility_sim.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=21,22,23,24 "Built target mobility_sim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=25,26,27,28 "Built target mobility_sim"
 .PHONY : CMakeFiles/mobility_sim.dir/all
 
 # Build rule for subdir invocation for target.
@@ -314,7 +349,7 @@ mobility_sim: CMakeFiles/mobility_sim.dir/rule
 # codegen rule for target.
 CMakeFiles/mobility_sim.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=21,22,23,24 "Finished codegen for target mobility_sim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=25,26,27,28 "Finished codegen for target mobility_sim"
 .PHONY : CMakeFiles/mobility_sim.dir/codegen
 
 # clean rule for target.
@@ -329,7 +364,7 @@ CMakeFiles/mobility_sim.dir/clean:
 CMakeFiles/sides_prox_sim.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=29,30,31,32 "Built target sides_prox_sim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=33,34,35,36 "Built target sides_prox_sim"
 .PHONY : CMakeFiles/sides_prox_sim.dir/all
 
 # Build rule for subdir invocation for target.
@@ -346,7 +381,7 @@ sides_prox_sim: CMakeFiles/sides_prox_sim.dir/rule
 # codegen rule for target.
 CMakeFiles/sides_prox_sim.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=29,30,31,32 "Finished codegen for target sides_prox_sim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=33,34,35,36 "Finished codegen for target sides_prox_sim"
 .PHONY : CMakeFiles/sides_prox_sim.dir/codegen
 
 # clean rule for target.

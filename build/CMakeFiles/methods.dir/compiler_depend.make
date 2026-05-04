@@ -150,8 +150,10 @@ CMakeFiles/methods.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engi
   S:/dev/app/MSYS2/ucrt64/include/_mingw_secapi.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw_stat64.h \
   S:/dev/app/MSYS2/ucrt64/include/_timeval.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/algorithm \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/backward/binders.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bit \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/alloc_traits.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/allocator.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_ios.h \
@@ -160,6 +162,8 @@ CMakeFiles/methods.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engi
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_string.tcc \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/char_traits.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/charconv.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/chrono.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/codecvt.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/concept_check.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cpp_type_traits.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cxxabi_forced.h \
@@ -176,8 +180,11 @@ CMakeFiles/methods.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engi
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/istream.tcc \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_classes.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_classes.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_conv.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_facets.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_facets.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_facets_nonio.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_facets_nonio.tcc \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/localefwd.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/memory_resource.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/memoryfwd.h \
@@ -187,29 +194,35 @@ CMakeFiles/methods.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engi
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ostream.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ostream.tcc \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ostream_insert.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/parse_numbers.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/postypes.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/predefined_ops.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ptr_traits.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/quoted_string.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/range_access.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/refwrap.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/requires_hosted.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/sstream.tcc \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/std_abs.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_algo.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_algobase.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_bvector.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_construct.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_function.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_heap.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_iterator.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_iterator_base_funcs.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_iterator_base_types.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_pair.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_relops.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_tempbuf.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_uninitialized.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_vector.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/streambuf.tcc \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/streambuf_iterator.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/string_view.tcc \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stringfwd.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/uniform_int_dist.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/uses_allocator.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/uses_allocator_args.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/utility.h \
@@ -217,11 +230,15 @@ CMakeFiles/methods.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engi
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/version.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cctype \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cerrno \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/chrono \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/clocale \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/concepts \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstddef \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdint \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdio \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdlib \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ctime \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cwchar \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cwctype \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/debug/assertions.h \
@@ -233,14 +250,20 @@ CMakeFiles/methods.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engi
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/string_conversions.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/type_traits.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/initializer_list \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iomanip \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ios \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iosfwd \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iostream \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/istream \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/limits \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/locale \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/new \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/optional \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ostream \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/execution_defs.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/pstl_config.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ratio \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/sstream \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/stdexcept \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/stdlib.h \
@@ -263,7 +286,9 @@ CMakeFiles/methods.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engi
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/error_constants.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr-default.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/messages_members.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/os_defines.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/time_members.h \
   S:/dev/app/MSYS2/ucrt64/include/corecrt.h \
   S:/dev/app/MSYS2/ucrt64/include/corecrt_startup.h \
   S:/dev/app/MSYS2/ucrt64/include/corecrt_stdio_config.h \
@@ -290,6 +315,7 @@ CMakeFiles/methods.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engi
   S:/dev/app/MSYS2/ucrt64/include/sec_api/wconio_s.h \
   S:/dev/app/MSYS2/ucrt64/include/signal.h \
   S:/dev/app/MSYS2/ucrt64/include/stddef.h \
+  S:/dev/app/MSYS2/ucrt64/include/stdint.h \
   S:/dev/app/MSYS2/ucrt64/include/stdio.h \
   S:/dev/app/MSYS2/ucrt64/include/stdlib.h \
   S:/dev/app/MSYS2/ucrt64/include/swprintf.inl \
@@ -302,6 +328,7 @@ CMakeFiles/methods.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engi
   S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/limits.h \
   S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/mm_malloc.h \
   S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stddef.h \
+  S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stdint.h \
   S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/syslimits.h
 
 CMakeFiles/methods.dir/tests/algorithms/methods.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/tests/algorithms/methods.cpp \
@@ -381,6 +408,7 @@ CMakeFiles/methods.dir/tests/algorithms/methods.cpp.obj: S:/Studia/6sem/AI/Laby/
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/version.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cctype \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cerrno \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/clocale \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/concepts \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstddef \
@@ -526,6 +554,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdlib:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/algorithm:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/quoted_string.h:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bit:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/backward/binders.h:
@@ -586,6 +616,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cctype:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/node_handle.h:
 
+S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stdint.h:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/localefwd.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_algobase.h:
@@ -628,6 +660,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_iterator_base_types.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_tree.h:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/limits:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_uninitialized.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_vector.h:
@@ -657,6 +691,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/concepts:
 S:/dev/app/MSYS2/ucrt64/include/stdlib.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstddef:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_facets_nonio.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cwchar:
 
@@ -710,6 +746,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/utility:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/time_members.h:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h:
@@ -717,6 +755,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h:
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_classes.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/os_defines.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ratio:
 
 S:/dev/app/MSYS2/ucrt64/include/corecrt.h:
 
@@ -731,6 +771,8 @@ S:/dev/app/MSYS2/ucrt64/include/corecrt_wstdlib.h:
 S:/dev/app/MSYS2/ucrt64/include/crtdefs.h:
 
 S:/dev/app/MSYS2/ucrt64/include/ctype.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/chrono:
 
 S:/dev/app/MSYS2/ucrt64/include/errno.h:
 
@@ -768,15 +810,25 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_ios.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_ios.tcc:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/chrono.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/codecvt.h:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ios_base.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_classes.tcc:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_conv.h:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_facets.tcc:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_facets_nonio.tcc:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ostream.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ostream.tcc:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/parse_numbers.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/streambuf.tcc:
 
@@ -784,13 +836,21 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/streambuf_iterator.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cwctype:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdint:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ctime:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/atomicity.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iomanip:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ios:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iostream:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/istream:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/locale:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ostream:
 
@@ -807,6 +867,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/error_constan
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr-default.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/messages_members.h:
 
 S:/dev/app/MSYS2/ucrt64/include/corecrt_startup.h:
 
@@ -825,6 +887,8 @@ S:/dev/app/MSYS2/ucrt64/include/sched.h:
 S:/dev/app/MSYS2/ucrt64/include/sec_api/sys/timeb_s.h:
 
 S:/dev/app/MSYS2/ucrt64/include/signal.h:
+
+S:/dev/app/MSYS2/ucrt64/include/stdint.h:
 
 S:/dev/app/MSYS2/ucrt64/include/sys/timeb.h:
 

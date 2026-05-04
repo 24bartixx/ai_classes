@@ -5,6 +5,7 @@
 #include <utility>
 
 using Board = std::vector<std::vector<char>>;
-using Move = std::pair<std::pair<int, int>, std::pair<int, int>>;
+using Position = std::pair<int, int>;
+using Move = std::pair<Position, Position>;
 
 #endif

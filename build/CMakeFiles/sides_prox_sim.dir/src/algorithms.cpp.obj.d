@@ -1,12 +1,22 @@
 CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj: \
  S:\Studia\6sem\AI\Laby\2\cpp\src\algorithms.cpp \
  S:/Studia/6sem/AI/Laby/2/cpp/include/algorithms.h \
- S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/optional \
- S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/version.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/os_defines.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/pstl_config.h \
+ S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/limits.h \
+ S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/syslimits.h \
+ S:/dev/app/MSYS2/ucrt64/include/limits.h \
+ S:/dev/app/MSYS2/ucrt64/include/crtdefs.h \
+ S:/dev/app/MSYS2/ucrt64/include/corecrt.h \
+ S:/dev/app/MSYS2/ucrt64/include/_mingw.h \
+ S:/dev/app/MSYS2/ucrt64/include/_mingw_mac.h \
+ S:/dev/app/MSYS2/ucrt64/include/_mingw_secapi.h \
+ S:/dev/app/MSYS2/ucrt64/include/vadefs.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/optional \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/version.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/type_traits \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/exception \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception.h \
@@ -15,12 +25,6 @@ CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj: \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cxxabi_init_exception.h \
  S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stddef.h \
  S:/dev/app/MSYS2/ucrt64/include/stddef.h \
- S:/dev/app/MSYS2/ucrt64/include/crtdefs.h \
- S:/dev/app/MSYS2/ucrt64/include/corecrt.h \
- S:/dev/app/MSYS2/ucrt64/include/_mingw.h \
- S:/dev/app/MSYS2/ucrt64/include/_mingw_mac.h \
- S:/dev/app/MSYS2/ucrt64/include/_mingw_secapi.h \
- S:/dev/app/MSYS2/ucrt64/include/vadefs.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/typeinfo \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/hash_bytes.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/new \
@@ -103,9 +107,6 @@ CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj: \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/string_conversions.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdlib \
  S:/dev/app/MSYS2/ucrt64/include/stdlib.h \
- S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/limits.h \
- S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/syslimits.h \
- S:/dev/app/MSYS2/ucrt64/include/limits.h \
  S:/dev/app/MSYS2/ucrt64/include/sec_api/stdlib_s.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/stdlib.h \
  S:/dev/app/MSYS2/ucrt64/include/malloc.h \
@@ -128,7 +129,6 @@ CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj: \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_tempbuf.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/execution_defs.h \
- S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/stdexcept \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/map \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_tree.h \

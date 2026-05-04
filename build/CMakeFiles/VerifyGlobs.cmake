@@ -35,6 +35,7 @@ set(OLD_GLOB
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/manual/line_completion_manual.cpp"
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/manual/mobility_manual.cpp"
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/manual/sides_prox_manual.cpp"
+  "S:/Studia/6sem/AI/Laby/2/cpp/tests/simulation/good1.cpp"
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/simulation/line_completion_sim.cpp"
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/simulation/mobility_sim.cpp"
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/simulation/sides_prox_sim.cpp"
