@@ -67,6 +67,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/mobility_manual.dir/DependInfo.cmake"
   "CMakeFiles/sides_prox_manual.dir/DependInfo.cmake"
   "CMakeFiles/good1.dir/DependInfo.cmake"
+  "CMakeFiles/good2.dir/DependInfo.cmake"
   "CMakeFiles/line_completion_sim.dir/DependInfo.cmake"
   "CMakeFiles/mobility_sim.dir/DependInfo.cmake"
   "CMakeFiles/sides_prox_sim.dir/DependInfo.cmake"

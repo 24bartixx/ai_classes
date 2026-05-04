@@ -131,9 +131,22 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
     int centerProximityWeight = heuristicWeights.getCenterProximityWeight();
     double centerProximityScore = 0;
 
+    // FINISH PROXIMITY
+    map<int, int> finishProximityWeights = {
+        {1, 10},
+        {2, 3},
+        {3, 1}
+    };
 
+    int finishProximityWeight = heuristicWeights.getFinishProximityWeight();
+    int finishProximityScore = 0;
 
-    if(sidesWeight > 0 || mobilityWeight > 0 || centerProximityWeight > 0) {
+    // PRIORITIZE CAPTURE
+    int prioritizeCaptureWeight = heuristicWeights.getPrioritizeCaptureWeight();
+    int prioritizeCaptureScore = 0;
+
+    if(sidesWeight > 0 || mobilityWeight > 0 || centerProximityWeight > 0 
+            || finishProximityWeight > 0 || prioritizeCaptureWeight > 0) {
         for(int i = 0; i < board.size(); i++) {
             for(int j = 0; j < board[i].size(); j++) {
 
@@ -195,6 +208,41 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
                             centerProximityScore -= dist;
                         } else {
                             centerProximityScore += dist;
+                        }
+                    }
+
+                    // FINISH PROXIMITY
+                    if(finishProximityWeight > 0) {
+
+                        if(cell == 'W') {
+                            if(i > 0 && i < 4) {
+                                finishProximityScore += finishProximityWeights[i];
+                            }
+                        } else {
+                            int finishProximity = rowSize - i - 1;
+                            if(finishProximity > 0 && finishProximity < 4) {
+                                finishProximityScore -= finishProximityWeights[finishProximity];
+                            }
+                        }
+                    }
+
+                    // PRIORITIZE CAPTURE
+                    if(prioritizeCaptureWeight > 0) {
+                        if(cell == 'W') { 
+                            if(i > 0) {
+                                if((j-1 >= 0 &&board[i-1][j-1] == 'B') 
+                                        || (j + 1 < colSize && board[i-1][j+1] == 'B')) {
+                                    prioritizeCaptureScore += 1;
+
+                                }
+                            }
+                        } else {
+                            if(i < rowSize - 1) {
+                                if((j-1 >= 0 && board[i+1][j-1] == 'W') 
+                                        || (j + 1 < colSize && board[i+1][j+1] == 'W')) {
+                                    prioritizeCaptureScore -= 1;
+                                }
+                            }
                         }
                     }
                     
@@ -284,7 +332,9 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
     return sidesWeight * sidesScore 
          + mobilityWeight * mobilityScore 
          + lineCompletionWeight * lineCompletionScore
-         + centerProximityWeight * centerProximityScore;
+         + centerProximityWeight * centerProximityScore
+         + finishProximityWeight * finishProximityScore
+         + prioritizeCaptureWeight * prioritizeCaptureScore;
 }
 
 bool isOver(const Board& board) {

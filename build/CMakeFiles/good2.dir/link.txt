@@ -1,0 +1,3 @@
+S:\dev\apps\CMake\bin\cmake.exe -E rm -f CMakeFiles\good2.dir/objects.a
+S:\dev\app\MSYS2\ucrt64\bin\ar.exe qc CMakeFiles\good2.dir/objects.a @CMakeFiles\good2.dir\objects1.rsp
+S:\dev\app\MSYS2\ucrt64\bin\c++.exe -Wl,--whole-archive CMakeFiles\good2.dir/objects.a -Wl,--no-whole-archive -o good2.exe -Wl,--out-implib,libgood2.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\good2.dir\linkLibs.rsp
