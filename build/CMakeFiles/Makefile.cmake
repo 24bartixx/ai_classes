@@ -63,6 +63,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/main.dir/DependInfo.cmake"
   "CMakeFiles/methods.dir/DependInfo.cmake"
+  "CMakeFiles/good1_manual.dir/DependInfo.cmake"
   "CMakeFiles/line_completion_manual.dir/DependInfo.cmake"
   "CMakeFiles/mobility_manual.dir/DependInfo.cmake"
   "CMakeFiles/sides_prox_manual.dir/DependInfo.cmake"

@@ -32,6 +32,7 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "S:/Studia/6sem/AI/Laby/2/cpp/tests/*/*.cpp")
 set(OLD_GLOB
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/algorithms/methods.cpp"
+  "S:/Studia/6sem/AI/Laby/2/cpp/tests/manual/good1_manual.cpp"
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/manual/line_completion_manual.cpp"
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/manual/mobility_manual.cpp"
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/manual/sides_prox_manual.cpp"

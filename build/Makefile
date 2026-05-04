@@ -143,6 +143,19 @@ methods/fast:
 .PHONY : methods/fast
 
 #=============================================================================
+# Target rules for targets named good1_manual
+
+# Build rule for target.
+good1_manual: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 good1_manual
+.PHONY : good1_manual
+
+# fast build rule for target.
+good1_manual/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/build
+.PHONY : good1_manual/fast
+
+#=============================================================================
 # Target rules for targets named line_completion_manual
 
 # Build rule for target.
@@ -290,6 +303,7 @@ src/algorithms.obj: src/algorithms.cpp.obj
 src/algorithms.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/src/algorithms.cpp.obj
@@ -308,6 +322,7 @@ src/algorithms.i: src/algorithms.cpp.i
 src/algorithms.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/src/algorithms.cpp.i
@@ -326,6 +341,7 @@ src/algorithms.s: src/algorithms.cpp.s
 src/algorithms.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/src/algorithms.cpp.s
@@ -344,6 +360,7 @@ src/engine.obj: src/engine.cpp.obj
 src/engine.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/src/engine.cpp.obj
@@ -362,6 +379,7 @@ src/engine.i: src/engine.cpp.i
 src/engine.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/src/engine.cpp.i
@@ -380,6 +398,7 @@ src/engine.s: src/engine.cpp.s
 src/engine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/src/engine.cpp.s
@@ -414,6 +433,30 @@ tests/algorithms/methods.s: tests/algorithms/methods.cpp.s
 tests/algorithms/methods.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/tests/algorithms/methods.cpp.s
 .PHONY : tests/algorithms/methods.cpp.s
+
+tests/manual/good1_manual.obj: tests/manual/good1_manual.cpp.obj
+.PHONY : tests/manual/good1_manual.obj
+
+# target to build an object file
+tests/manual/good1_manual.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/tests/manual/good1_manual.cpp.obj
+.PHONY : tests/manual/good1_manual.cpp.obj
+
+tests/manual/good1_manual.i: tests/manual/good1_manual.cpp.i
+.PHONY : tests/manual/good1_manual.i
+
+# target to preprocess a source file
+tests/manual/good1_manual.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/tests/manual/good1_manual.cpp.i
+.PHONY : tests/manual/good1_manual.cpp.i
+
+tests/manual/good1_manual.s: tests/manual/good1_manual.cpp.s
+.PHONY : tests/manual/good1_manual.s
+
+# target to generate assembly for a file
+tests/manual/good1_manual.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/tests/manual/good1_manual.cpp.s
+.PHONY : tests/manual/good1_manual.cpp.s
 
 tests/manual/line_completion_manual.obj: tests/manual/line_completion_manual.cpp.obj
 .PHONY : tests/manual/line_completion_manual.obj
@@ -640,6 +683,7 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... good1
+	@echo ... good1_manual
 	@echo ... good2
 	@echo ... line_completion_manual
 	@echo ... line_completion_sim
@@ -662,6 +706,9 @@ help:
 	@echo ... tests/algorithms/methods.obj
 	@echo ... tests/algorithms/methods.i
 	@echo ... tests/algorithms/methods.s
+	@echo ... tests/manual/good1_manual.obj
+	@echo ... tests/manual/good1_manual.i
+	@echo ... tests/manual/good1_manual.s
 	@echo ... tests/manual/line_completion_manual.obj
 	@echo ... tests/manual/line_completion_manual.i
 	@echo ... tests/manual/line_completion_manual.s

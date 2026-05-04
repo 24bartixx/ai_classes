@@ -1,5 +1,6 @@
 S:/Studia/6sem/AI/Laby/2/cpp/build/CMakeFiles/main.dir
 S:/Studia/6sem/AI/Laby/2/cpp/build/CMakeFiles/methods.dir
+S:/Studia/6sem/AI/Laby/2/cpp/build/CMakeFiles/good1_manual.dir
 S:/Studia/6sem/AI/Laby/2/cpp/build/CMakeFiles/line_completion_manual.dir
 S:/Studia/6sem/AI/Laby/2/cpp/build/CMakeFiles/mobility_manual.dir
 S:/Studia/6sem/AI/Laby/2/cpp/build/CMakeFiles/sides_prox_manual.dir
