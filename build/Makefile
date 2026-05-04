@@ -143,6 +143,58 @@ methods/fast:
 .PHONY : methods/fast
 
 #=============================================================================
+# Target rules for targets named line_completion_manual
+
+# Build rule for target.
+line_completion_manual: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 line_completion_manual
+.PHONY : line_completion_manual
+
+# fast build rule for target.
+line_completion_manual/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/build
+.PHONY : line_completion_manual/fast
+
+#=============================================================================
+# Target rules for targets named mobility_manual
+
+# Build rule for target.
+mobility_manual: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 mobility_manual
+.PHONY : mobility_manual
+
+# fast build rule for target.
+mobility_manual/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/build
+.PHONY : mobility_manual/fast
+
+#=============================================================================
+# Target rules for targets named sides_prox_manual
+
+# Build rule for target.
+sides_prox_manual: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sides_prox_manual
+.PHONY : sides_prox_manual
+
+# fast build rule for target.
+sides_prox_manual/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/build
+.PHONY : sides_prox_manual/fast
+
+#=============================================================================
+# Target rules for targets named line_completion_sim
+
+# Build rule for target.
+line_completion_sim: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 line_completion_sim
+.PHONY : line_completion_sim
+
+# fast build rule for target.
+line_completion_sim/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/build
+.PHONY : line_completion_sim/fast
+
+#=============================================================================
 # Target rules for targets named mobility_sim
 
 # Build rule for target.
@@ -199,6 +251,10 @@ src/algorithms.obj: src/algorithms.cpp.obj
 src/algorithms.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/algorithms.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/src/algorithms.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/src/algorithms.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj
 .PHONY : src/algorithms.cpp.obj
@@ -210,6 +266,10 @@ src/algorithms.i: src/algorithms.cpp.i
 src/algorithms.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/algorithms.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/src/algorithms.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/src/algorithms.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.i
 .PHONY : src/algorithms.cpp.i
@@ -221,6 +281,10 @@ src/algorithms.s: src/algorithms.cpp.s
 src/algorithms.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/algorithms.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/src/algorithms.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/src/algorithms.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.s
 .PHONY : src/algorithms.cpp.s
@@ -232,6 +296,10 @@ src/engine.obj: src/engine.cpp.obj
 src/engine.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/engine.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/src/engine.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/src/engine.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/engine.cpp.obj
 .PHONY : src/engine.cpp.obj
@@ -243,6 +311,10 @@ src/engine.i: src/engine.cpp.i
 src/engine.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/engine.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/src/engine.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/src/engine.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/engine.cpp.i
 .PHONY : src/engine.cpp.i
@@ -254,6 +326,10 @@ src/engine.s: src/engine.cpp.s
 src/engine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/engine.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/src/engine.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/src/engine.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/engine.cpp.s
 .PHONY : src/engine.cpp.s
@@ -281,6 +357,102 @@ tests/algorithms/methods.s: tests/algorithms/methods.cpp.s
 tests/algorithms/methods.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/tests/algorithms/methods.cpp.s
 .PHONY : tests/algorithms/methods.cpp.s
+
+tests/manual/line_completion_manual.obj: tests/manual/line_completion_manual.cpp.obj
+.PHONY : tests/manual/line_completion_manual.obj
+
+# target to build an object file
+tests/manual/line_completion_manual.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/tests/manual/line_completion_manual.cpp.obj
+.PHONY : tests/manual/line_completion_manual.cpp.obj
+
+tests/manual/line_completion_manual.i: tests/manual/line_completion_manual.cpp.i
+.PHONY : tests/manual/line_completion_manual.i
+
+# target to preprocess a source file
+tests/manual/line_completion_manual.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/tests/manual/line_completion_manual.cpp.i
+.PHONY : tests/manual/line_completion_manual.cpp.i
+
+tests/manual/line_completion_manual.s: tests/manual/line_completion_manual.cpp.s
+.PHONY : tests/manual/line_completion_manual.s
+
+# target to generate assembly for a file
+tests/manual/line_completion_manual.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/tests/manual/line_completion_manual.cpp.s
+.PHONY : tests/manual/line_completion_manual.cpp.s
+
+tests/manual/mobility_manual.obj: tests/manual/mobility_manual.cpp.obj
+.PHONY : tests/manual/mobility_manual.obj
+
+# target to build an object file
+tests/manual/mobility_manual.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/tests/manual/mobility_manual.cpp.obj
+.PHONY : tests/manual/mobility_manual.cpp.obj
+
+tests/manual/mobility_manual.i: tests/manual/mobility_manual.cpp.i
+.PHONY : tests/manual/mobility_manual.i
+
+# target to preprocess a source file
+tests/manual/mobility_manual.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/tests/manual/mobility_manual.cpp.i
+.PHONY : tests/manual/mobility_manual.cpp.i
+
+tests/manual/mobility_manual.s: tests/manual/mobility_manual.cpp.s
+.PHONY : tests/manual/mobility_manual.s
+
+# target to generate assembly for a file
+tests/manual/mobility_manual.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_manual.dir\build.make CMakeFiles/mobility_manual.dir/tests/manual/mobility_manual.cpp.s
+.PHONY : tests/manual/mobility_manual.cpp.s
+
+tests/manual/sides_prox_manual.obj: tests/manual/sides_prox_manual.cpp.obj
+.PHONY : tests/manual/sides_prox_manual.obj
+
+# target to build an object file
+tests/manual/sides_prox_manual.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/tests/manual/sides_prox_manual.cpp.obj
+.PHONY : tests/manual/sides_prox_manual.cpp.obj
+
+tests/manual/sides_prox_manual.i: tests/manual/sides_prox_manual.cpp.i
+.PHONY : tests/manual/sides_prox_manual.i
+
+# target to preprocess a source file
+tests/manual/sides_prox_manual.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/tests/manual/sides_prox_manual.cpp.i
+.PHONY : tests/manual/sides_prox_manual.cpp.i
+
+tests/manual/sides_prox_manual.s: tests/manual/sides_prox_manual.cpp.s
+.PHONY : tests/manual/sides_prox_manual.s
+
+# target to generate assembly for a file
+tests/manual/sides_prox_manual.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_manual.dir\build.make CMakeFiles/sides_prox_manual.dir/tests/manual/sides_prox_manual.cpp.s
+.PHONY : tests/manual/sides_prox_manual.cpp.s
+
+tests/simulation/line_completion_sim.obj: tests/simulation/line_completion_sim.cpp.obj
+.PHONY : tests/simulation/line_completion_sim.obj
+
+# target to build an object file
+tests/simulation/line_completion_sim.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/tests/simulation/line_completion_sim.cpp.obj
+.PHONY : tests/simulation/line_completion_sim.cpp.obj
+
+tests/simulation/line_completion_sim.i: tests/simulation/line_completion_sim.cpp.i
+.PHONY : tests/simulation/line_completion_sim.i
+
+# target to preprocess a source file
+tests/simulation/line_completion_sim.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/tests/simulation/line_completion_sim.cpp.i
+.PHONY : tests/simulation/line_completion_sim.cpp.i
+
+tests/simulation/line_completion_sim.s: tests/simulation/line_completion_sim.cpp.s
+.PHONY : tests/simulation/line_completion_sim.s
+
+# target to generate assembly for a file
+tests/simulation/line_completion_sim.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_sim.dir\build.make CMakeFiles/line_completion_sim.dir/tests/simulation/line_completion_sim.cpp.s
+.PHONY : tests/simulation/line_completion_sim.cpp.s
 
 tests/simulation/mobility_sim.obj: tests/simulation/mobility_sim.cpp.obj
 .PHONY : tests/simulation/mobility_sim.obj
@@ -338,9 +510,13 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... line_completion_manual
+	@echo ... line_completion_sim
 	@echo ... main
 	@echo ... methods
+	@echo ... mobility_manual
 	@echo ... mobility_sim
+	@echo ... sides_prox_manual
 	@echo ... sides_prox_sim
 	@echo ... main.obj
 	@echo ... main.i
@@ -354,6 +530,18 @@ help:
 	@echo ... tests/algorithms/methods.obj
 	@echo ... tests/algorithms/methods.i
 	@echo ... tests/algorithms/methods.s
+	@echo ... tests/manual/line_completion_manual.obj
+	@echo ... tests/manual/line_completion_manual.i
+	@echo ... tests/manual/line_completion_manual.s
+	@echo ... tests/manual/mobility_manual.obj
+	@echo ... tests/manual/mobility_manual.i
+	@echo ... tests/manual/mobility_manual.s
+	@echo ... tests/manual/sides_prox_manual.obj
+	@echo ... tests/manual/sides_prox_manual.i
+	@echo ... tests/manual/sides_prox_manual.s
+	@echo ... tests/simulation/line_completion_sim.obj
+	@echo ... tests/simulation/line_completion_sim.i
+	@echo ... tests/simulation/line_completion_sim.s
 	@echo ... tests/simulation/mobility_sim.obj
 	@echo ... tests/simulation/mobility_sim.i
 	@echo ... tests/simulation/mobility_sim.s

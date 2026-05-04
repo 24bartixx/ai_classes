@@ -1,4 +1,5 @@
 #include "../include/engine.h"
+#include <algorithm>
 #include <iostream>
 #include <sstream>
 #include <optional>
@@ -64,7 +65,7 @@ void Game::display() const {
 }
 
 void Game::play(bool isSimulation, bool shouldLog, int iterations) {
-    std::cout << "PLAYING GAME" << std::endl;
+    std::cout << "\n===== PLAYING GAME =====" << std::endl;
     
     char currentPlayer = 'W';
     int i = 0;
@@ -94,7 +95,7 @@ void Game::play(bool isSimulation, bool shouldLog, int iterations) {
 
                 for(int i = 0; i < legalMoves.size(); i++) {
                     const Move& move = legalMoves[i];
-                    cout << "\t" << i + 1 << ":\t" << move.first.first << ", " << move.first.second << ") -> ("
+                    cout << "\t" << i + 1 << ":\t(" << move.first.first << ", " << move.first.second << ") -> ("
                          << move.second.first << ", " << move.second.second << ")\n";
                 }
 
@@ -137,5 +138,13 @@ void Game::play(bool isSimulation, bool shouldLog, int iterations) {
             display();
         }
 
+    }
+
+    if(!isSimulation && isOver(board)) {
+        if(count(board[0].begin(), board[0].end(), 'W') > 0) {
+            cout << "\nYou win! White reached the opposite side.\n";
+        } else if(count(board[board.size() - 1].begin(), board[board.size() - 1].end(), 'B') > 0) {
+            cout << "\nAI wins! Black reached the opposite side.\n";
+        }
     }
 }

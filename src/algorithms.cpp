@@ -79,6 +79,11 @@ int minimax(Board& board, int depth, const HeuristicWeights& heuristicWeights, c
     return 0;
 }
 
+// ===== IMPORTANCE =====
+// High: SIDES_PROXIMITY
+// Medium: 
+// Low: MOBILITY, LINE_COMPLETION
+
 int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
 
     // COMMON
@@ -92,61 +97,149 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
         {2, 1}
     };
 
+    int sidesWeight = heuristicWeights.getSidesProximityWeight();
     int sidesScore = 0;
 
     // MOBILITY 
+    int mobilityWeight = heuristicWeights.getMobilityWeight();
     int mobilityScore = 0;
 
+    // LINE COMPLETION
+    int lineCompletionWeight = heuristicWeights.getLineCompletionWeight();
+    int lineCompletionScore = 0;
+
+    if(sidesWeight > 0 || mobilityWeight > 0) {
+        for(int i = 0; i < board.size(); i++) {
+            for(int j = 0; j < board[i].size(); j++) {
+
+                char cell = board[i][j];
+
+                
+                if(cell == 'B' || cell == 'W') {
+                    // SIDES PROXIMITY
+                    if(sidesWeight > 0) {
+                        int sizeDist = min(i, colSize - 1 - i);
+
+                        int cellScore = (sizeDist <= 2) 
+                            ? sidesProximityWeights[sizeDist] 
+                            : 0;
+
+                        if(cell == 'B') sidesScore += cellScore;
+                        else sidesScore -= cellScore;
+                    }
+
+                    // MOBILITY 
+                    if(mobilityWeight > 0) {
+                        int direction = (cell == 'B') ? 1 : -1;
+                        int toRow = i + direction;
+
+                        if (toRow >= 0 && toRow < rowSize) {
+
+                        // Forward
+                            if (board[toRow][j] == '_') {
+                                if(cell == 'W') mobilityScore++;
+                                else mobilityScore--;
+                            }
+
+                            // Left
+                            if (j - 1 >= 0 && board[toRow][j - 1] != 'o' && board[toRow][j - 1] != cell) {
+                                if(cell == 'W') mobilityScore++;
+                                else mobilityScore--;
+                            }
+
+                            // Right
+                            if (j + 1 < colSize && board[toRow][j + 1] != 'o' && board[toRow][j + 1] != cell) {
+                                if(cell == 'W') mobilityScore++;
+                                else mobilityScore--;
+                            }
+                        }
+                    }
+                } 
+            }
+        }
+    }
     
-    for(int i = 0; i < board.size(); i++) {
-        for(int j = 0; j < board[i].size(); j++) {
-
-            char cell = board[i][j];
-
-            
-            if(cell == 'B' || cell == 'W') {
-                // SIDES PROXIMITY
-                int sizeDist = min(i, colSize - 1 - i);
-
-                int cellScore = (sizeDist <= 2) 
-                    ? sidesProximityWeights[sizeDist] 
-                    : 0;
-
-                if(cell == 'B') sidesScore += cellScore;
-                else sidesScore -= cellScore;
-
-                // MOBILITY 
-                int direction = (cell == 'B') ? 1 : -1;
-                int toRow = i + direction;
-
-                if (toRow >= 0 && toRow < rowSize) {
-
-                    // Forward
-                    if (board[toRow][j] == '_') {
-                        if(cell == 'W') mobilityScore++;
-                        else mobilityScore--;
+    if(lineCompletionWeight > 0) {
+        // check rows
+        int i = 0;
+        while (i < board.size()) {
+            int j = 0;
+            while (j < board[i].size() - 2) {
+                if(board[i][j] == 'W') {
+                    if(board[i][j + 1] == 'W' && board[i][j + 2] == 'W') {
+                        lineCompletionScore += 1;
                     }
-
-                    // Left
-                    if (j - 1 >= 0 && board[toRow][j - 1] != 'o' && board[toRow][j - 1] != cell) {
-                        if(cell == 'W') mobilityScore++;
-                        else mobilityScore--;
-                    }
-
-                    // Right
-                    if (j + 1 < colSize && board[toRow][j + 1] != 'o' && board[toRow][j + 1] != cell) {
-                        if(cell == 'W') mobilityScore++;
-                        else mobilityScore--;
-                    }
+                } else if(board[i][j] == 'B') {
+                    if(board[i][j + 1] == 'B' && board[i][j + 2] == 'B') {
+                        lineCompletionScore -= 1;
+                    } 
                 }
-            } 
+                j++;
+            }
+            i++;
+        }
 
-            
+        // check columns 
+        i = 0;
+        while (i < board[0].size()) {
+            int j = 0;
+            while (j < board.size() - 2) {
+                if(board[j][i] == 'W') {
+                    if(board[j + 1][i] == 'W' && board[j + 2][i] == 'W') {
+                        lineCompletionScore += 1;
+                    }
+                } else if(board[j][i] == 'B') {
+                    if(board[j + 1][i] == 'B' && board[j + 2][i] == 'B') {
+                        lineCompletionScore -= 1;
+                    } 
+                }
+                j++;
+            }
+            i++;
+        }
+        
+        // check top-left to bottom-right
+        i = 0;
+        while(i < board.size() - 2) {
+            int j = 0;
+            while(j < board[i].size() - 2) {
+                if(board[i][j] == 'W') {
+                    if(board[i + 1][j + 1] == 'W' && board[i + 2][j + 2] == 'W') {
+                        lineCompletionScore += 1;
+                    }
+                } else if(board[i][j] == 'B') {
+                    if(board[i + 1][j + 1] == 'B' && board[i + 2][j + 2] == 'B') {
+                        lineCompletionScore -= 1;
+                    } 
+                }
+                j++;
+            }
+            i++;
+        }
+
+        // check top-right to bottom-left
+        i = 0;
+        while(i < board.size() - 2) {
+            int j = board[i].size() - 1;
+            while(j > 1) {
+                if(board[i][j] == 'W') {
+                    if(board[i + 1][j - 1] == 'W' && board[i + 2][j - 2] == 'W') {
+                        lineCompletionScore += 1;
+                    }
+                } else if(board[i][j] == 'B') {
+                    if(board[i + 1][j - 1] == 'B' && board[i + 2][j - 2] == 'B') {
+                        lineCompletionScore -= 1;
+                    } 
+                }
+                j--;
+            }
+            i++;
         }
     }
 
-    return heuristicWeights.getSidesProximityWeight() * sidesScore 
-         + heuristicWeights.getMobilityWeight() * mobilityScore;
+    return sidesWeight * sidesScore 
+         + mobilityWeight * mobilityScore 
+         + lineCompletionWeight * lineCompletionScore;
 }
 
 bool isOver(const Board& board) {

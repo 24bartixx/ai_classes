@@ -119,6 +119,14 @@ CMakeFiles/main.dir/src/engine.cpp.obj: \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/nested_exception.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/enable_special_members.h \
  S:/Studia/6sem/AI/Laby/2/cpp/include/heuristics.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/algorithm \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_algo.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_heap.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/uniform_int_dist.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_tempbuf.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/execution_defs.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iostream \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ostream \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ostream.h \
