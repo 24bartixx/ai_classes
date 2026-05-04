@@ -125,8 +125,10 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
     int lineCompletionScore = 0;
 
     // CENTER PROXIMITY
-    int rowCenter = rowSize / 2;
-    int colCenter = colSize / 2;
+    double rowCenter = (rowSize - 1) / 2.0;
+    double colCenter = (colSize - 1) / 2.0;
+
+    double maxDist = hypot(rowCenter, colCenter);
 
     int centerProximityWeight = heuristicWeights.getCenterProximityWeight();
     double centerProximityScore = 0;
@@ -195,19 +197,13 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
                 
                     // CENTER PROXIMITY
                     if(centerProximityWeight > 0) {
-                        int normalizedI = i;
-                        int normalizedJ = j;
-
-                        if(i > rowCenter) normalizedI = rowSize - 1 - i;
-                        if(j > colCenter) normalizedJ = colSize - 1 - j;
-
-                        // euclidean distance
-                        double dist = hypot(rowCenter - normalizedI, colCenter - normalizedJ);
+                        double dist = hypot(rowCenter - i, colCenter - j);
+                        double proximity = maxDist - dist;
                         
                         if(cell == 'W') {
-                            centerProximityScore -= dist;
+                            centerProximityScore += proximity;
                         } else {
-                            centerProximityScore += dist;
+                            centerProximityScore -= proximity;
                         }
                     }
 
