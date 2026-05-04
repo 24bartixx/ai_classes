@@ -3,13 +3,18 @@
 
 CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/algorithms.cpp \
   S:/Studia/6sem/AI/Laby/2/cpp/include/algorithms.h \
+  S:/Studia/6sem/AI/Laby/2/cpp/include/engine.h \
+  S:/Studia/6sem/AI/Laby/2/cpp/include/heuristics.h \
+  S:/Studia/6sem/AI/Laby/2/cpp/include/types.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw_mac.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw_off_t.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw_secapi.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw_stat64.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/algorithm \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/backward/binders.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bit \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/alloc_traits.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/allocator.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_string.h \
@@ -19,8 +24,12 @@ CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/c
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/concept_check.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cpp_type_traits.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cxxabi_forced.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cxxabi_init_exception.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/enable_special_members.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/erase_if.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception_defines.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception_ptr.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/functexcept.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/functional_hash.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/hash_bytes.h \
@@ -29,7 +38,9 @@ CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/c
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/memory_resource.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/memoryfwd.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/move.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/nested_exception.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/new_allocator.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/node_handle.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ostream_insert.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/postypes.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/predefined_ops.h \
@@ -38,19 +49,26 @@ CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/c
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/refwrap.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/requires_hosted.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/std_abs.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_algo.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_algobase.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_bvector.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_construct.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_function.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_heap.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_iterator.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_iterator_base_funcs.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_iterator_base_types.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_map.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_multimap.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_pair.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_relops.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_tempbuf.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_tree.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_uninitialized.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_vector.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/string_view.tcc \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stringfwd.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/uniform_int_dist.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/uses_allocator.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/uses_allocator_args.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/utility.h \
@@ -67,19 +85,27 @@ CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/c
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cwchar \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/debug/assertions.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/debug/debug.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/exception \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/aligned_buffer.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/alloc_traits.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/numeric_traits.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/string_conversions.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/type_traits.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/initializer_list \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iosfwd \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/map \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/new \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/optional \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/execution_defs.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/pstl_config.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/stdexcept \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/stdlib.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/string \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/string_view \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tuple \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/type_traits \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/typeinfo \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/utility \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/vector \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
@@ -116,6 +142,8 @@ CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/c
 CMakeFiles/sides_prox_sim.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engine.cpp \
   S:/Studia/6sem/AI/Laby/2/cpp/include/algorithms.h \
   S:/Studia/6sem/AI/Laby/2/cpp/include/engine.h \
+  S:/Studia/6sem/AI/Laby/2/cpp/include/heuristics.h \
+  S:/Studia/6sem/AI/Laby/2/cpp/include/types.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw_mac.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw_off_t.h \
@@ -136,6 +164,7 @@ CMakeFiles/sides_prox_sim.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/s
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cpp_type_traits.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cxxabi_forced.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cxxabi_init_exception.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/enable_special_members.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception_defines.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception_ptr.h \
@@ -209,6 +238,7 @@ CMakeFiles/sides_prox_sim.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/s
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iostream \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/istream \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/new \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/optional \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ostream \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/pstl_config.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/sstream \
@@ -277,6 +307,8 @@ CMakeFiles/sides_prox_sim.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/s
 CMakeFiles/sides_prox_sim.dir/tests/simulation/sides_prox_sim.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/tests/simulation/sides_prox_sim.cpp \
   S:/Studia/6sem/AI/Laby/2/cpp/include/algorithms.h \
   S:/Studia/6sem/AI/Laby/2/cpp/include/engine.h \
+  S:/Studia/6sem/AI/Laby/2/cpp/include/heuristics.h \
+  S:/Studia/6sem/AI/Laby/2/cpp/include/types.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw_mac.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw_off_t.h \
@@ -297,6 +329,7 @@ CMakeFiles/sides_prox_sim.dir/tests/simulation/sides_prox_sim.cpp.obj: S:/Studia
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cpp_type_traits.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cxxabi_forced.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cxxabi_init_exception.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/enable_special_members.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception_defines.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception_ptr.h \
@@ -369,6 +402,7 @@ CMakeFiles/sides_prox_sim.dir/tests/simulation/sides_prox_sim.cpp.obj: S:/Studia
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iostream \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/istream \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/new \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/optional \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ostream \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/pstl_config.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/stdexcept \
@@ -442,21 +476,27 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h:
 
 S:/dev/app/MSYS2/ucrt64/include/_mingw_mac.h:
 
+S:/Studia/6sem/AI/Laby/2/cpp/include/types.h:
+
+S:/Studia/6sem/AI/Laby/2/cpp/include/heuristics.h:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_inline.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/stdexcept:
 
 S:/Studia/6sem/AI/Laby/2/cpp/src/algorithms.cpp:
 
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bit:
-
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/backward/binders.h:
-
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/range_access.h:
 
 S:/Studia/6sem/AI/Laby/2/cpp/include/algorithms.h:
 
-S:/dev/app/MSYS2/ucrt64/include/_mingw_secapi.h:
+S:/dev/app/MSYS2/ucrt64/include/sec_api/wchar_s.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/version.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_string.tcc:
+
+S:/Studia/6sem/AI/Laby/2/cpp/include/engine.h:
 
 S:/dev/app/MSYS2/ucrt64/include/sec_api/stdlib_s.h:
 
@@ -468,31 +508,39 @@ S:/dev/app/MSYS2/ucrt64/include/vadefs.h:
 
 S:/dev/app/MSYS2/ucrt64/include/_mingw.h:
 
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/charconv.h:
-
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cerrno:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/charconv.h:
 
 S:/dev/app/MSYS2/ucrt64/include/_mingw_off_t.h:
 
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/concepts:
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_multimap.h:
 
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/clocale:
+S:/dev/app/MSYS2/ucrt64/include/_mingw_secapi.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_map.h:
 
 S:/dev/app/MSYS2/ucrt64/include/_mingw_stat64.h:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdlib:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/algorithm:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bit:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/backward/binders.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/alloc_traits.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/allocator.h:
 
 S:/dev/app/MSYS2/ucrt64/include/swprintf.inl:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_string.h:
-
-S:/dev/app/MSYS2/ucrt64/include/sec_api/wchar_s.h:
-
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_string.tcc:
-
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/version.h:
 
 S:/dev/app/MSYS2/ucrt64/include/sec_api/wconio_s.h:
 
@@ -505,6 +553,18 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cpp_type_traits.h:
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/functexcept.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cxxabi_forced.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cxxabi_init_exception.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_bvector.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_facets.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/enable_special_members.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception_ptr.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/erase_if.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception.h:
 
@@ -526,6 +586,8 @@ S:/dev/app/MSYS2/ucrt64/include/time.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cctype:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/node_handle.h:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/localefwd.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_algobase.h:
@@ -534,7 +596,11 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/memory_resource.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/move.h:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/nested_exception.h:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/new_allocator.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_tempbuf.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/predefined_ops.h:
 
@@ -548,25 +614,33 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_function.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/std_abs.h:
 
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_bvector.h:
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_algo.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_construct.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_heap.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_iterator.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_iterator_base_funcs.h:
 
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/uses_allocator.h:
-
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_iterator_base_types.h:
 
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/string_view.tcc:
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_tree.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_uninitialized.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_vector.h:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/string_view.tcc:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stringfwd.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/uniform_int_dist.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/uses_allocator.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/uses_allocator_args.h:
 
@@ -578,19 +652,25 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/vector:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits:
 
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdlib:
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/clocale:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/concepts:
 
 S:/dev/app/MSYS2/ucrt64/include/stdlib.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstddef:
 
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdio:
-
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cwchar:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdio:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/debug/assertions.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/debug/debug.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/exception:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/aligned_buffer.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/alloc_traits.h:
 
@@ -604,7 +684,13 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/initializer_list:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iosfwd:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/map:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/new:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/optional:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/execution_defs.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/istream.tcc:
 
@@ -620,6 +706,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tuple:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/type_traits:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/typeinfo:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/utility:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h:
@@ -627,8 +715,6 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h:
-
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_classes.h:
 
@@ -678,27 +764,17 @@ S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stddef.h:
 
 S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/syslimits.h:
 
-S:/Studia/6sem/AI/Laby/2/cpp/include/engine.h:
-
 S:/dev/app/MSYS2/ucrt64/include/_timeval.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_ios.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_ios.tcc:
 
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cxxabi_init_exception.h:
-
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception_ptr.h:
-
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ios_base.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_classes.tcc:
 
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_facets.h:
-
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/locale_facets.tcc:
-
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/nested_exception.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ostream.h:
 
@@ -709,8 +785,6 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/streambuf.tcc:
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/streambuf_iterator.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cwctype:
-
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/exception:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/atomicity.h:
 
@@ -727,8 +801,6 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/sstream:
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/streambuf:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/system_error:
-
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/typeinfo:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/atomic_word.h:
 

@@ -16,6 +16,9 @@ int main() {
     Game game(INITIAL_BOARD, 3, 1, 1);
 
     game.display();
+
+    // iterations, isSimulation, shouldLog
+    game.play(true, true);
     
     return 0;
 }

@@ -1,5 +1,5 @@
-CMakeFiles/main.dir/src/engine.cpp.obj: \
- S:\Studia\6sem\AI\Laby\2\cpp\src\engine.cpp \
+CMakeFiles/methods.dir/tests/algorithms/methods.cpp.obj: \
+ S:\Studia\6sem\AI\Laby\2\cpp\tests\algorithms\methods.cpp \
  S:/Studia/6sem/AI/Laby/2/cpp/include/engine.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/vector \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/requires_hosted.h \
@@ -119,6 +119,7 @@ CMakeFiles/main.dir/src/engine.cpp.obj: \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/nested_exception.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/enable_special_members.h \
  S:/Studia/6sem/AI/Laby/2/cpp/include/heuristics.h \
+ S:/Studia/6sem/AI/Laby/2/cpp/include/algorithms.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iostream \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ostream \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ostream.h \
@@ -160,6 +161,4 @@ CMakeFiles/main.dir/src/engine.cpp.obj: \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_ios.tcc \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ostream.tcc \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/istream \
- S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/istream.tcc \
- S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/sstream \
- S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/sstream.tcc
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/istream.tcc

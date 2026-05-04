@@ -1,26 +1,192 @@
-#include "../include/algorithms.h"
-#include <climits>
 
-Move get_best_move(const Board& board, int depth, int heuristic_mode, char player_color) {
-    // TODO: Implement get_best_move logic
-    return Move();
+#include "../include/algorithms.h"
+#include "../include/engine.h"
+
+#include <algorithm>
+#include <climits>
+#include <stdexcept>
+#include <algorithm>
+#include <map>
+
+using namespace std;
+
+optional<Move> getBestMove(Board& board, int depth, char player_color) {
+    Move bestMove;
+    int maxEval = INT_MIN;
+
+    vector<Move> legalMoves = getLegalMoves(board, player_color);
+    if(legalMoves.empty()) {
+        return nullopt;
+    }
+
+    for(const Move& move : legalMoves) {
+        Board tempBoard = board;
+        makeMove(tempBoard, move);
+
+        int eval = minimax(tempBoard, depth - 1, HeuristicWeights{1,1,1}, player_color, false);
+        if(eval > maxEval) {
+            maxEval = eval;
+            bestMove = move;
+        }
+    }
+
+
+    return bestMove;
 }
 
-int minimax(Board board, int depth, bool is_maximizing_player, int heuristic_mode, char maximizing_for, int alpha, int beta) {
-    // TODO: Implement minimax logic
+int minimax(Board& board, int depth, const HeuristicWeights& heuristicWeights, char maximizing_for, bool isMaximizingPlayer, int alpha, int beta) {
+    
+    if(isOver(board) || depth == 0) {
+        return evaluate(board, heuristicWeights);
+    }
+
+    if(isMaximizingPlayer) {
+        int maxEval = INT_MIN;
+        vector<Move> legalMoves = getLegalMoves(board, maximizing_for);
+        
+        for(const Move& move : legalMoves) {
+            Board tempBoard = board;
+            makeMove(tempBoard, move);
+
+            int eval = minimax(tempBoard, depth - 1, heuristicWeights, maximizing_for, false, alpha, beta);
+            maxEval = max(maxEval, eval);
+
+            alpha = max(alpha, eval);
+            if(beta <= alpha) break;
+        }
+
+        return maxEval;
+
+    } else {
+        int minEval = INT_MAX;
+        char minimizing_for = (maximizing_for == 'B') ? 'W' : 'B';
+
+        vector<Move> legalMoves = getLegalMoves(board, minimizing_for);
+        for(const Move& move : legalMoves) {
+            Board tempBoard = board; 
+            makeMove(tempBoard, move);
+
+            int eval = minimax(tempBoard, depth - 1, heuristicWeights, maximizing_for, true, alpha, beta);
+            minEval = min(minEval, eval);
+
+            beta = min(beta, eval);
+            if(beta <= alpha) break; 
+            
+        }
+        return minEval;
+    }
+
     return 0;
 }
 
-bool is_over(const Board& board) {
-    // TODO: Implement is_over logic
+int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
+
+    // COMMON
+    int colSize = board[0].size();
+    int rowSize = board.size();
+
+    // SIDES PROXIMITY
+    map<int, int> proximity_weights = {
+        {0, 4},
+        {1, 2},
+        {2, 1}
+    };
+
+    int sidesScore = 0;
+    
+    for(int i = 0; i < board.size(); i++) {
+        for(int j = 0; j < board[i].size(); j++) {
+            // SIDES PROXIMITY
+            if(board[i][j] == 'B' || board[i][j] == 'W') {
+                int sizeDist = min(i, colSize - 1 - i);
+
+                int cellScore = (sizeDist <= 2) 
+                    ? proximity_weights[sizeDist] 
+                    : 0;
+
+                if(board[i][j] == 'B') sidesScore += cellScore;
+                else sidesScore -= cellScore;
+            } 
+        }
+    }
+
+    return heuristicWeights.getSidesProximityWeight() * sidesScore;
+}
+
+bool isOver(const Board& board) {
+    if(count(board[0].begin(), board[0].end(), 'W') > 0 ||
+        count(board[board.size() - 1].begin(), board[board.size() - 1].end(), 'B') > 0) {
+            return true;
+    }
     return false;
 }
 
-std::vector<Move> get_legal_moves(const Board& board, char player_color) {
-    // TODO: Implement get_legal_moves logic
-    return {};
+vector<Move> getLegalMoves(const Board& board, char playerColor) {
+    if (playerColor != 'B' && playerColor != 'W') {
+        throw invalid_argument("Invalid player color. Must be 'B' or 'W'.");
+    }
+
+    vector<Move> legalMoves;
+    const int rowsCount = board.size();
+    const int colCount = rowsCount > 0 ? board[0].size() : 0;
+
+    int direction = 1;
+    if (playerColor == 'W') {
+        direction = -1;
+    }   
+
+    char enemy = (playerColor == 'B') ? 'W' : 'B';
+
+    for(int row = 0; row < rowsCount; row++) {
+        for(int col = 0; col < colCount; col++) {
+            if (board[row][col] == playerColor) {
+
+                int toRow = row + direction;
+
+                if (toRow >= 0 && toRow < rowsCount) {
+
+                    // Forward
+                    if (board[toRow][col] == '_') {
+                        legalMoves.push_back({{row, col}, {toRow, col}});
+                    }
+
+                    // Left
+                    if (col - 1 >= 0 && (board[toRow][col - 1] == '_' || board[toRow][col - 1] == enemy)) {
+                        legalMoves.push_back({{row, col}, {toRow, col - 1}});
+                    }
+                    // Check right diagonal
+                    if (col + 1 < colCount && (board[toRow][col + 1] == '_' || board[toRow][col + 1] == enemy)) {
+                        legalMoves.push_back({{row, col}, {toRow, col + 1}});
+                    }
+                }
+            }
+        }
+    }
+
+    return legalMoves;
 }
 
-void make_move(Board& board, const Move& move) {
-    // TODO: Implement make_move logic
+void makeMove(Board& board, const Move& move) {
+    const int fromRow = move.first.first;
+    const int fromCol = move.first.second;
+    const int toRow = move.second.first;
+    const int toCol = move.second.second;
+
+    if(
+        !(fromRow >= 0 
+            && fromRow < board.size() 
+            && fromCol >= 0 
+            && fromCol < board[0].size() 
+            && toRow >= 0 && toRow < board.size() 
+            && toCol >= 0 && toCol < board[0].size())) {
+        throw invalid_argument("Move is out of board bounds.");
+    }
+
+    char piece = board[fromRow][fromCol];
+    if(piece != 'B' && piece != 'W') {
+        throw invalid_argument("No piece at the source position.");
+    }
+
+    board[toRow][toCol] = piece;
+    board[fromRow][fromCol] = '_';
 }

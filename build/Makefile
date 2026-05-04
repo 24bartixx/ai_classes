@@ -129,6 +129,19 @@ main/fast:
 .PHONY : main/fast
 
 #=============================================================================
+# Target rules for targets named methods
+
+# Build rule for target.
+methods: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 methods
+.PHONY : methods
+
+# fast build rule for target.
+methods/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/build
+.PHONY : methods/fast
+
+#=============================================================================
 # Target rules for targets named sides_prox_sim
 
 # Build rule for target.
@@ -171,6 +184,7 @@ src/algorithms.obj: src/algorithms.cpp.obj
 # target to build an object file
 src/algorithms.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj
 .PHONY : src/algorithms.cpp.obj
 
@@ -180,6 +194,7 @@ src/algorithms.i: src/algorithms.cpp.i
 # target to preprocess a source file
 src/algorithms.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.i
 .PHONY : src/algorithms.cpp.i
 
@@ -189,6 +204,7 @@ src/algorithms.s: src/algorithms.cpp.s
 # target to generate assembly for a file
 src/algorithms.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.s
 .PHONY : src/algorithms.cpp.s
 
@@ -198,6 +214,7 @@ src/engine.obj: src/engine.cpp.obj
 # target to build an object file
 src/engine.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/engine.cpp.obj
 .PHONY : src/engine.cpp.obj
 
@@ -207,6 +224,7 @@ src/engine.i: src/engine.cpp.i
 # target to preprocess a source file
 src/engine.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/engine.cpp.i
 .PHONY : src/engine.cpp.i
 
@@ -216,8 +234,33 @@ src/engine.s: src/engine.cpp.s
 # target to generate assembly for a file
 src/engine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/engine.cpp.s
 .PHONY : src/engine.cpp.s
+
+tests/algorithms/methods.obj: tests/algorithms/methods.cpp.obj
+.PHONY : tests/algorithms/methods.obj
+
+# target to build an object file
+tests/algorithms/methods.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/tests/algorithms/methods.cpp.obj
+.PHONY : tests/algorithms/methods.cpp.obj
+
+tests/algorithms/methods.i: tests/algorithms/methods.cpp.i
+.PHONY : tests/algorithms/methods.i
+
+# target to preprocess a source file
+tests/algorithms/methods.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/tests/algorithms/methods.cpp.i
+.PHONY : tests/algorithms/methods.cpp.i
+
+tests/algorithms/methods.s: tests/algorithms/methods.cpp.s
+.PHONY : tests/algorithms/methods.s
+
+# target to generate assembly for a file
+tests/algorithms/methods.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/tests/algorithms/methods.cpp.s
+.PHONY : tests/algorithms/methods.cpp.s
 
 tests/simulation/sides_prox_sim.obj: tests/simulation/sides_prox_sim.cpp.obj
 .PHONY : tests/simulation/sides_prox_sim.obj
@@ -252,6 +295,7 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... main
+	@echo ... methods
 	@echo ... sides_prox_sim
 	@echo ... main.obj
 	@echo ... main.i
@@ -262,6 +306,9 @@ help:
 	@echo ... src/engine.obj
 	@echo ... src/engine.i
 	@echo ... src/engine.s
+	@echo ... tests/algorithms/methods.obj
+	@echo ... tests/algorithms/methods.i
+	@echo ... tests/algorithms/methods.s
 	@echo ... tests/simulation/sides_prox_sim.obj
 	@echo ... tests/simulation/sides_prox_sim.i
 	@echo ... tests/simulation/sides_prox_sim.s

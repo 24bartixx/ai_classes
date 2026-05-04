@@ -2,21 +2,28 @@
 #ifndef ALGORITHMS_H
 #define ALGORITHMS_H
 
+
+#include <optional>
 #include <vector>
 #include <utility>
 #include <string>
+#include "heuristics.h"
+#include "types.h"
 
-using Board = std::vector<std::vector<char>>;
-using Move = std::pair<std::pair<int, int>, std::pair<int, int>>;
+using namespace std;
 
-Move get_best_move(const Board& board, int depth, int heuristic_mode, char player_color);
+class Game;
 
-int minimax(Board board, int depth, bool is_maximizing_player, int heuristic_mode, char maximizing_for, int alpha = INT_MIN, int beta = INT_MAX);
+optional<Move> getBestMove(Board& board, int depth, char player_color);
 
-bool is_over(const Board& board);
+int minimax(Board& board, int depth, const HeuristicWeights& heuristicWeights, char maximizing_for, bool isMaximizingPlayer, int alpha = INT_MIN, int beta = INT_MAX);
 
-std::vector<Move> get_legal_moves(const Board& board, char player_color);
+int evaluate(Board& board, const HeuristicWeights& heuristicWeights);
 
-void make_move(Board& board, const Move& move);
+bool isOver(const Board& board);
+
+vector<Move> getLegalMoves(const Board& board, char player_color);
+
+void makeMove(Board& board, const Move& move);
 
 #endif 

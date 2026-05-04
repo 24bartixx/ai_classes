@@ -107,18 +107,22 @@ CMakeFiles/sides_prox_sim.dir/tests/simulation/sides_prox_sim.cpp.obj: \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cerrno \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/charconv.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_string.tcc \
- S:/Studia/6sem/AI/Laby/2/cpp/include/algorithms.h \
+ S:/Studia/6sem/AI/Laby/2/cpp/include/types.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/utility \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_relops.h \
- S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iostream \
- S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ostream \
- S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ostream.h \
- S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ios \
+ S:/Studia/6sem/AI/Laby/2/cpp/include/algorithms.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/optional \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/exception \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception_ptr.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/cxxabi_init_exception.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/typeinfo \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/nested_exception.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/enable_special_members.h \
+ S:/Studia/6sem/AI/Laby/2/cpp/include/heuristics.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iostream \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ostream \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ostream.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ios \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ios_base.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/atomicity.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr.h \
