@@ -64,12 +64,14 @@ CMAKE_BINARY_DIR = S:\Studia\6sem\AI\Laby\2\cpp\build
 # The main recursive "all" target.
 all: CMakeFiles/main.dir/all
 all: CMakeFiles/methods.dir/all
+all: CMakeFiles/mobility_sim.dir/all
 all: CMakeFiles/sides_prox_sim.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/main.dir/codegen
 codegen: CMakeFiles/methods.dir/codegen
+codegen: CMakeFiles/mobility_sim.dir/codegen
 codegen: CMakeFiles/sides_prox_sim.dir/codegen
 .PHONY : codegen
 
@@ -80,6 +82,7 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/main.dir/clean
 clean: CMakeFiles/methods.dir/clean
+clean: CMakeFiles/mobility_sim.dir/clean
 clean: CMakeFiles/sides_prox_sim.dir/clean
 .PHONY : clean
 
@@ -148,13 +151,45 @@ CMakeFiles/methods.dir/clean:
 .PHONY : CMakeFiles/methods.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/mobility_sim.dir
+
+# All Build rule for target.
+CMakeFiles/mobility_sim.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=9,10,11,12 "Built target mobility_sim"
+.PHONY : CMakeFiles/mobility_sim.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/mobility_sim.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/mobility_sim.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles 0
+.PHONY : CMakeFiles/mobility_sim.dir/rule
+
+# Convenience name for target.
+mobility_sim: CMakeFiles/mobility_sim.dir/rule
+.PHONY : mobility_sim
+
+# codegen rule for target.
+CMakeFiles/mobility_sim.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=9,10,11,12 "Finished codegen for target mobility_sim"
+.PHONY : CMakeFiles/mobility_sim.dir/codegen
+
+# clean rule for target.
+CMakeFiles/mobility_sim.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/clean
+.PHONY : CMakeFiles/mobility_sim.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/sides_prox_sim.dir
 
 # All Build rule for target.
 CMakeFiles/sides_prox_sim.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=9,10,11,12 "Built target sides_prox_sim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=13,14,15,16 "Built target sides_prox_sim"
 .PHONY : CMakeFiles/sides_prox_sim.dir/all
 
 # Build rule for subdir invocation for target.
@@ -171,7 +206,7 @@ sides_prox_sim: CMakeFiles/sides_prox_sim.dir/rule
 # codegen rule for target.
 CMakeFiles/sides_prox_sim.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=9,10,11,12 "Finished codegen for target sides_prox_sim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles --progress-num=13,14,15,16 "Finished codegen for target sides_prox_sim"
 .PHONY : CMakeFiles/sides_prox_sim.dir/codegen
 
 # clean rule for target.
@@ -186,6 +221,7 @@ CMakeFiles/sides_prox_sim.dir/clean:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+	$(CMAKE_COMMAND) -P S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles\VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

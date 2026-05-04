@@ -14,7 +14,7 @@ using namespace std;
 
 class Game;
 
-optional<Move> getBestMove(Board& board, int depth, char player_color);
+optional<Move> getBestMove(Board& board, int depth, const HeuristicWeights& heuristicWeights, char player_color);
 
 int minimax(Board& board, int depth, const HeuristicWeights& heuristicWeights, char maximizing_for, bool isMaximizingPlayer, int alpha = INT_MIN, int beta = INT_MAX);
 

@@ -3,14 +3,12 @@
 #include <sstream>
 #include <optional>
 
-Game::Game(const std::string& boardString, int depth, int opponent_heuristic_mode, int player_heuristic_mode) {
-    this->depth = depth;
-    this->opponentHeuristicMode = opponent_heuristic_mode;
-    this->playerHeuristicMode = player_heuristic_mode;
-
-    this->rowsCount = 0;
-    this->colCount = 0;
-
+Game::Game(const std::string& boardString, int depth, const HeuristicWeights& playerHeuristicWeights, const HeuristicWeights& opponentHeuristicWeights)
+    : depth(depth),
+      opponentHeuristicWeights(opponentHeuristicWeights),
+      playerHeuristicWeights(playerHeuristicWeights),
+      rowsCount(0),
+      colCount(0) {
     int i = 0;
     while (i < boardString.size()) {
         std::vector<char> row;
@@ -76,7 +74,7 @@ void Game::play(bool isSimulation, bool shouldLog, int iterations) {
 
             optional<Move> nextMove;
             if(isSimulation) {
-                nextMove = getBestMove(board, depth, currentPlayer);
+                nextMove = getBestMove(board, depth, playerHeuristicWeights, currentPlayer);
 
                 if(!nextMove.has_value())  {
                     std::cout << "\nNo legal moves available for White.\nGame over!";
@@ -120,7 +118,7 @@ void Game::play(bool isSimulation, bool shouldLog, int iterations) {
                 cout << "\nWaiting for AI to make its move...\n";
             }
 
-            optional<Move> nextMove = getBestMove(board, depth, 'B');
+            optional<Move> nextMove = getBestMove(board, depth, opponentHeuristicWeights, 'B');
 
             if(!nextMove.has_value()) {
                 cout << "\nNo legal moves available for Black.\nGame over!\n";

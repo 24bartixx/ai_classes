@@ -1,0 +1,3 @@
+S:\dev\apps\CMake\bin\cmake.exe -E rm -f CMakeFiles\mobility_sim.dir/objects.a
+S:\dev\app\MSYS2\ucrt64\bin\ar.exe qc CMakeFiles\mobility_sim.dir/objects.a @CMakeFiles\mobility_sim.dir\objects1.rsp
+S:\dev\app\MSYS2\ucrt64\bin\c++.exe -Wl,--whole-archive CMakeFiles\mobility_sim.dir/objects.a -Wl,--no-whole-archive -o mobility_sim.exe -Wl,--out-implib,libmobility_sim.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\mobility_sim.dir\linkLibs.rsp

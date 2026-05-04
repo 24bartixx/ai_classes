@@ -17,7 +17,7 @@ int main() {
         "W W W W W W W W\n"
         "W W W W W W W W\n";
 
-    Game game(INITIAL_BOARD, 3, 1, 1);
+    Game game(INITIAL_BOARD, 3, HeuristicWeights{1, 1, 1}, HeuristicWeights{1, 1, 1});
     cout << "Initial board :" << endl; // hej tu Oleńka
     game.display();
 

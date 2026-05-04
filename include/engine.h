@@ -9,7 +9,7 @@
 
 class Game {
 public:
-    Game(const std::string& board_string, int depth, int opponent_heuristic_mode, int player_heuristic_mode);
+    Game(const std::string& board_string, int depth, const HeuristicWeights& playerHeuristicWeights, const HeuristicWeights& opponentHeuristicWeights);
     void display() const;
     void play(bool isSimulation = false, bool shouldLog = false, int iterations = -1);
 
@@ -22,9 +22,9 @@ private:
     Board board;
 
     int depth;
-    int opponentHeuristicMode;
-    int playerHeuristicMode;
-    
+    HeuristicWeights opponentHeuristicWeights;
+    HeuristicWeights playerHeuristicWeights;
+
     int rowsCount;
     int colCount;
 };

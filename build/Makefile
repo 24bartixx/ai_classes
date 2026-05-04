@@ -112,6 +112,7 @@ preinstall/fast:
 
 # clear depends
 depend:
+	$(CMAKE_COMMAND) -P S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles\VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
@@ -140,6 +141,19 @@ methods: cmake_check_build_system
 methods/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/build
 .PHONY : methods/fast
+
+#=============================================================================
+# Target rules for targets named mobility_sim
+
+# Build rule for target.
+mobility_sim: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 mobility_sim
+.PHONY : mobility_sim
+
+# fast build rule for target.
+mobility_sim/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/build
+.PHONY : mobility_sim/fast
 
 #=============================================================================
 # Target rules for targets named sides_prox_sim
@@ -185,6 +199,7 @@ src/algorithms.obj: src/algorithms.cpp.obj
 src/algorithms.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.obj
 .PHONY : src/algorithms.cpp.obj
 
@@ -195,6 +210,7 @@ src/algorithms.i: src/algorithms.cpp.i
 src/algorithms.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.i
 .PHONY : src/algorithms.cpp.i
 
@@ -205,6 +221,7 @@ src/algorithms.s: src/algorithms.cpp.s
 src/algorithms.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/algorithms.cpp.s
 .PHONY : src/algorithms.cpp.s
 
@@ -215,6 +232,7 @@ src/engine.obj: src/engine.cpp.obj
 src/engine.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/engine.cpp.obj
 .PHONY : src/engine.cpp.obj
 
@@ -225,6 +243,7 @@ src/engine.i: src/engine.cpp.i
 src/engine.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/engine.cpp.i
 .PHONY : src/engine.cpp.i
 
@@ -235,6 +254,7 @@ src/engine.s: src/engine.cpp.s
 src/engine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\sides_prox_sim.dir\build.make CMakeFiles/sides_prox_sim.dir/src/engine.cpp.s
 .PHONY : src/engine.cpp.s
 
@@ -261,6 +281,30 @@ tests/algorithms/methods.s: tests/algorithms/methods.cpp.s
 tests/algorithms/methods.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/tests/algorithms/methods.cpp.s
 .PHONY : tests/algorithms/methods.cpp.s
+
+tests/simulation/mobility_sim.obj: tests/simulation/mobility_sim.cpp.obj
+.PHONY : tests/simulation/mobility_sim.obj
+
+# target to build an object file
+tests/simulation/mobility_sim.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/tests/simulation/mobility_sim.cpp.obj
+.PHONY : tests/simulation/mobility_sim.cpp.obj
+
+tests/simulation/mobility_sim.i: tests/simulation/mobility_sim.cpp.i
+.PHONY : tests/simulation/mobility_sim.i
+
+# target to preprocess a source file
+tests/simulation/mobility_sim.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/tests/simulation/mobility_sim.cpp.i
+.PHONY : tests/simulation/mobility_sim.cpp.i
+
+tests/simulation/mobility_sim.s: tests/simulation/mobility_sim.cpp.s
+.PHONY : tests/simulation/mobility_sim.s
+
+# target to generate assembly for a file
+tests/simulation/mobility_sim.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mobility_sim.dir\build.make CMakeFiles/mobility_sim.dir/tests/simulation/mobility_sim.cpp.s
+.PHONY : tests/simulation/mobility_sim.cpp.s
 
 tests/simulation/sides_prox_sim.obj: tests/simulation/sides_prox_sim.cpp.obj
 .PHONY : tests/simulation/sides_prox_sim.obj
@@ -296,6 +340,7 @@ help:
 	@echo ... rebuild_cache
 	@echo ... main
 	@echo ... methods
+	@echo ... mobility_sim
 	@echo ... sides_prox_sim
 	@echo ... main.obj
 	@echo ... main.i
@@ -309,6 +354,9 @@ help:
 	@echo ... tests/algorithms/methods.obj
 	@echo ... tests/algorithms/methods.i
 	@echo ... tests/algorithms/methods.s
+	@echo ... tests/simulation/mobility_sim.obj
+	@echo ... tests/simulation/mobility_sim.i
+	@echo ... tests/simulation/mobility_sim.s
 	@echo ... tests/simulation/sides_prox_sim.obj
 	@echo ... tests/simulation/sides_prox_sim.i
 	@echo ... tests/simulation/sides_prox_sim.s
@@ -323,6 +371,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+	$(CMAKE_COMMAND) -P S:\Studia\6sem\AI\Laby\2\cpp\build\CMakeFiles\VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

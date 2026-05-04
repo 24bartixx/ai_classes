@@ -10,7 +10,7 @@
 
 using namespace std;
 
-optional<Move> getBestMove(Board& board, int depth, char player_color) {
+optional<Move> getBestMove(Board& board, int depth, const HeuristicWeights& heuristicWeights, char player_color) {
     Move bestMove;
     int maxEval = INT_MIN;
 
@@ -23,7 +23,7 @@ optional<Move> getBestMove(Board& board, int depth, char player_color) {
         Board tempBoard = board;
         makeMove(tempBoard, move);
 
-        int eval = minimax(tempBoard, depth - 1, HeuristicWeights{1,1,1}, player_color, false);
+        int eval = minimax(tempBoard, depth - 1, heuristicWeights, player_color, false);
         if(eval > maxEval) {
             maxEval = eval;
             bestMove = move;
@@ -86,31 +86,67 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
     int rowSize = board.size();
 
     // SIDES PROXIMITY
-    map<int, int> proximity_weights = {
+    map<int, int> sidesProximityWeights = {
         {0, 4},
         {1, 2},
         {2, 1}
     };
 
     int sidesScore = 0;
+
+    // MOBILITY 
+    int mobilityScore = 0;
+
     
     for(int i = 0; i < board.size(); i++) {
         for(int j = 0; j < board[i].size(); j++) {
-            // SIDES PROXIMITY
-            if(board[i][j] == 'B' || board[i][j] == 'W') {
+
+            char cell = board[i][j];
+
+            
+            if(cell == 'B' || cell == 'W') {
+                // SIDES PROXIMITY
                 int sizeDist = min(i, colSize - 1 - i);
 
                 int cellScore = (sizeDist <= 2) 
-                    ? proximity_weights[sizeDist] 
+                    ? sidesProximityWeights[sizeDist] 
                     : 0;
 
-                if(board[i][j] == 'B') sidesScore += cellScore;
+                if(cell == 'B') sidesScore += cellScore;
                 else sidesScore -= cellScore;
+
+                // MOBILITY 
+                int direction = (cell == 'B') ? 1 : -1;
+                int toRow = i + direction;
+
+                if (toRow >= 0 && toRow < rowSize) {
+
+                    // Forward
+                    if (board[toRow][j] == '_') {
+                        if(cell == 'W') mobilityScore++;
+                        else mobilityScore--;
+                    }
+
+                    // Left
+                    if (j - 1 >= 0 && board[toRow][j - 1] != 'o' && board[toRow][j - 1] != cell) {
+                        if(cell == 'W') mobilityScore++;
+                        else mobilityScore--;
+                    }
+
+                    // Right
+                    if (j + 1 < colSize && board[toRow][j + 1] != 'o' && board[toRow][j + 1] != cell) {
+                        if(cell == 'W') mobilityScore++;
+                        else mobilityScore--;
+                    }
+                }
             } 
+
+            
         }
     }
 
-    return heuristicWeights.getSidesProximityWeight() * sidesScore;
+    return heuristicWeights.getSidesProximityWeight() * sidesScore 
+         + heuristicWeights.getMobilityWeight() * mobilityScore;
 }
 
 bool isOver(const Board& board) {
