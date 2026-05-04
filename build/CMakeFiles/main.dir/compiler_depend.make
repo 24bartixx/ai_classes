@@ -198,6 +198,7 @@ CMakeFiles/main.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/alg
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/range_access.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/refwrap.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/requires_hosted.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/specfun.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/std_abs.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_algo.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_algobase.h \
@@ -228,6 +229,7 @@ CMakeFiles/main.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/alg
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cerrno \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/clocale \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cmath \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/concepts \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstddef \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdio \
@@ -243,6 +245,7 @@ CMakeFiles/main.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/alg
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/type_traits.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/initializer_list \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/iosfwd \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/limits \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/map \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/new \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/optional \
@@ -253,6 +256,18 @@ CMakeFiles/main.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/alg
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/stdlib.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/string \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/string_view \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/bessel_function.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/beta_function.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/ell_integral.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/exp_integral.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/gamma.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/hypergeometric.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/legendre_function.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/modified_bessel_func.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/poly_hermite.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/poly_laguerre.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/riemann_zeta.tcc \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/special_function_util.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tuple \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/type_traits \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/typeinfo \
@@ -274,6 +289,7 @@ CMakeFiles/main.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/alg
   S:/dev/app/MSYS2/ucrt64/include/limits.h \
   S:/dev/app/MSYS2/ucrt64/include/locale.h \
   S:/dev/app/MSYS2/ucrt64/include/malloc.h \
+  S:/dev/app/MSYS2/ucrt64/include/math.h \
   S:/dev/app/MSYS2/ucrt64/include/sec_api/stdio_s.h \
   S:/dev/app/MSYS2/ucrt64/include/sec_api/stdlib_s.h \
   S:/dev/app/MSYS2/ucrt64/include/sec_api/wchar_s.h \
@@ -512,6 +528,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/charconv.h:
 
 S:/dev/app/MSYS2/ucrt64/include/_mingw_off_t.h:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/poly_hermite.tcc:
+
 S:/dev/app/MSYS2/ucrt64/include/_mingw_stat64.h:
 
 S:/dev/app/MSYS2/ucrt64/include/_timeval.h:
@@ -560,6 +578,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_pair.h:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/bessel_function.tcc:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception_defines.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/exception_ptr.h:
@@ -604,11 +624,15 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/move.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/streambuf_iterator.h:
 
+S:/dev/app/MSYS2/ucrt64/include/math.h:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/new_allocator.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/predefined_ops.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/ptr_traits.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/specfun.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/range_access.h:
 
@@ -621,6 +645,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_function.h:
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/std_abs.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_construct.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cmath:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_iterator.h:
 
@@ -812,6 +838,8 @@ S:/dev/app/MSYS2/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/syslimits.h:
 
 S:/Studia/6sem/AI/Laby/2/cpp/include/algorithms.h:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/gamma.tcc:
+
 S:/Studia/6sem/AI/Laby/2/cpp/include/engine.h:
 
 S:/Studia/6sem/AI/Laby/2/cpp/include/heuristics.h:
@@ -857,6 +885,24 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/map:
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/optional:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/execution_defs.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/beta_function.tcc:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/ell_integral.tcc:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/exp_integral.tcc:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/hypergeometric.tcc:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/legendre_function.tcc:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/modified_bessel_func.tcc:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/poly_laguerre.tcc:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/riemann_zeta.tcc:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/tr1/special_function_util.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/utility:
 

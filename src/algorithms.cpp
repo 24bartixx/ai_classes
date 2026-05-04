@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <climits>
+#include <cmath>
 #include <stdexcept>
 #include <algorithm>
 #include <map>
@@ -97,6 +98,7 @@ int minimax(Board& board, int depth, const HeuristicWeights& heuristicWeights, c
 // High: SIDES_PROXIMITY
 // Medium: 
 // Low: MOBILITY, LINE_COMPLETION
+// Very low: CENTER PROXIMITY
 
 int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
 
@@ -122,7 +124,16 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
     int lineCompletionWeight = heuristicWeights.getLineCompletionWeight();
     int lineCompletionScore = 0;
 
-    if(sidesWeight > 0 || mobilityWeight > 0) {
+    // CENTER PROXIMITY
+    int rowCenter = rowSize / 2;
+    int colCenter = colSize / 2;
+
+    int centerProximityWeight = heuristicWeights.getCenterProximityWeight();
+    double centerProximityScore = 0;
+
+
+
+    if(sidesWeight > 0 || mobilityWeight > 0 || centerProximityWeight > 0) {
         for(int i = 0; i < board.size(); i++) {
             for(int j = 0; j < board[i].size(); j++) {
 
@@ -168,6 +179,25 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
                             }
                         }
                     }
+                
+                    // CENTER PROXIMITY
+                    if(centerProximityWeight > 0) {
+                        int normalizedI = i;
+                        int normalizedJ = j;
+
+                        if(i > rowCenter) normalizedI = rowSize - 1 - i;
+                        if(j > colCenter) normalizedJ = colSize - 1 - j;
+
+                        // euclidean distance
+                        double dist = hypot(rowCenter - normalizedI, colCenter - normalizedJ);
+                        
+                        if(cell == 'W') {
+                            centerProximityScore -= dist;
+                        } else {
+                            centerProximityScore += dist;
+                        }
+                    }
+                    
                 } 
             }
         }
@@ -253,7 +283,8 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
 
     return sidesWeight * sidesScore 
          + mobilityWeight * mobilityScore 
-         + lineCompletionWeight * lineCompletionScore;
+         + lineCompletionWeight * lineCompletionScore
+         + centerProximityWeight * centerProximityScore;
 }
 
 bool isOver(const Board& board) {

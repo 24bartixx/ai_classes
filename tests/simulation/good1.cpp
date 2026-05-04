@@ -14,8 +14,8 @@ int main() {
         "W W W W W W W W\n";
 
     // initialBoard, depth, opponentHeuristicMode, playerHeuristicMode
-    // sides proximity = 1, mobility = 2, line completion = 3
-    Game game(INITIAL_BOARD, 4, HeuristicWeights{5, 2, 1}, HeuristicWeights{2, 1, 3});
+    // sides proximity = 1, mobility = 2, line completion = 3, center proximity = 4
+    Game game(INITIAL_BOARD, 4, HeuristicWeights{5, 2, 1, 0}, HeuristicWeights{0, 1, 2, 3});
 
     game.display();
 
