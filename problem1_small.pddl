@@ -53,6 +53,8 @@
 
         (is-island city1)
 
+        (blocked city2 city5)
+
         (= (total-cost) 0)
     )
 

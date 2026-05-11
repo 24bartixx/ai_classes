@@ -13,6 +13,7 @@
         (p-at ?p - package ?c - city)
         (is-island ?c - city)
         (on-island ?p - package)
+        (blocked ?c1 ?c2 - city)
         (truck-connected ?c1 ?c2 - city)
         (train-connected ?c1 ?c2 - city)
         (ferry-connected ?c1 ?c2 - city)
@@ -27,6 +28,7 @@
         :precondition (and
             (v-at ?v ?from)
             (truck-connected ?from ?to)
+            (not (blocked ?from ?to))
         )
         :effect (and
             (not (v-at ?v ?from))
@@ -40,6 +42,7 @@
         :precondition (and
             (v-at ?v ?from)
             (train-connected ?from ?to)
+            (not (blocked ?from ?to))
         )
         :effect (and
             (not (v-at ?v ?from))
@@ -67,6 +70,7 @@
             (v-at ?v ?from)
             (p-at ?p ?from)
             (truck-connected ?from ?to)
+            (not (blocked ?from ?to))
         )
         :effect (and
             (not (v-at ?v ?from))
@@ -84,6 +88,7 @@
             (v-at ?v ?from)
             (p-at ?p ?from)
             (train-connected ?from ?to)
+            (not (blocked ?from ?to))
         )
         :effect (and
             (not (v-at ?v ?from))
