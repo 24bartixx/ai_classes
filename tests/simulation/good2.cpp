@@ -4,14 +4,14 @@
 int main() {
 
     std::string INITIAL_BOARD = 
-        "B B B B B B B B\n"
-        "B B B B B B B B\n"
-        "_ _ _ _ _ _ _ _\n"
-        "_ _ _ _ _ _ _ _\n"
-        "_ _ _ _ _ _ _ _\n"
-        "_ _ _ _ _ _ _ _\n"
         "W W W W W W W W\n"
-        "W W W W W W W W\n";
+        "W W W W W W W W\n"
+        "_ _ _ _ _ _ _ _\n"
+        "_ _ _ _ _ _ _ _\n"
+        "_ _ _ _ _ _ _ _\n"
+        "_ _ _ _ _ _ _ _\n"
+        "B B B B B B B B\n"
+        "B B B B B B B B\n";
 
     // initialBoard, depth, opponentHeuristicMode, playerHeuristicMode
     

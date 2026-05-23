@@ -21,6 +21,27 @@ static void clearLastMoveMarkers(Board& board) {
     }
 }
 
+static int getForwardDirection(char playerColor) {
+    if(playerColor == 'W') {
+        return 1;
+    }
+
+    if(playerColor == 'B') {
+        return -1;
+    }
+
+    throw invalid_argument("Invalid player color. Must be 'B' or 'W'.");
+}
+
+static int getFinishRow(const Board& board, char playerColor) {
+    return playerColor == 'W' ? static_cast<int>(board.size()) - 1 : 0;
+}
+
+static bool hasReachedFinish(const Board& board, char playerColor) {
+    const int finishRow = getFinishRow(board, playerColor);
+    return count(board[finishRow].begin(), board[finishRow].end(), playerColor) > 0;
+}
+
 optional<Move> getBestMove(Board& board, int depth, const HeuristicWeights& heuristicWeights, char player_color, int& visitedNodes) {
     vector<Move> legalMoves = getLegalMoves(board, player_color);
     if(legalMoves.empty()) {
@@ -177,7 +198,7 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
 
                     // MOBILITY 
                     if(mobilityWeight > 0) {
-                        int direction = (cell == 'B') ? 1 : -1;
+                        int direction = getForwardDirection(cell);
                         int toRow = i + direction;
 
                         if (toRow >= 0 && toRow < rowSize) {
@@ -218,11 +239,12 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
                     if(finishProximityWeight > 0) {
 
                         if(cell == 'W') {
-                            if(i > 0 && i < 4) {
-                                finishProximityScore += finishProximityWeights[i];
+                            int finishProximity = rowSize - i - 1;
+                            if(finishProximity > 0 && finishProximity < 4) {
+                                finishProximityScore += finishProximityWeights[finishProximity];
                             }
                         } else {
-                            int finishProximity = rowSize - i - 1;
+                            int finishProximity = i;
                             if(finishProximity > 0 && finishProximity < 4) {
                                 finishProximityScore -= finishProximityWeights[finishProximity];
                             }
@@ -231,18 +253,19 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
 
                     // PRIORITIZE CAPTURE
                     if(prioritizeCaptureWeight > 0) {
-                        if(cell == 'W') { 
-                            if(i > 0) {
-                                if((j-1 >= 0 &&board[i-1][j-1] == 'B') 
-                                        || (j + 1 < colSize && board[i-1][j+1] == 'B')) {
+                        int direction = getForwardDirection(cell);
+                        int captureRow = i + direction;
+
+                        if(captureRow >= 0 && captureRow < rowSize) {
+                            if(cell == 'W') { 
+                                if((j-1 >= 0 && board[captureRow][j-1] == 'B') 
+                                        || (j + 1 < colSize && board[captureRow][j+1] == 'B')) {
                                     prioritizeCaptureScore += 1;
 
                                 }
-                            }
-                        } else {
-                            if(i < rowSize - 1) {
-                                if((j-1 >= 0 && board[i+1][j-1] == 'W') 
-                                        || (j + 1 < colSize && board[i+1][j+1] == 'W')) {
+                            } else {
+                                if((j-1 >= 0 && board[captureRow][j-1] == 'W') 
+                                        || (j + 1 < colSize && board[captureRow][j+1] == 'W')) {
                                     prioritizeCaptureScore -= 1;
                                 }
                             }
@@ -341,9 +364,8 @@ int evaluate(Board& board, const HeuristicWeights& heuristicWeights)  {
 }
 
 bool isOver(const Board& board) {
-    if(count(board[0].begin(), board[0].end(), 'W') > 0 ||
-        count(board[board.size() - 1].begin(), board[board.size() - 1].end(), 'B') > 0) {
-            return true;
+    if(hasReachedFinish(board, 'W') || hasReachedFinish(board, 'B')) {
+        return true;
     }
     return false;
 }
@@ -357,10 +379,7 @@ vector<Move> getLegalMoves(const Board& board, char playerColor) {
     const int rowsCount = board.size();
     const int colCount = rowsCount > 0 ? board[0].size() : 0;
 
-    int direction = 1;
-    if (playerColor == 'W') {
-        direction = -1;
-    }   
+    int direction = getForwardDirection(playerColor);
 
     char enemy = (playerColor == 'B') ? 'W' : 'B';
 

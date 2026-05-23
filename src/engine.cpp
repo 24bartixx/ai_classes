@@ -171,9 +171,9 @@ GameResult Game::play(bool isSimulation, bool shouldLog, int iterations) {
     }
 
     if(!winner.has_value() && isOver(board)) {
-        if(count(board[0].begin(), board[0].end(), 'W') > 0) {
+        if(count(board[board.size() - 1].begin(), board[board.size() - 1].end(), 'W') > 0) {
             winner = 'W';
-        } else if(count(board[board.size() - 1].begin(), board[board.size() - 1].end(), 'B') > 0) {
+        } else if(count(board[0].begin(), board[0].end(), 'B') > 0) {
             winner = 'B';
         }
     }
