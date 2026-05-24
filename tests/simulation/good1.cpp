@@ -11,7 +11,7 @@ int main() {
     // danger penalty = 5
     // path openness = 6
 
-    int depth = 5;
+    int depth = 4;
     Game game(8, 8, depth, {8, 6, 20, 3, 10, 4}, {10, 5, 20, 6, 10, 4});
 
     game.display();

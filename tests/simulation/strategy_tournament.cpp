@@ -97,7 +97,8 @@ int main() {
         {"FinishRush", HeuristicStrategies::FinishRush},
         {"MaterialFocused", HeuristicStrategies::MaterialFocused},
         {"BackRowGuard", HeuristicStrategies::BackRowGuard},
-        {"PathOpenness", HeuristicStrategies::PathOpenness}
+        {"PathOpenness", HeuristicStrategies::PathOpenness},
+        {"Tournament", HeuristicStrategies::Tournament}
     };
 
     map<string, StrategyStats> stats;

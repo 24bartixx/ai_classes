@@ -5,7 +5,8 @@ int main() {
 
     // width, height, depth, opponentHeuristicMode, playerHeuristicMode
     
-    Game game(8, 8, 4, HeuristicStrategies::Aggressive, HeuristicStrategies::Defensive);
+    int depth = 5;
+    Game game(8, 8, depth, HeuristicStrategies::Tournament, HeuristicStrategies::Tournament);
 
     game.display();
 

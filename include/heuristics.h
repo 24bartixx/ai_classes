@@ -51,6 +51,8 @@ namespace HeuristicStrategies {
     inline const HeuristicWeights MaterialFocused{0, 1, 30, 1, 8, 3};
     inline const HeuristicWeights BackRowGuard{0, 0, 12, 8, 6, 2};
     inline const HeuristicWeights PathOpenness{0, 1, 12, 1, 6, 10};
+    // material > dangerPenalty > finishProximity > pathOpenness > sidesCenter > backRowGuard
+    inline const HeuristicWeights Tournament{2, 2, 30, 3, 22, 3};
 }
 
 #endif

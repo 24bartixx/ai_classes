@@ -3,6 +3,7 @@
 #include <chrono>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <sstream>
 #include <optional>
 
@@ -122,6 +123,10 @@ GameResult Game::play(bool isSimulation, bool shouldLog, int iterations) {
     optional<Position> lastMoveOrigin;
     int visitedNodes = 0;
     int i = 0;
+    int measuredMoveSearches = 0;
+    double totalMoveSearchTimeMs = 0.0;
+    double minMoveSearchTimeMs = std::numeric_limits<double>::max();
+    double maxMoveSearchTimeMs = 0.0;
 
     auto clearLastMoveOrigin = [&]() {
         if(lastMoveOrigin.has_value()) {
@@ -144,30 +149,33 @@ GameResult Game::play(bool isSimulation, bool shouldLog, int iterations) {
     };
 
     auto findBestMove = [&](char playerColor, const HeuristicWeights& heuristicWeights) {
-        if(!isSimulation) {
-            return getBestMove(board, depth, heuristicWeights, playerColor, visitedNodes);
-        }
-
         auto moveSearchStartTime = chrono::steady_clock::now();
         optional<Move> move = getBestMove(board, depth, heuristicWeights, playerColor, visitedNodes);
-
-        cerr << "\n\033[36mBest move for "
-             << (playerColor == 'W' ? "White" : "Black") << ": ";
-
-        if(move.has_value()) {
-            cerr << formatMove(move.value());
-        } else {
-            cerr << "none";
-        }
-
-        cerr << "\033[0m" << endl;
-
         auto moveSearchEndTime = chrono::steady_clock::now();
         chrono::duration<double, milli> elapsedMoveSearchTime = moveSearchEndTime - moveSearchStartTime;
+        double elapsedMoveSearchTimeMs = elapsedMoveSearchTime.count();
 
-        cerr << "\033[36mBest move search + print time: "
-             << fixed << setprecision(3) << elapsedMoveSearchTime.count()
-             << " ms\033[0m\n";
+        measuredMoveSearches++;
+        totalMoveSearchTimeMs += elapsedMoveSearchTimeMs;
+        minMoveSearchTimeMs = min(minMoveSearchTimeMs, elapsedMoveSearchTimeMs);
+        maxMoveSearchTimeMs = max(maxMoveSearchTimeMs, elapsedMoveSearchTimeMs);
+
+        if(isSimulation) {
+            cerr << "\n\033[36mBest move for "
+                 << (playerColor == 'W' ? "White" : "Black") << ": ";
+
+            if(move.has_value()) {
+                cerr << formatMove(move.value());
+            } else {
+                cerr << "none";
+            }
+
+            cerr << "\033[0m" << endl;
+
+            cerr << "\033[36mBest move search time: "
+                 << fixed << setprecision(3) << elapsedMoveSearchTimeMs
+                 << " ms\033[0m\n";
+        }
 
         return move;
     };
@@ -286,6 +294,12 @@ GameResult Game::play(bool isSimulation, bool shouldLog, int iterations) {
     cerr << "\033[31m" << fixed << setprecision(3);
     cerr << (isSimulation ? "\nSimulation time: " : "\nGame time: ")
          << elapsedTime.count() << " seconds\n";
+    if(measuredMoveSearches > 0) {
+        cerr << "Move search time avg/min/max: "
+             << totalMoveSearchTimeMs / measuredMoveSearches << " / "
+             << minMoveSearchTimeMs << " / "
+             << maxMoveSearchTimeMs << " ms\n";
+    }
     cerr << "Total visited nodes: " << visitedNodes << "\033[0m\n\n";
 
     return result;

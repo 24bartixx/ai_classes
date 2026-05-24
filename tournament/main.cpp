@@ -17,8 +17,7 @@ int main() {
     cin >> boardWidth >> boardHeight >> isWhite;
     isWhite = !isWhite;
 
-    const HeuristicWeights tournamentWeights{5, 5, 25, 3, 10, 4};
-    Game game(boardWidth, boardHeight, depth, tournamentWeights, tournamentWeights);
+    Game game(boardWidth, boardHeight, depth, HeuristicStrategies::Tournament, HeuristicStrategies::Tournament);
 
     if(isWhite) {
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
