@@ -19,7 +19,7 @@ optional<Move> getBestMove(Board& board, int depth, const HeuristicWeights& heur
 
 int minimax(Board& board, int depth, const HeuristicWeights& heuristicWeights, char maximizing_for, bool isMaximizingPlayer, int& visitedNodes, int alpha = INT_MIN, int beta = INT_MAX);
 
-int evaluate(Board& board, const HeuristicWeights& heuristicWeights);
+int evaluate(Board& board, const HeuristicWeights& heuristicWeights, char maximizingFor = 'W', char sideToMove = 'W');
 
 bool isOver(const Board& board);
 

@@ -62,7 +62,6 @@ string winnerName(const GameResult& result, const StrategyEntry& white, const St
 }
 
 GameResult playMatch(
-    const string& initialBoard,
     const StrategyEntry& white,
     const StrategyEntry& black) {
     cout << "Starting: " << white.name << " (White) vs "
@@ -70,7 +69,7 @@ GameResult playMatch(
 
     NullBuffer nullBuffer;
 
-    Game game(initialBoard, 4, white.weights, black.weights);
+    Game game(8, 8, 4, white.weights, black.weights);
     GameResult result;
 
     {
@@ -90,24 +89,15 @@ GameResult playMatch(
 }
 
 int main() {
-    const string INITIAL_BOARD =
-        "W W W W W W W W\n"
-        "W W W W W W W W\n"
-        "_ _ _ _ _ _ _ _\n"
-        "_ _ _ _ _ _ _ _\n"
-        "_ _ _ _ _ _ _ _\n"
-        "_ _ _ _ _ _ _ _\n"
-        "B B B B B B B B\n"
-        "B B B B B B B B\n";
-
     vector<StrategyEntry> strategies = {
         {"Defensive", HeuristicStrategies::Defensive},
         {"Aggressive", HeuristicStrategies::Aggressive},
         {"Balanced", HeuristicStrategies::Balanced},
-        {"CenterControl", HeuristicStrategies::CenterControl},
-        {"MobilityRush", HeuristicStrategies::MobilityRush},
-        {"LineBuilder", HeuristicStrategies::LineBuilder},
-        {"CaptureFocused", HeuristicStrategies::CaptureFocused}
+        {"SidesCenterControl", HeuristicStrategies::SidesCenterControl},
+        {"FinishRush", HeuristicStrategies::FinishRush},
+        {"MaterialFocused", HeuristicStrategies::MaterialFocused},
+        {"BackRowGuard", HeuristicStrategies::BackRowGuard},
+        {"PathOpenness", HeuristicStrategies::PathOpenness}
     };
 
     map<string, StrategyStats> stats;
@@ -122,10 +112,10 @@ int main() {
 
     for(int i = 0; i < strategies.size(); i++) {
         for(int j = i + 1; j < strategies.size(); j++) {
-            GameResult first = playMatch(INITIAL_BOARD, strategies[i], strategies[j]);
+            GameResult first = playMatch(strategies[i], strategies[j]);
             recordResult(first, strategies[i], strategies[j], stats);
 
-            GameResult second = playMatch(INITIAL_BOARD, strategies[j], strategies[i]);
+            GameResult second = playMatch(strategies[j], strategies[i]);
             recordResult(second, strategies[j], strategies[i], stats);
 
             gamesPlayed += 2;

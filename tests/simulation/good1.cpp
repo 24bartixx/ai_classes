@@ -4,14 +4,15 @@
 int main() {
     // width, height, depth, opponentHeuristicMode, playerHeuristicMode
 
-    // sides proximity = 1
-    // mobility = 2
-    // line completion = 3
-    // center proximity = 4
-    // finish proximity = 5
-    // prioritize capture = 6
+    // sides center proximity = 1
+    // finish proximity = 2
+    // material = 3
+    // back row guard = 4
+    // danger penalty = 5
+    // path openness = 6
 
-    Game game(8, 8, 4, HeuristicWeights{5, 2, 1, 0, 0, 0}, HeuristicWeights{0, 1, 2, 3, 0, 0});
+    int depth = 5;
+    Game game(8, 8, depth, {8, 6, 20, 3, 10, 4}, {10, 5, 20, 6, 10, 4});
 
     game.display();
 

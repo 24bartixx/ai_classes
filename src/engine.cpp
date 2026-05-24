@@ -62,10 +62,10 @@ Game::Game(int width, int height, int depth, const HeuristicWeights& playerHeuri
     board.assign(rowsCount, std::vector<char>(colCount, '_'));
 
     for(int col = 0; col < colCount; col++) {
-        board[0][col] = 'W';
-        board[1][col] = 'W';
-        board[rowsCount - 2][col] = 'B';
-        board[rowsCount - 1][col] = 'B';
+        board[0][col] = 'B';
+        board[1][col] = 'B';
+        board[rowsCount - 2][col] = 'W';
+        board[rowsCount - 1][col] = 'W';
     }
 }
 
@@ -254,9 +254,9 @@ GameResult Game::play(bool isSimulation, bool shouldLog, int iterations) {
     }
 
     if(!winner.has_value() && isOver(board)) {
-        if(count(board[board.size() - 1].begin(), board[board.size() - 1].end(), 'W') > 0) {
+        if(count(board[0].begin(), board[0].end(), 'W') > 0) {
             winner = 'W';
-        } else if(count(board[0].begin(), board[0].end(), 'B') > 0) {
+        } else if(count(board[board.size() - 1].begin(), board[board.size() - 1].end(), 'B') > 0) {
             winner = 'B';
         }
     }
