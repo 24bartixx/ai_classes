@@ -62,6 +62,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/main.dir/DependInfo.cmake"
+  "CMakeFiles/tournament_player.dir/DependInfo.cmake"
   "CMakeFiles/methods.dir/DependInfo.cmake"
   "CMakeFiles/good1_manual.dir/DependInfo.cmake"
   "CMakeFiles/line_completion_manual.dir/DependInfo.cmake"

@@ -28,7 +28,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "S:/Studia/6sem/AI/Laby/2/cpp/build/CMakeFiles/cmake.verify_globs")
 endif()
 
-# TEST_FILES at CMakeLists.txt:16 (file)
+# TEST_FILES at CMakeLists.txt:20 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "S:/Studia/6sem/AI/Laby/2/cpp/tests/*/*.cpp")
 set(OLD_GLOB
   "S:/Studia/6sem/AI/Laby/2/cpp/tests/algorithms/methods.cpp"

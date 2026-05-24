@@ -12,6 +12,10 @@ file(GLOB SRC_FILES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/*.cpp)
 # Main executable (optional, if you have main.cpp)
 add_executable(main ${SRC_FILES} ${CMAKE_SOURCE_DIR}/main.cpp)
 
+# Tournament player executable
+add_executable(tournament_player ${SRC_FILES} ${CMAKE_SOURCE_DIR}/tournament/main.cpp)
+target_include_directories(tournament_player PRIVATE ${CMAKE_SOURCE_DIR}/include)
+
 # Find all test files in tests/*/*/*.cpp
 file(GLOB_RECURSE TEST_FILES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/tests/*/*.cpp)
 

@@ -130,6 +130,19 @@ main/fast:
 .PHONY : main/fast
 
 #=============================================================================
+# Target rules for targets named tournament_player
+
+# Build rule for target.
+tournament_player: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 tournament_player
+.PHONY : tournament_player
+
+# fast build rule for target.
+tournament_player/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tournament_player.dir\build.make CMakeFiles/tournament_player.dir/build
+.PHONY : tournament_player/fast
+
+#=============================================================================
 # Target rules for targets named methods
 
 # Build rule for target.
@@ -302,6 +315,7 @@ src/algorithms.obj: src/algorithms.cpp.obj
 # target to build an object file
 src/algorithms.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tournament_player.dir\build.make CMakeFiles/tournament_player.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/src/algorithms.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/algorithms.cpp.obj
@@ -321,6 +335,7 @@ src/algorithms.i: src/algorithms.cpp.i
 # target to preprocess a source file
 src/algorithms.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tournament_player.dir\build.make CMakeFiles/tournament_player.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/src/algorithms.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/algorithms.cpp.i
@@ -340,6 +355,7 @@ src/algorithms.s: src/algorithms.cpp.s
 # target to generate assembly for a file
 src/algorithms.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/algorithms.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tournament_player.dir\build.make CMakeFiles/tournament_player.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/src/algorithms.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/algorithms.cpp.s
@@ -359,6 +375,7 @@ src/engine.obj: src/engine.cpp.obj
 # target to build an object file
 src/engine.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tournament_player.dir\build.make CMakeFiles/tournament_player.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/src/engine.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/engine.cpp.obj
@@ -378,6 +395,7 @@ src/engine.i: src/engine.cpp.i
 # target to preprocess a source file
 src/engine.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tournament_player.dir\build.make CMakeFiles/tournament_player.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/src/engine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/engine.cpp.i
@@ -397,6 +415,7 @@ src/engine.s: src/engine.cpp.s
 # target to generate assembly for a file
 src/engine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/engine.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tournament_player.dir\build.make CMakeFiles/tournament_player.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\methods.dir\build.make CMakeFiles/methods.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\good1_manual.dir\build.make CMakeFiles/good1_manual.dir/src/engine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\line_completion_manual.dir\build.make CMakeFiles/line_completion_manual.dir/src/engine.cpp.s
@@ -674,6 +693,30 @@ tests/simulation/strategy_tournament.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\strategy_tournament.dir\build.make CMakeFiles/strategy_tournament.dir/tests/simulation/strategy_tournament.cpp.s
 .PHONY : tests/simulation/strategy_tournament.cpp.s
 
+tournament/main.obj: tournament/main.cpp.obj
+.PHONY : tournament/main.obj
+
+# target to build an object file
+tournament/main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tournament_player.dir\build.make CMakeFiles/tournament_player.dir/tournament/main.cpp.obj
+.PHONY : tournament/main.cpp.obj
+
+tournament/main.i: tournament/main.cpp.i
+.PHONY : tournament/main.i
+
+# target to preprocess a source file
+tournament/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tournament_player.dir\build.make CMakeFiles/tournament_player.dir/tournament/main.cpp.i
+.PHONY : tournament/main.cpp.i
+
+tournament/main.s: tournament/main.cpp.s
+.PHONY : tournament/main.s
+
+# target to generate assembly for a file
+tournament/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tournament_player.dir\build.make CMakeFiles/tournament_player.dir/tournament/main.cpp.s
+.PHONY : tournament/main.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -694,6 +737,7 @@ help:
 	@echo ... sides_prox_manual
 	@echo ... sides_prox_sim
 	@echo ... strategy_tournament
+	@echo ... tournament_player
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
@@ -736,6 +780,9 @@ help:
 	@echo ... tests/simulation/strategy_tournament.obj
 	@echo ... tests/simulation/strategy_tournament.i
 	@echo ... tests/simulation/strategy_tournament.s
+	@echo ... tournament/main.obj
+	@echo ... tournament/main.i
+	@echo ... tournament/main.s
 .PHONY : help
 
 
