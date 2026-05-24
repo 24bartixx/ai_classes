@@ -162,6 +162,7 @@ CMakeFiles/main.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/alg
   S:/dev/app/MSYS2/ucrt64/include/_mingw_secapi.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw_stat64.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/algorithm \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/array \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/backward/binders.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bit \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \
@@ -230,6 +231,7 @@ CMakeFiles/main.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/alg
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/clocale \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cmath \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/compare \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/concepts \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstddef \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdio \
@@ -317,6 +319,7 @@ CMakeFiles/main.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engine.
   S:/dev/app/MSYS2/ucrt64/include/_mingw_stat64.h \
   S:/dev/app/MSYS2/ucrt64/include/_timeval.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/algorithm \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/array \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/backward/binders.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bit \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \
@@ -399,6 +402,7 @@ CMakeFiles/main.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engine.
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/chrono \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/clocale \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/compare \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/concepts \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstddef \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdint \
@@ -846,6 +850,8 @@ S:/Studia/6sem/AI/Laby/2/cpp/include/heuristics.h:
 
 S:/Studia/6sem/AI/Laby/2/cpp/include/types.h:
 
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/array:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/erase_if.h:
@@ -877,6 +883,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/vector.tcc:
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/vector:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/compare:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/ext/aligned_buffer.h:
 

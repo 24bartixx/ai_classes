@@ -120,6 +120,8 @@ CMakeFiles/line_completion_manual.dir/src/algorithms.cpp.obj: \
  S:/Studia/6sem/AI/Laby/2/cpp/include/heuristics.h \
  S:/Studia/6sem/AI/Laby/2/cpp/include/types.h \
  S:/Studia/6sem/AI/Laby/2/cpp/include/engine.h \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/array \
+ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/compare \
  S:/Studia/6sem/AI/Laby/2/cpp/include/algorithms.h \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/algorithm \
  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/stl_algo.h \

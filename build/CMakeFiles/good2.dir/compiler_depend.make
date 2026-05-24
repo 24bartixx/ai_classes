@@ -12,6 +12,7 @@ CMakeFiles/good2.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/al
   S:/dev/app/MSYS2/ucrt64/include/_mingw_secapi.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw_stat64.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/algorithm \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/array \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/backward/binders.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bit \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \
@@ -80,6 +81,7 @@ CMakeFiles/good2.dir/src/algorithms.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/al
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/clocale \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cmath \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/compare \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/concepts \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstddef \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdio \
@@ -167,6 +169,7 @@ CMakeFiles/good2.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engine
   S:/dev/app/MSYS2/ucrt64/include/_mingw_stat64.h \
   S:/dev/app/MSYS2/ucrt64/include/_timeval.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/algorithm \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/array \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/backward/binders.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bit \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \
@@ -249,6 +252,7 @@ CMakeFiles/good2.dir/src/engine.cpp.obj: S:/Studia/6sem/AI/Laby/2/cpp/src/engine
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/chrono \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/clocale \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/compare \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/concepts \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstddef \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdint \
@@ -358,6 +362,7 @@ CMakeFiles/good2.dir/tests/simulation/good2.cpp.obj: S:/Studia/6sem/AI/Laby/2/cp
   S:/dev/app/MSYS2/ucrt64/include/_mingw_secapi.h \
   S:/dev/app/MSYS2/ucrt64/include/_mingw_stat64.h \
   S:/dev/app/MSYS2/ucrt64/include/_timeval.h \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/array \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/backward/binders.h \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bit \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/alloc_traits.h \
@@ -426,6 +431,7 @@ CMakeFiles/good2.dir/tests/simulation/good2.cpp.obj: S:/Studia/6sem/AI/Laby/2/cp
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cerrno \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/clocale \
+  S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/compare \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/concepts \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstddef \
   S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdio \
@@ -576,6 +582,12 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/cstdlib:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/algorithm:
 
+S:/dev/app/MSYS2/ucrt64/include/swprintf.inl:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_string.h:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/array:
+
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/quoted_string.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bit:
@@ -589,10 +601,6 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/alloc_traits.h:
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/allocator.h:
-
-S:/dev/app/MSYS2/ucrt64/include/swprintf.inl:
-
-S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/bits/basic_string.h:
 
 S:/dev/app/MSYS2/ucrt64/include/sec_api/wconio_s.h:
 
@@ -713,6 +721,8 @@ S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/vector:
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/climits:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/clocale:
+
+S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/compare:
 
 S:/dev/app/MSYS2/ucrt64/include/c++/15.2.0/concepts:
 

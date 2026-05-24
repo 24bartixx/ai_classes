@@ -2,18 +2,7 @@
 #include <iostream>
 
 int main() {
-
-    std::string INITIAL_BOARD = 
-        "W W W W W W W W\n"
-        "W W W W W W W W\n"
-        "_ _ _ _ _ _ _ _\n"
-        "_ _ _ _ _ _ _ _\n"
-        "_ _ _ _ _ _ _ _\n"
-        "_ _ _ _ _ _ _ _\n"
-        "B B B B B B B B\n"
-        "B B B B B B B B\n";
-
-    // initialBoard, depth, opponentHeuristicMode, playerHeuristicMode
+    // width, height, depth, opponentHeuristicMode, playerHeuristicMode
 
     // sides proximity = 1
     // mobility = 2
@@ -22,7 +11,7 @@ int main() {
     // finish proximity = 5
     // prioritize capture = 6
 
-    Game game(INITIAL_BOARD, 4, HeuristicWeights{5, 2, 1, 0, 0, 0}, HeuristicWeights{0, 1, 2, 3, 0, 0});
+    Game game(8, 8, 4, HeuristicWeights{5, 2, 1, 0, 0, 0}, HeuristicWeights{0, 1, 2, 3, 0, 0});
 
     game.display();
 

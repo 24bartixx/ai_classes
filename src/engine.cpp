@@ -48,6 +48,27 @@ Game::Game(const std::string& boardString, int depth, const HeuristicWeights& pl
     }
 }
 
+Game::Game(int width, int height, int depth, const HeuristicWeights& playerHeuristicWeights, const HeuristicWeights& opponentHeuristicWeights)
+    : depth(depth),
+      opponentHeuristicWeights(opponentHeuristicWeights),
+      playerHeuristicWeights(playerHeuristicWeights),
+      rowsCount(height),
+      colCount(width) {
+    if(width <= 0 || height < 4) {
+        std::cerr << "Error: Board dimensions must be positive and height must be at least 4." << std::endl;
+        exit(1);
+    }
+
+    board.assign(rowsCount, std::vector<char>(colCount, '_'));
+
+    for(int col = 0; col < colCount; col++) {
+        board[0][col] = 'W';
+        board[1][col] = 'W';
+        board[rowsCount - 2][col] = 'B';
+        board[rowsCount - 1][col] = 'B';
+    }
+}
+
 void Game::display() const {
 
     std::cout << "\n    ";
@@ -64,6 +85,31 @@ void Game::display() const {
         }
         std::cout << std::endl;
     }
+}
+
+void Game::makeMove(int prev_row, int prev_col, int new_row, int new_col) {
+    board[new_row][new_col] = board[prev_row][prev_col];
+    board[prev_row][prev_col] = '_';
+}
+
+std::array<int, 4> Game::makeBestMove(bool isWhite) {
+    char playerColor = isWhite ? 'W' : 'B';
+    const HeuristicWeights& heuristicWeights = isWhite ? playerHeuristicWeights : opponentHeuristicWeights;
+    int visitedNodes = 0;
+
+    optional<Move> bestMove = getBestMove(board, depth, heuristicWeights, playerColor, visitedNodes);
+    if(!bestMove.has_value()) {
+        return {-1, -1, -1, -1};
+    }
+
+    int prevRow = bestMove.value().first.first;
+    int prevCol = bestMove.value().first.second;
+    int nextRow = bestMove.value().second.first;
+    int nextCol = bestMove.value().second.second;
+
+    makeMove(prevRow, prevCol, nextRow, nextCol);
+
+    return {prevRow, prevCol, nextRow, nextCol};
 }
 
 GameResult Game::play(bool isSimulation, bool shouldLog, int iterations) {
@@ -89,15 +135,52 @@ GameResult Game::play(bool isSimulation, bool shouldLog, int iterations) {
         cerr << "\n\033[31mVisited nodes in round " << i << ": "
              << visitedNodesThisRound << "\033[0m\n";
     };
+
+    auto formatMove = [](const Move& move) {
+        ostringstream stream;
+        stream << "(" << move.first.first << ", " << move.first.second << ") -> ("
+               << move.second.first << ", " << move.second.second << ")";
+        return stream.str();
+    };
+
+    auto findBestMove = [&](char playerColor, const HeuristicWeights& heuristicWeights) {
+        if(!isSimulation) {
+            return getBestMove(board, depth, heuristicWeights, playerColor, visitedNodes);
+        }
+
+        auto moveSearchStartTime = chrono::steady_clock::now();
+        optional<Move> move = getBestMove(board, depth, heuristicWeights, playerColor, visitedNodes);
+
+        cerr << "\n\033[36mBest move for "
+             << (playerColor == 'W' ? "White" : "Black") << ": ";
+
+        if(move.has_value()) {
+            cerr << formatMove(move.value());
+        } else {
+            cerr << "none";
+        }
+
+        cerr << "\033[0m" << endl;
+
+        auto moveSearchEndTime = chrono::steady_clock::now();
+        chrono::duration<double, milli> elapsedMoveSearchTime = moveSearchEndTime - moveSearchStartTime;
+
+        cerr << "\033[36mBest move search + print time: "
+             << fixed << setprecision(3) << elapsedMoveSearchTime.count()
+             << " ms\033[0m\n";
+
+        return move;
+    };
     
     while(!isOver(board) && (iterations == -1 || i < iterations)) {
         int visitedNodesBeforeRound = visitedNodes;
+        char movingPlayer = currentPlayer;
 
         if(currentPlayer == 'W') {
 
             optional<Move> nextMove;
             if(isSimulation) {
-                nextMove = getBestMove(board, depth, playerHeuristicWeights, currentPlayer, visitedNodes);
+                nextMove = findBestMove(currentPlayer, playerHeuristicWeights);
 
                 if(!nextMove.has_value())  {
                     std::cout << "\nNo legal moves available for White.\nGame over!";
@@ -106,7 +189,7 @@ GameResult Game::play(bool isSimulation, bool shouldLog, int iterations) {
                 }
 
                 clearLastMoveOrigin();
-                lastMoveOrigin = makeMove(board, nextMove.value());
+                lastMoveOrigin = ::makeMove(board, nextMove.value());
             } else {
                 vector<Move> legalMoves = getLegalMoves(board, currentPlayer);
 
@@ -138,14 +221,14 @@ GameResult Game::play(bool isSimulation, bool shouldLog, int iterations) {
                 }
 
                 clearLastMoveOrigin();
-                lastMoveOrigin = makeMove(board, nextMove.value());
+                lastMoveOrigin = ::makeMove(board, nextMove.value());
             }
         } else {
             if(!isSimulation) {
                 cout << "\nWaiting for AI to make its move...\n";
             }
 
-            optional<Move> nextMove = getBestMove(board, depth, opponentHeuristicWeights, 'B', visitedNodes);
+            optional<Move> nextMove = findBestMove('B', opponentHeuristicWeights);
 
             if(!nextMove.has_value()) {
                 cout << "\nNo legal moves available for Black.\nGame over!\n";
@@ -154,7 +237,7 @@ GameResult Game::play(bool isSimulation, bool shouldLog, int iterations) {
             }
 
             clearLastMoveOrigin();
-            lastMoveOrigin = makeMove(board, nextMove.value());
+            lastMoveOrigin = ::makeMove(board, nextMove.value());
         }
 
         currentPlayer = (currentPlayer == 'W') ? 'B' : 'W';
@@ -162,7 +245,7 @@ GameResult Game::play(bool isSimulation, bool shouldLog, int iterations) {
         i++;
 
         if(shouldLog) {
-            cout << endl << "After move " << i << " (" << currentPlayer << "):" << endl; 
+            cout << endl << "After move " << i << " (" << movingPlayer << "):" << endl; 
             display();
         }
 
